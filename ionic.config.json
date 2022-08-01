@@ -1,0 +1,8 @@
+{
+  "name": "WeShare_Vue",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue",
+  "id": "423f8771"
+}

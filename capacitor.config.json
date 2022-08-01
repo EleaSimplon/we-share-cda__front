@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "WeShare_Vue",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}
