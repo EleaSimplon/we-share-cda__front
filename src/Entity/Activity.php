@@ -5,20 +5,28 @@ namespace App\Entity;
 use App\Repository\ActivityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ApiResource(
+    
+)]
 #[ORM\Entity(repositoryClass: ActivityRepository::class)]
 class Activity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["read:User"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     private ?string $company = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["read:User"])]
     private ?string $address = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -34,11 +42,53 @@ class Activity
     #[ORM\JoinColumn(nullable: false)]
     private ?Unit $unit = null;
 
-    private ?Collection $posts;
+    #[ORM\Column(length: 255)]
+    #[Groups(["read:User"])]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(["read:User"])]
+    private ?string $city = null;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(["read:User"])]
+    private ?string $country = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Groups(["read:User"])]
+    private ?\DateTimeInterface $published_at = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["read:User"])]
+    private ?string $picture = null;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(["read:User"])]
+    private ?string $price = null;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(["read:User"])]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["read:User"])]
+    private ?string $short_description = null;
+
+    #[ORM\ManyToOne(inversedBy: 'activities')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'activity', targetEntity: Review::class)]
+    private Collection $reviews;
+
+    #[ORM\OneToMany(mappedBy: 'activity', targetEntity: Features::class)]
+    private Collection $features;
     
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
+        $this->features = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -118,29 +168,169 @@ class Activity
         return $this;
     }
 
-    /**
-     * @return Collection|Post[]
-     */
-    public function getPosts(): Collection
+
+    public function getName(): ?string
     {
-        return $this->posts;
+        return $this->name;
     }
 
-    public function addPosts(Post $post): self
+    public function setName(string $name): self
     {
-        if (!$this->posts->contains($post)) {
-            $this->posts[] = $post;
-            $post->setActivity($this);
-        }
+        $this->name = $name;
+
         return $this;
     }
 
-    public function removePost(Post $post): self
+    public function getCity(): ?string
     {
-        if ($this->subCategories->removeElement($post)) {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getPublishedAt(): ?\DateTimeInterface
+    {
+        return $this->published_at;
+    }
+
+    public function setPublishedAt(?\DateTimeInterface $published_at): self
+    {
+        $this->published_at = $published_at;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(string $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->short_description;
+    }
+
+    public function setShortDescription(?string $short_description): self
+    {
+        $this->short_description = $short_description;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->removeElement($review)) {
             // set the owning side to null (unless already changed)
-            if ($post->getActivity() === $this) {
-                $post->setActivity(null);
+            if ($review->getActivity() === $this) {
+                $review->setActivity(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Features>
+     */
+    public function getFeatures(): Collection
+    {
+        return $this->features;
+    }
+
+    public function addFeature(Features $feature): self
+    {
+        if (!$this->features->contains($feature)) {
+            $this->features->add($feature);
+            $feature->setActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeature(Features $feature): self
+    {
+        if ($this->features->removeElement($feature)) {
+            // set the owning side to null (unless already changed)
+            if ($feature->getActivity() === $this) {
+                $feature->setActivity(null);
             }
         }
 

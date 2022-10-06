@@ -3,10 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\FeaturesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
+#[ApiResource()]
 #[ORM\Entity(repositoryClass: FeaturesRepository::class)]
 class Features
 {
@@ -18,16 +18,14 @@ class Features
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $value = null;
 
-    #[ORM\OneToMany(mappedBy: 'features', targetEntity: FeaturesLabel::class)]
-    private Collection $features_label;
+    #[ORM\ManyToOne(inversedBy: 'features')]
+    private ?Activity $activity = null;
 
-    #[ORM\ManyToMany(targetEntity: Activity::class)]
-    private Collection $activity;
+    #[ORM\ManyToOne(inversedBy: 'featuresBis')]
+    private ?FeaturesLabel $features_label = null;
 
     public function __construct()
     {
-        $this->features_label = new ArrayCollection();
-        $this->activity = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -47,57 +45,28 @@ class Features
         return $this;
     }
 
-    /**
-     * @return Collection<int, FeaturesLabel>
-     */
-    public function getFeaturesLabel(): Collection
-    {
-        return $this->features_label;
-    }
-
-    public function addFeaturesLabel(FeaturesLabel $featuresLabel): self
-    {
-        if (!$this->features_label->contains($featuresLabel)) {
-            $this->features_label->add($featuresLabel);
-            $featuresLabel->setFeatures($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFeaturesLabel(FeaturesLabel $featuresLabel): self
-    {
-        if ($this->features_label->removeElement($featuresLabel)) {
-            // set the owning side to null (unless already changed)
-            if ($featuresLabel->getFeatures() === $this) {
-                $featuresLabel->setFeatures(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Activity>
-     */
-    public function getActivity(): Collection
+    public function getActivity(): ?Activity
     {
         return $this->activity;
     }
 
-    public function addActivity(Activity $activity): self
+    public function setActivity(?Activity $activity): self
     {
-        if (!$this->activity->contains($activity)) {
-            $this->activity->add($activity);
-        }
+        $this->activity = $activity;
 
         return $this;
     }
 
-    public function removeActivity(Activity $activity): self
+    public function getFeaturesLabel(): ?FeaturesLabel
     {
-        $this->activity->removeElement($activity);
+        return $this->features_label;
+    }
+
+    public function setFeaturesLabel(?FeaturesLabel $features_label): self
+    {
+        $this->features_label = $features_label;
 
         return $this;
     }
+
 }

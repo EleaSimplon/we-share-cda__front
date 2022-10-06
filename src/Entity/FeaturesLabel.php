@@ -3,8 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\FeaturesLabelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
+#[ApiResource()]
 #[ORM\Entity(repositoryClass: FeaturesLabelRepository::class)]
 class FeaturesLabel
 {
@@ -16,8 +20,13 @@ class FeaturesLabel
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $label = null;
 
-    #[ORM\ManyToOne(inversedBy: 'features_label')]
-    private ?Features $features = null;
+    #[ORM\OneToMany(mappedBy: 'features_label', targetEntity: Features::class)]
+    private Collection $features;
+
+    public function __construct()
+    {
+        
+    }
 
     public function getId(): ?int
     {
@@ -36,14 +45,32 @@ class FeaturesLabel
         return $this;
     }
 
-    public function getFeatures(): ?Features
+    /**
+     * @return Collection<int, Features>
+     */
+    public function getFeatures(): Collection
     {
-        return $this->features;
+        return $this->feature;
     }
 
-    public function setFeatures(?Features $features): self
+    public function addFeatures(Features $features): self
     {
-        $this->features = $features;
+        if (!$this->features->contains($features)) {
+            $this->features->add($features);
+            $features->setFeaturesLabel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeatures(Features $features): self
+    {
+        if ($this->features->removeElement($features)) {
+            // set the owning side to null (unless already changed)
+            if ($features->getFeaturesLabel() === $this) {
+                $features->setFeaturesLabel(null);
+            }
+        }
 
         return $this;
     }

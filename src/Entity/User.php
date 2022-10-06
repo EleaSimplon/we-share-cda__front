@@ -75,10 +75,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(["read:User"])]
     private ?Collection $posts;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Activity::class, orphanRemoval: true)]
+    private Collection $activities;
+
     
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->activities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -200,28 +204,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection|Post[]
+     * @return Collection<int, Activity>
      */
-    public function getPosts(): Collection
+    public function getActivities(): Collection
     {
-        return $this->posts;
+        return $this->activities;
     }
 
-    public function addPosts(Post $post): self
+    public function addActivity(Activity $activity): self
     {
-        if (!$this->posts->contains($post)) {
-            $this->posts[] = $post;
-            $post->setUser($this);
+        if (!$this->activities->contains($activity)) {
+            $this->activities->add($activity);
+            $activity->setUser($this);
         }
+
         return $this;
     }
 
-    public function removePost(Post $post): self
+    public function removeActivity(Activity $activity): self
     {
-        if ($this->subCategories->removeElement($post)) {
+        if ($this->activities->removeElement($activity)) {
             // set the owning side to null (unless already changed)
-            if ($post->getUser() === $this) {
-                $post->setUser(null);
+            if ($activity->getUser() === $this) {
+                $activity->setUser(null);
             }
         }
 
