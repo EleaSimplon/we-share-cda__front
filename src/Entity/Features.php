@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\FeaturesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource()]
 #[ORM\Entity(repositoryClass: FeaturesRepository::class)]
@@ -13,6 +14,7 @@ class Features
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["activity:write"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
