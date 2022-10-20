@@ -86,7 +86,6 @@ class Activity
     
     public function __construct()
     {
-        $this->posts = new ArrayCollection();
         $this->reviews = new ArrayCollection();
         $this->features = new ArrayCollection();
     }

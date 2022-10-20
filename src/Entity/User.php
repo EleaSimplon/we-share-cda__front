@@ -11,9 +11,11 @@ use App\Controller\UserController;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 #[ApiResource(
     // Collection = Recup les listes
+    // !! Collection + itemOpe = pour que ça soit visible dans la doc api !!
     collectionOperations: [
         'get',
         'post',
@@ -32,8 +34,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
         'get',
         // recup id user
     ],
-    normalizationContext: ['groups' => 'read:User'],
-    //denormalizationContext: ['groups' => 'write:User']
+    normalizationContext: ['groups' => 'user:read'],
+    denormalizationContext: ['groups' => 'user:write']
 )]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -41,47 +43,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(["read:User"])]
+    #[Groups(["user:read"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Groups(["read:User"])]
+    #[Groups(["user:read", "user:write"])]
     private ?string $email = null;
 
     #[ORM\Column]
-    #[Groups(["read:User"])]
+    #[Groups(["user:read"])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups(["user:read", "user:write"])]
     private ?string $password = null;
 
+    #[SerializedName("password")]
+    #[Groups(["user:write"])]
     private ?string $plainPassword = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(["read:User"])]
+    #[Groups(["user:read", "user:write"])]
     private ?string $profile_picture = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(["read:User"])]
+    #[Groups(["user:read", "user:write"])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(["read:User"])]
+    #[Groups(["user:read", "user:write"])]
     private ?string $name = null;
 
-    #[Groups(["read:User"])]
-    private ?Collection $posts;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Activity::class, orphanRemoval: true)]
+    #[Groups(["user:read"])]
     private Collection $activities;
 
     
     public function __construct()
     {
-        $this->posts = new ArrayCollection();
         $this->activities = new ArrayCollection();
     }
 
