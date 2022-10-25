@@ -1,0 +1,39 @@
+/* Header */
+.search-header {
+    position: fixed;
+    overflow: hidden;
+    z-index: 20;
+}
+/* Button Filter */
+.search-header-filters button {
+    width: 40px;
+    height: 40px;
+    border-radius: 26px;
+}
+/* Card LISTING */
+.cards-listing {
+    padding-top: 220px;
+}
+/* Modal */
+ion-modal {
+    --height: 50%;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal::part(backdrop) {
+    background: rgba(209, 213, 219);
+    opacity: 1;
+}
+
+ion-modal ion-toolbar {
+    --background: var(--ion-color-mustard);
+    --color: white;
+}
+
+@media (min-width: 992px) {
+    /* Card LISTING */
+    .cards-listing {
+        padding-top: 250px;
+    }
+}

@@ -1,0 +1,47 @@
+/***** Atomic Classes *****/
+.relative {
+    position: relative;
+}
+.absolute {
+    position: absolute;
+}
+
+/** Postion **/
+.center {
+    text-align: center;
+}
+
+/** Typo **/
+.bold {
+    font-weight: bold;
+}
+
+/** Flexbox **/
+.d-flex {
+    display: flex;
+}
+.space-around {
+    justify-content: space-around;
+}
+.justify-center {
+    justify-content: center;
+}
+.align-center {
+    align-items: center;
+}
+
+/** ?? **/
+.w-100 {
+    width: 100%;
+}
+
+/* overflow */
+.overflow-auto {
+    overflow: auto;
+}
+.overflow-scroll {
+    overflow: scroll;
+}
+.overflow-box {
+    overflow: -webkit-box;;
+}

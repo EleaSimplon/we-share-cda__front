@@ -20,8 +20,16 @@ import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 
-/* Theme variables */
+/* Theme Css */
 import './theme/variables.css';
+import './theme/elements.css';
+import './theme/atomic.css';
+import './theme/swiper.css';
+import './theme/spacing.css';
+import './theme/search_page.css';
+import './theme/cp-card-activity.css';
+
+
 
 const app = createApp(App)
   .use(IonicVue)
