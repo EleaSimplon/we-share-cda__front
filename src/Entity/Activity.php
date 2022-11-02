@@ -13,7 +13,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
 
     collectionOperations: [
-        'get',
+        'get'=>[
+            'normalization_context'=> ['groups'=>[ 'read:activities:collection']]
+        ],
         'post' =>[
             'denormalization_context'=> ['groups'=>['activity:write']],
         ],
@@ -37,72 +39,72 @@ class Activity
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?string $company = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?string $address = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?string $phone_number = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?string $schedule = null;
 
     #[ORM\Column]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?int $duration = null;
 
     #[ORM\ManyToOne(cascade:["persist"])]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?Unit $unit = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?string $city = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?string $country = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?\DateTimeInterface $published_at = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?string $picture = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?string $price = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(["user:read", "activity:write"])]
+    #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
     private ?string $short_description = null;
 
     #[ORM\ManyToOne(inversedBy: 'activities')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(["activity:write"])]
+    #[Groups(["activity:write", 'read:activities:collection'])]
     private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'activity', targetEntity: Review::class)]
     private Collection $reviews;
 
     #[ORM\OneToMany(mappedBy: 'activity', targetEntity: Features::class)]
-    #[Groups(["activity:write"])]
+    #[Groups(["activity:write", 'read:activities:collection'])]
     private Collection $features;
     
     public function __construct()
