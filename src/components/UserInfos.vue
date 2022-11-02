@@ -33,7 +33,7 @@ data(){
 },
 mounted() {
     this.loadUser()
-    console.log("ppl");
+    console.log("ppl mounted user infos");
 },
 computed: {
     username() {

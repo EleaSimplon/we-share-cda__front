@@ -191,13 +191,13 @@ export default defineComponent({
                 plainPassword: this.password,
                 description: this.description
             };
-                try {
-                    await axios.post("http://127.0.0.1:8000/api/users", dataRegister);
-                    await this.login(this.email, this.password)
-                }
-                catch (err) {
-                    this.addError(this.getErrorText(err))
-                }
+            try {
+                await axios.post("http://127.0.0.1:8000/api/users", dataRegister);
+                await this.login(this.email, this.password)
+            }
+            catch (err) {
+                this.addError(this.getErrorText(err))
+            }
         },
         // function in mixins => backends
         logIn() {

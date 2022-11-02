@@ -61,6 +61,26 @@
             <div class="cards-listing">
                 <ion-grid>
                     <ion-row>
+                        <!-- {{activities["hydra:member"][0].company}} -->
+
+                        <div v-for="activity in activities['hydra:member']" :key="activity.id">
+                           <ion-col class="mb-20 h-100" size-xs="6" size-sm="6" size-md="4" size-lg="3">
+                            <ion-card class="card-activity h-100" href="#" >
+                                <div class="card-activity__image">
+                                    <img src="https://images.pexels.com/photos/5171018/pexels-photo-5171018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">                       
+                                </div>
+                                <ion-card-header>
+                                    <ion-card-subtitle>{{ activity.country }}</ion-card-subtitle>
+                                    <ion-card-title>{{ activity.name }}</ion-card-title>
+                                </ion-card-header>
+                                <ion-card-content>
+                                    {{ activity.short_description }}
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-col>
+                        </div> 
+
+
                         <!-- Col 6 Card -->
                         <ion-col class="mb-20 h-100" size-xs="6" size-sm="6" size-md="4" size-lg="3">
                             <ion-card class="card-activity h-100" href="#" >
@@ -152,8 +172,8 @@
                                 </ion-card-content>
                             </ion-card>
                         </ion-col>
-                        <!-- 
-                            <div v-for="card in cards" :key="card.id">
+                        
+                            <!-- <div v-for="card in cards" :key="card.id">
                                 <card-post
                                     :image="card.image"
                                     :shortDescription="card.short_description"
@@ -161,8 +181,8 @@
                                     :name="card.name"
                                     >
                                 </card-post>
-                            </div>
-                        -->
+                            </div> -->
+                        
                     </ion-row>
                 </ion-grid>
             </div>
@@ -177,6 +197,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import axios from 'axios';
 // import CardPost from '../components/CardPost.vue';
 import {
     IonPage,
@@ -238,7 +259,11 @@ export default defineComponent({
         return {
             filter: false,
             isModalOpen: false,
+            activities: []
         }
+    },
+    mounted() {
+        this.loadActivities();
     },
     methods: {
         onClickAddActivity() {
@@ -247,6 +272,15 @@ export default defineComponent({
         setOpenModal(isModalOpen: boolean) {
             this.isModalOpen = isModalOpen;
         },
+        async loadActivities() {
+            await axios.get("http://127.0.0.1:8000/api/activities/")
+            .then((response) => {
+                this.activities = response.data;
+                console.log(response.data);
+            }).catch(e => {
+                console.log('Error', e);
+            });
+        }
     },
 });
 </script>

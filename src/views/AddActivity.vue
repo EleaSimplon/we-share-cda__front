@@ -39,9 +39,9 @@
                         <ion-input type="text" v-model="address"></ion-input>
                     </ion-item>
                     <!-- Short Description -->
-                    <ion-item>
+                    <ion-item counter="true">
                         <ion-label position="floating">Short Description</ion-label>
-                        <ion-input type="text" v-model="shortDescription"></ion-input>
+                        <ion-input type="text" maxlength="20" v-model="shortDescription"></ion-input>
                     </ion-item>
                     <!-- Description -->
                     <ion-item>
@@ -58,22 +58,57 @@
                         <ion-label position="floating">Phone Number</ion-label>
                         <ion-textarea v-model="phoneNumber"></ion-textarea>
                     </ion-item>
-                    <!-- Phone Number -->
+                    <!-- Duration -->
+                    <ion-item>
+                        <ion-label position="floating">Duration</ion-label>
+                        <ion-textarea v-model="duration"></ion-textarea>
+                    </ion-item>
+                    <!-- Unit -->
+                    <ion-list>
+                        <ion-item>
+                            <ion-select interface="popover" placeholder="Unit">
+                                <IonSelectOption v-model="unit" value="3">Minutes</IonSelectOption>
+                                <IonSelectOption v-model="unit" value="1">Hours</IonSelectOption>
+                                <IonSelectOption v-model="unit" value="2">Days</IonSelectOption>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                    <!-- Picture 
                     <ion-item>
                         <ion-label position="floating">Picture</ion-label>
                         <ion-textarea v-model="picture"></ion-textarea>
                     </ion-item>
+                    -->
+                    <!-- Labels value 
                     <ion-item>
                         <ion-select placeholder="Select all tag that matches" :multiple="true">
-                            <ion-select-option value="apples">Sport</ion-select-option>
-                            <ion-select-option value="oranges">Art</ion-select-option>
-                            <ion-select-option value="bananas">Indoor</ion-select-option>
-                            <ion-select-option value="bananas">OutDoor</ion-select-option>
+                            <ion-select-option value="sport">Sport</ion-select-option>
+                            <ion-select-option value="art">Art</ion-select-option>
+                            <ion-select-option value="indoor">Indoor</ion-select-option>
+                            <ion-select-option value="outdoor">OutDoor</ion-select-option>
                         </ion-select>
                     </ion-item>
+                    -->
+                    <!-- Price
+                    <ion-list>
+                        <ion-item>
+                            <ion-select interface="popover" placeholder="Price">
+                                <IonSelectOption value="minutes">$</IonSelectOption>
+                                <IonSelectOption value="hours">$$</IonSelectOption>
+                                <IonSelectOption value="days">$$$</IonSelectOption>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                     -->
+                    <!-- Schedule 
+                    <ion-item>
+                        <ion-label position="floating">Schedule</ion-label>
+                        <ion-textarea v-model="schedule"></ion-textarea>
+                    </ion-item>
+                    -->
                     <!-- Button Submit-->
                     <div class="button-signIn mt-20">
-                        <button class="button-basic button-primary w-100">
+                        <button class="button-basic button-primary w-100" @click.prevent = "addActivity()">
                             Submit
                         </button>
                     </div>
@@ -81,13 +116,18 @@
             </ion-card>
         </ion-content>
     </ion-page>
+
 </template>
+
+
+
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 // import CardPost from '../components/CardPost.vue';
 import { IonPage, IonContent, IonCol, IonGrid, IonRow, IonCard, IonInput, IonLabel, IonItem, IonTextarea, IonSelect, IonSelectOption } from '@ionic/vue';
 import store from '../store';
+import axios from 'axios';
 
 //recup le token
 
@@ -104,15 +144,42 @@ export default defineComponent({
         description: '',
         commpany: '',
         phoneNumber: '',
-        picture: '',
+        duration: '',
+        unit: '',
+        //picture: '',
+        //price: '',
+        //schedule: ''
     }
   },
   computed: {
     isAuthenticated() {
       return store.getters.isAuthenticated
+    },
+    userId() {
+        return store.getters.userId
     }
   },
     methods: {
+         async addActivity(){
+            const dataActivity = {
+                name: this.name,
+                country: this.country,
+                city: this.city,
+                address: this.address,
+                shortDescription: this.shortDescription,
+                description: this.description,
+                commpany: this.company,
+                phoneNumber: this.phoneNumber,
+                duration: this.duration,
+                unit: this.unitId,
+            };
+            try {
+                await axios.post("http://127.0.0.1:8000/api/activities", dataActivity);
+            }
+            catch (err) {
+                this.addError(this.getErrorText(err))
+            }
+        },
         
     },
 });
