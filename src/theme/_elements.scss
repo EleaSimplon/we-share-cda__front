@@ -1,0 +1,140 @@
+@import 'variables';
+
+/*** Fonts ***/
+@font-face {
+    font-family: "Against";
+    src: local("Against"),
+        url(/Applications/MAMP/htdocs/WeShare/WeShare_Front/we-share-vue/public/assets/fonts/against-regular.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Miloner";
+    src: local("Miloner"),
+        url(/Applications/MAMP/htdocs/WeShare/WeShare_Front/we-share-vue/public/assets/fonts/MilonerRegular.ttf) format("truetype");
+}
+
+body * {
+    font-family: var(--typo-body);
+}
+
+/* TYPO */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-tertiary);
+}
+h1 {
+    font-size: 28px;
+}
+h2 {
+    font-size: 25px;
+}
+h3 {
+    font-size: 22px;
+}
+h1,
+h2,
+h3 {
+    font-family: var(--typo-hn);
+}
+h4 {
+    font-size: 19px;
+}
+h5 {
+    font-size: 17px;
+}
+h6 {
+    font-size: 15px;
+}
+h4,
+h5,
+h6 {
+    font-family: var(--typo-body);
+}
+
+a,
+p {
+    color: var(--color-tertiary);
+    font-size: 14px;
+}
+
+a:hover {
+    color: var(--color-tertiary) !important;
+}
+
+ion-ripple-effect {
+    color: var(--color-primary) !important;
+}
+
+/* Font size */
+.small {
+    font-size: 13px;
+}
+
+@media (min-width: 992px) {
+    h1 {
+        font-size: 53px;
+    }
+    h2 {
+        font-size: 44px;
+    }
+    h3 {
+        font-size: 37px;
+    }
+    h4 {
+        font-size: 31px;
+    }
+    h5 {
+        font-size: 25px;
+    }
+    h6 {
+        font-size: 21px;
+    }
+    a,
+    p {
+        font-size: 16px;
+    }
+}
+
+.searchbar-input.sc-ion-searchbar-md {
+    border-radius: var(--border-radius);
+}
+
+/*** Butons ***/
+.button-basic {
+    border-radius: var(--border-radius);
+    color: var(--color-tertiary);
+    width: 100%;
+    padding: 18px;
+}
+.button-basic.button-primary {
+    background-color: var(--color-primary);
+}
+.button-basic.button-secondary {
+    border: 1px solid var(--color-primary);
+}
+.button-basic.button-mustard {
+    background-color: var(--color-mustard);
+}
+/* Tab Nav */
+.tab-selected {
+    border-top: 2px solid var(--color-mustard);
+    color: var(--color-tertiary);
+}
+.tab-has-label a:hover {
+    color: var(--color-primary);
+}
+ 
+.search-header {
+    background-color: var(--color-primary);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+@media (min-width: 992px) {
+    .button-basic {
+        width: fit-content;
+    }
+}

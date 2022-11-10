@@ -1,3 +1,4 @@
+@import 'variables';
 /*** Swiper ***/
 /*
 .swiper.swiper-slide.swiper-slide-prev,
@@ -7,10 +8,10 @@
 */
 
 .swiper-slide.swiper-slide-next {
-    background-color: var(--ion-color-primary);
+    background-color: var(--color-primary);
 }
 .swiper-slide {
-    background-color: var(--ion-color-secondary);
+    background-color: var(--color-secondary);
 }
 .mySwiper {
     width: 100%;
@@ -24,7 +25,7 @@
 }
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    background-color: var(--ion-color-mustard) !important;
+    background-color: var(--color-mustard) !important;
 }
 
 /* REMPLACE BY CAROUSEL */
@@ -55,5 +56,5 @@
 }*/
 .swiper-button-next,
 .swiper-button-prev {
-    color:  var(--ion-color-tertiary) !important;
+    color:  var(--color-tertiary) !important;
 }

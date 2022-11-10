@@ -1,0 +1,532 @@
+/***** Atomic Classes *****/
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+/** Postion **/
+.center {
+  text-align: center;
+}
+
+/** Typo **/
+.bold {
+  font-weight: bold;
+}
+
+/** Flexbox **/
+.d-flex {
+  display: flex;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.flex-no-wrap {
+  flex-wrap: nowrap;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+/** ?? **/
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+/* overflow */
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-box {
+  overflow: -webkit-box;
+}
+
+/* margin */
+.card-activity__col {
+  flex: 0 0 43%;
+  margin: 0 10px 10px;
+}
+
+.card-activity__image {
+  height: 190px;
+  width: 100%;
+}
+
+.card-activity__image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 775px) {
+  .card-activity__col {
+    flex: 0 0 33%;
+  }
+}
+@media (min-width: 992px) {
+  .card-activity__image {
+    height: 250px;
+  }
+  .card-activity__col {
+    flex: 0 0 20%;
+  }
+}
+/** CSS Variables **/
+:root {
+  /** Font **/
+  --typo-hn: "Against";
+  --typo-body: "Miloner";
+  /** primary **/
+  --color-primary: #c8d1ce;
+  --color-primary-rgb: 200, 209, 206;
+  /** secondary **/
+  --color-secondary: #e4ede8;
+  --color-secondary-rgb: 228, 237, 232;
+  /** tertiary **/
+  --color-tertiary: #212738;
+  --color-tertiary-rgb: 33, 39, 56;
+  /** mustard **/
+  --color-mustard: #d8ad5c;
+  --color-mustard-rgb: 216, 173, 92;
+  /** Border Radius **/
+  --border-radius: 20px;
+  /** Spacing **/
+}
+
+/*** Fonts ***/
+@font-face {
+  font-family: "Against";
+  src: local("Against"), url(/Applications/MAMP/htdocs/WeShare/WeShare_Front/we-share-vue/public/assets/fonts/against-regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Miloner";
+  src: local("Miloner"), url(/Applications/MAMP/htdocs/WeShare/WeShare_Front/we-share-vue/public/assets/fonts/MilonerRegular.ttf) format("truetype");
+}
+body * {
+  font-family: var(--typo-body);
+}
+
+/* TYPO */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-tertiary);
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 25px;
+}
+
+h3 {
+  font-size: 22px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--typo-hn);
+}
+
+h4 {
+  font-size: 19px;
+}
+
+h5 {
+  font-size: 17px;
+}
+
+h6 {
+  font-size: 15px;
+}
+
+h4,
+h5,
+h6 {
+  font-family: var(--typo-body);
+}
+
+a,
+p {
+  color: var(--color-tertiary);
+  font-size: 14px;
+}
+
+a:hover {
+  color: var(--color-tertiary) !important;
+}
+
+ion-ripple-effect {
+  color: var(--color-primary) !important;
+}
+
+/* Font size */
+.small {
+  font-size: 13px;
+}
+
+@media (min-width: 992px) {
+  h1 {
+    font-size: 53px;
+  }
+  h2 {
+    font-size: 44px;
+  }
+  h3 {
+    font-size: 37px;
+  }
+  h4 {
+    font-size: 31px;
+  }
+  h5 {
+    font-size: 25px;
+  }
+  h6 {
+    font-size: 21px;
+  }
+  a,
+p {
+    font-size: 16px;
+  }
+}
+.searchbar-input.sc-ion-searchbar-md {
+  border-radius: var(--border-radius);
+}
+
+/*** Butons ***/
+.button-basic {
+  border-radius: var(--border-radius);
+  color: var(--color-tertiary);
+  width: 100%;
+  padding: 18px;
+}
+
+.button-basic.button-primary {
+  background-color: var(--color-primary);
+}
+
+.button-basic.button-secondary {
+  border: 1px solid var(--color-primary);
+}
+
+.button-basic.button-mustard {
+  background-color: var(--color-mustard);
+}
+
+/* Tab Nav */
+.tab-selected {
+  border-top: 2px solid var(--color-mustard);
+  color: var(--color-tertiary);
+}
+
+.tab-has-label a:hover {
+  color: var(--color-primary);
+}
+
+.search-header {
+  background-color: var(--color-primary);
+  border-bottom-right-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+@media (min-width: 992px) {
+  .button-basic {
+    width: fit-content;
+  }
+}
+/** CSS Variables **/
+:root {
+  /** Font **/
+  --typo-hn: "Against";
+  --typo-body: "Miloner";
+  /** primary **/
+  --color-primary: #c8d1ce;
+  --color-primary-rgb: 200, 209, 206;
+  /** secondary **/
+  --color-secondary: #e4ede8;
+  --color-secondary-rgb: 228, 237, 232;
+  /** tertiary **/
+  --color-tertiary: #212738;
+  --color-tertiary-rgb: 33, 39, 56;
+  /** mustard **/
+  --color-mustard: #d8ad5c;
+  --color-mustard-rgb: 216, 173, 92;
+  /** Border Radius **/
+  --border-radius: 20px;
+  /** Spacing **/
+}
+
+/* Header */
+.search-header {
+  position: fixed;
+  overflow: hidden;
+  z-index: 20;
+}
+
+/* Button Filter */
+.search-header-filters button {
+  width: 40px;
+  height: 40px;
+  border-radius: 26px;
+}
+
+/* Card LISTING */
+.cards-listing {
+  padding-top: 220px;
+}
+
+/* Modal */
+ion-modal {
+  --height: 50%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal::part(backdrop) {
+  background: rgb(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --background: var(--color-mustard);
+  --color: white;
+}
+
+.sec-card-activity__btn-add button {
+  background: var(--color-primary);
+}
+
+@media (min-width: 992px) {
+  /* Card LISTING */
+  .cards-listing {
+    padding-top: 250px;
+  }
+}
+/*** Margin ***/
+/* Top */
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+/* Right */
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mr-20 {
+  margin-right: 20px;
+}
+
+/* Bottom */
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-35 {
+  margin-bottom: 35px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.mb-120 {
+  margin-bottom: 120px;
+}
+
+/* Left */
+.ml-10 {
+  margin-right: 10px;
+}
+
+/*** Padding ***/
+/* all */
+.p-20 {
+  padding: 20px;
+}
+
+/* Bottom */
+.pb-20 {
+  padding-bottom: 20px;
+}
+
+/** CSS Variables **/
+:root {
+  /** Font **/
+  --typo-hn: "Against";
+  --typo-body: "Miloner";
+  /** primary **/
+  --color-primary: #c8d1ce;
+  --color-primary-rgb: 200, 209, 206;
+  /** secondary **/
+  --color-secondary: #e4ede8;
+  --color-secondary-rgb: 228, 237, 232;
+  /** tertiary **/
+  --color-tertiary: #212738;
+  --color-tertiary-rgb: 33, 39, 56;
+  /** mustard **/
+  --color-mustard: #d8ad5c;
+  --color-mustard-rgb: 216, 173, 92;
+  /** Border Radius **/
+  --border-radius: 20px;
+  /** Spacing **/
+}
+
+/** CSS Variables **/
+:root {
+  /** Font **/
+  --typo-hn: "Against";
+  --typo-body: "Miloner";
+  /** primary **/
+  --color-primary: #c8d1ce;
+  --color-primary-rgb: 200, 209, 206;
+  /** secondary **/
+  --color-secondary: #e4ede8;
+  --color-secondary-rgb: 228, 237, 232;
+  /** tertiary **/
+  --color-tertiary: #212738;
+  --color-tertiary-rgb: 33, 39, 56;
+  /** mustard **/
+  --color-mustard: #d8ad5c;
+  --color-mustard-rgb: 216, 173, 92;
+  /** Border Radius **/
+  --border-radius: 20px;
+  /** Spacing **/
+}
+
+/*** Swiper ***/
+/*
+.swiper.swiper-slide.swiper-slide-prev,
+.swiper.swiper-slide.swiper-slide-active {
+    height: 75%;
+}
+*/
+.swiper-slide.swiper-slide-next {
+  background-color: var(--color-primary);
+}
+
+.swiper-slide {
+  background-color: var(--color-secondary);
+}
+
+.mySwiper {
+  width: 100%;
+  height: 30%;
+  overflow: visible !important;
+}
+
+.swiper-pagination {
+  position: relative !important;
+  bottom: inherit !important;
+  margin-top: 45px;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: var(--color-mustard) !important;
+}
+
+/* REMPLACE BY CAROUSEL */
+.test {
+  border-radius: 60px;
+  width: 215px;
+  height: 337px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.test2 {
+  border-radius: 60px;
+  width: 215px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+.test3 {
+  border-radius: 60px;
+  width: 215px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+/* Navigation */
+/*
+.swiper-button-prev:after {
+    content: url('/Applications/MAMP/htdocs/WeShare/WeShare_Front/we-share-vue/public/assets/icon/left.png') !important;
+}*/
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--color-tertiary) !important;
+}
+
+/* Header */
+.sec-activity-post__header {
+  background-image: url("https://images.pexels.com/photos/4275885/pexels-photo-4275885.jpeg?cs=srgb&dl=pexels-mateusz-sa%C5%82aciak-4275885.jpg&fm=jpg&_gl=1*1v9uwm*_ga*MjA1ODU4OTYxNy4xNjY2NzA1MTg1*_ga_8JE65Q40S6*MTY2NzgxNzcyMS4xLjEuMTY2NzgxNzczMC4wLjAuMA..");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 160px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.sec-activity-post__header .sec-activity-post__header__btn-back,
+.sec-activity-post__header .sec-activity-post__header__btn-like {
+  z-index: 5;
+}
+
+.sec-activity-post__header:before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: var(--color-primary);
+  opacity: 30%;
+  z-index: 1;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+/* Content */
+.sec-activity-post__content,
+.sec-activity-post__reviews {
+  padding: 20px 30px;
+}
+
+/* Reviews */
+.sec-activity-post__reviews {
+  border-top: 1px solid var(--color-primary);
+}
+
+/*# sourceMappingURL=main.css.map */

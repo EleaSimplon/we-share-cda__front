@@ -62,10 +62,8 @@
                 <ion-grid>
                     <ion-row>
                         <!-- {{activities["hydra:member"][0].company}} -->
-
-                        <div v-for="activity in activities['hydra:member']" :key="activity.id">
-                           <ion-col class="mb-20 h-100" size-xs="6" size-sm="6" size-md="4" size-lg="3">
-                            <ion-card class="card-activity h-100" href="#" >
+                        <div class="card-activity__col h-100" v-for="activity in activities['hydra:member']" :key="activity.id">
+                            <ion-card class="card-activity w-100 h-100" href @click.prevent="onClickActivityPost()">
                                 <div class="card-activity__image">
                                     <img src="https://images.pexels.com/photos/5171018/pexels-photo-5171018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">                       
                                 </div>
@@ -74,121 +72,34 @@
                                     <ion-card-title>{{ activity.name }}</ion-card-title>
                                 </ion-card-header>
                                 <ion-card-content>
-                                    {{ activity.short_description }}
+                                    {{ activity.short_description }}...
                                 </ion-card-content>
+                                <div class="card-activity__rating center pb-20">
+                                    <ion-icon name="star"></ion-icon>
+                                    <ion-icon name="star"></ion-icon>
+                                    <ion-icon name="star"></ion-icon>
+                                    <ion-icon name="star-half"></ion-icon>
+                                    <ion-icon name="star-outline"></ion-icon>
+                                </div>
                             </ion-card>
-                        </ion-col>
                         </div> 
-
-
-                        <!-- Col 6 Card -->
-                        <ion-col class="mb-20 h-100" size-xs="6" size-sm="6" size-md="4" size-lg="3">
-                            <ion-card class="card-activity h-100" href="#" >
-                                <div class="card-activity__image">
-                                    <img src="https://images.pexels.com/photos/5171018/pexels-photo-5171018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">                       
-                                </div>
-                                <ion-card-header>
-                                    <ion-card-subtitle>Country</ion-card-subtitle>
-                                    <ion-card-title>Activity Name</ion-card-title>
-                                </ion-card-header>
-                                <ion-card-content>
-                                Short description short description short description
-                                </ion-card-content>
-                            </ion-card>
-                        </ion-col>
-                        <!-- Col 6 Card -->
-                        <ion-col class="mb-20 h-100" size-xs="6" size-sm="6" size-md="4" size-lg="3">
-                            <ion-card class="h-100" href="#" >
-                                <div class="card-activity__image">
-                                    <img src="https://images.pexels.com/photos/5171018/pexels-photo-5171018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">                            
-                                </div>
-                                <ion-card-header>
-                                    <ion-card-subtitle>Country</ion-card-subtitle>
-                                    <ion-card-title>Activity Name</ion-card-title>
-                                </ion-card-header>
-                                <ion-card-content>
-                                Short description short description short description
-                                </ion-card-content>
-                            </ion-card>
-                        </ion-col>
-                        <!-- Col 6 Card -->
-                        <ion-col class="mb-20 h-100" size-xs="6" size-sm="6" size-md="4" size-lg="3">
-                            <ion-card class="h-100" href="#" >
-                                <div class="card-activity__image">
-                                    <img src="https://images.pexels.com/photos/5171018/pexels-photo-5171018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">                            
-                                </div>
-                                <ion-card-header>
-                                    <ion-card-subtitle>Country</ion-card-subtitle>
-                                    <ion-card-title>Activity Name</ion-card-title>
-                                </ion-card-header>
-                                <ion-card-content>
-                                Short description short description short description
-                                </ion-card-content>
-                            </ion-card>
-                        </ion-col>
-                        <!-- Col 6 Card -->
-                        <ion-col class="mb-20 h-100" size-xs="6" size-sm="6" size-md="4" size-lg="3">
-                            <ion-card class="h-100" href="#" >
-                                <div class="card-activity__image">
-                                    <img src="https://images.pexels.com/photos/5171018/pexels-photo-5171018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">                            
-                                </div>
-                                <ion-card-header>
-                                    <ion-card-subtitle>Country</ion-card-subtitle>
-                                    <ion-card-title>Activity Name</ion-card-title>
-                                </ion-card-header>
-                                <ion-card-content>
-                                Short description short description short description
-                                </ion-card-content>
-                            </ion-card>
-                        </ion-col>
-                        <!-- Col 6 Card -->
-                        <ion-col class="mb-20 h-100" size-xs="6" size-sm="6" size-md="4" size-lg="3">
-                            <ion-card class="h-100" href="#" >
-                                <div class="card-activity__image">
-                                    <img src="https://images.pexels.com/photos/5171018/pexels-photo-5171018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">                            
-                                </div>
-                                <ion-card-header>
-                                    <ion-card-subtitle>Country</ion-card-subtitle>
-                                    <ion-card-title>Activity Name</ion-card-title>
-                                </ion-card-header>
-                                <ion-card-content>
-                                Short description short description short description
-                                </ion-card-content>
-                            </ion-card>
-                        </ion-col>
-                        <!-- Col 6 Card -->
-                        <ion-col class="mb-20 h-100" size-xs="6" size-sm="6" size-md="4" size-lg="3">
-                            <ion-card class="h-100" href="#" >
-                                <div class="card-activity__image">
-                                    <img src="https://images.pexels.com/photos/5171018/pexels-photo-5171018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">                            
-                                </div>
-                                <ion-card-header>
-                                    <ion-card-subtitle>Country</ion-card-subtitle>
-                                    <ion-card-title>Activity Name</ion-card-title>
-                                </ion-card-header>
-                                <ion-card-content>
-                                    Short description short description short description
-                                    <!-- {{ shortDescription }} -->
-                                </ion-card-content>
-                            </ion-card>
-                        </ion-col>
                         
-                            <!-- <div v-for="card in cards" :key="card.id">
-                                <card-post
-                                    :image="card.image"
-                                    :shortDescription="card.short_description"
-                                    :country="card.country"
-                                    :name="card.name"
-                                    >
-                                </card-post>
-                            </div> -->
+                        <!-- <div v-for="card in cards" :key="card.id">
+                            <card-post
+                                :image="card.image"
+                                :shortDescription="card.short_description"
+                                :country="card.country"
+                                :name="card.name"
+                                >
+                            </card-post>
+                        </div> -->
                         
                     </ion-row>
                 </ion-grid>
             </div>
         </ion-content>
         <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button @click.prevent="onClickAddActivity()">
+            <ion-fab-button color="dark" class="sec-card-activity__btn-add" @click.prevent="onClickAddActivity()">
                 <ion-icon name="add-outline"></ion-icon>
             </ion-fab-button>
         </ion-fab>
@@ -268,6 +179,9 @@ export default defineComponent({
     methods: {
         onClickAddActivity() {
             router.push({ name: 'addActivity' })
+        },
+        onClickActivityPost() {
+            router.push({ name: 'activityPost' })
         },
         setOpenModal(isModalOpen: boolean) {
             this.isModalOpen = isModalOpen;

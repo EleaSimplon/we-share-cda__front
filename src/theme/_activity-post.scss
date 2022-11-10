@@ -1,0 +1,36 @@
+
+/* Header */
+.sec-activity-post__header {
+    background-image: url('https://images.pexels.com/photos/4275885/pexels-photo-4275885.jpeg?cs=srgb&dl=pexels-mateusz-sa%C5%82aciak-4275885.jpg&fm=jpg&_gl=1*1v9uwm*_ga*MjA1ODU4OTYxNy4xNjY2NzA1MTg1*_ga_8JE65Q40S6*MTY2NzgxNzcyMS4xLjEuMTY2NzgxNzczMC4wLjAuMA..');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 160px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    .sec-activity-post__header__btn-back,
+    .sec-activity-post__header__btn-like {
+        z-index: 5;
+    }
+}
+.sec-activity-post__header:before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: var(--color-primary);
+    opacity: 30%;
+    z-index: 1;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+/* Content */
+.sec-activity-post__content,
+.sec-activity-post__reviews {
+    padding: 20px 30px;
+}
+/* Reviews */
+.sec-activity-post__reviews {
+    border-top: 1px solid var(--color-primary);
+}

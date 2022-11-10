@@ -94,9 +94,9 @@
                     <!-- Component Tab -->
                     <div class="cp-tabs d-flex space-around">
                         <!-- Tab links  -->
+                        <button class="tablinks" onclick="openTab(event, 'Activity')">Activity</button>
                         <button class="tablinks tab-active" onclick="openCity(event, 'Review')">Review</button>
-                        <button class="tablinks" onclick="openTab(event, 'Post')">Post</button>
-                        <button class="tablinks" onclick="openTab(event, 'Favorite')">Favorite</button>
+                        <button class="tablinks" onclick="openTab(event, 'Favourite')">Favourite</button>
                     </div>
                     <!-- Tab content
                     <div id="Review" class="tabcontent">
@@ -117,7 +117,7 @@
                     <!-- Button Edit -->
                     <div class="button-logout center mt-50">
                         <button class="button-basic button-primary">
-                            Edit your profile
+                            Edit my profile
                         </button>
                         <edit-profile v-if="isAuthenticated"></edit-profile>
                     </div>

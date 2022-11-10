@@ -88,7 +88,6 @@ components: {
 setup() {
       return {
         modules: [Keyboard, Pagination, Scrollbar, Navigation],
-        
       };
     },
 });

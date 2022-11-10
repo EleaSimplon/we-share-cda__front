@@ -1,3 +1,5 @@
+@use 'variables';
+
 /* Header */
 .search-header {
     position: fixed;
@@ -10,7 +12,7 @@
     height: 40px;
     border-radius: 26px;
 }
-/* Card LISTING */
+/* Card LISTING */ 
 .cards-listing {
     padding-top: 220px;
 }
@@ -27,8 +29,11 @@ ion-modal::part(backdrop) {
 }
 
 ion-modal ion-toolbar {
-    --background: var(--ion-color-mustard);
+    --background: var(--color-mustard);
     --color: white;
+}
+.sec-card-activity__btn-add button {
+    background: var(--color-primary);
 }
 
 @media (min-width: 992px) {

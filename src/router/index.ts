@@ -39,6 +39,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'addActivity',
         path: 'add-activity',
         component: () => import('@/views/AddActivity.vue')
+      },
+      {
+        name: 'activityPost',
+        path: 'activity-post',
+        component: () => import('@/views/ActivityPost.vue')
       }
     ]
   }
