@@ -63,7 +63,7 @@
                     <ion-row>
                         <!-- {{activities["hydra:member"][0].company}} -->
                         <div class="card-activity__col h-100" v-for="activity in activities['hydra:member']" :key="activity.id">
-                            <ion-card class="card-activity w-100 h-100" href @click.prevent="onClickActivityPost()">
+                            <ion-card class="card-activity w-100 h-100" @click.prevent="onClickActivityPost()">
                                 <div class="card-activity__image">
                                     <img src="https://images.pexels.com/photos/5171018/pexels-photo-5171018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">                       
                                 </div>

@@ -67,9 +67,9 @@
                     <ion-list>
                         <ion-item>
                             <ion-select interface="popover" placeholder="Unit">
-                                <IonSelectOption v-model="unit" value="3">Minutes</IonSelectOption>
-                                <IonSelectOption v-model="unit" value="1">Hours</IonSelectOption>
-                                <IonSelectOption v-model="unit" value="2">Days</IonSelectOption>
+                                <IonSelectOption v-for="unit in units['hydra:member']" :key="unit.id" value="{{ unit.id }}" v-model="unit.id">
+                                    {{ unit.type }}
+                                </IonSelectOption>
                             </ion-select>
                         </ion-item>
                     </ion-list>
@@ -136,6 +136,7 @@ export default defineComponent({
   components: { IonContent, IonPage, IonCol, IonGrid, IonRow, IonCard, IonInput, IonLabel, IonItem, IonTextarea, IonSelect, IonSelectOption },
   data(){
     return {
+        units: [],
         name: '',
         country: '',
         city: '',
@@ -145,7 +146,7 @@ export default defineComponent({
         company: '',
         phoneNumber: '',
         duration: '',
-        unit: '',
+        //unit: '',
         //picture: '',
         //price: '',
         //schedule: ''
@@ -159,6 +160,9 @@ export default defineComponent({
         return store.getters.userId
     }
   },
+    mounted() {
+        this.loadUnits();
+    },
     methods: {
          async addActivity(){
             const dataActivity = {
@@ -171,7 +175,7 @@ export default defineComponent({
                 company: this.company,
                 phoneNumber: this.phoneNumber,
                 duration: this.duration,
-                unit: this.unitId,
+                //unit: this.unitId,
             };
             try {
                 await axios.post("http://127.0.0.1:8000/api/activities", dataActivity);
@@ -180,6 +184,15 @@ export default defineComponent({
                 this.addError(this.getErrorText(err))
             }
         },
+        async loadUnits() {
+            await axios.get("http://127.0.0.1:8000/api/units/")
+            .then((response) => {
+                this.units = response.data;
+                console.log(response.data);
+            }).catch(e => {
+                console.log('Error', e);
+            });
+        }
         
     },
 });
