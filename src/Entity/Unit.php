@@ -8,16 +8,29 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UnitRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+    collectionOperations: [
+        'get',
+        'post'
+    ],
+    itemOperations: [
+        'put',
+        'delete',
+        'get',
+    ],
+    normalizationContext: ['groups' => 'unit:read'],
+    denormalizationContext: ['groups' => 'unit:write']
+)]
 class Unit
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(["activity:write"])]
+    #[Groups(["unit:read", "activity:write"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["unit:read", "activity:write"])]
     private ?string $type = null;
 
     public function getId(): ?int
