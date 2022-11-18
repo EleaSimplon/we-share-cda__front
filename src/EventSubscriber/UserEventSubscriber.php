@@ -13,12 +13,13 @@ class UserEventSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents() 
     {
         return [
-            KernelEvents::VIEW => ['me', EventPriorities::PRE_READ],
+            // KernelEvents::VIEW => ['me', EventPriorities::PRE_READ],
         ];
     }
 
     public static function me(ViewEvent $event)
     {
         dd($event);
+        // return $event;
     }
 }

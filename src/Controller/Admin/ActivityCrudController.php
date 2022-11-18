@@ -4,6 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Activity;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+// use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+// use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+// use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 
 class ActivityCrudController extends AbstractCrudController
 {
@@ -12,7 +15,7 @@ class ActivityCrudController extends AbstractCrudController
         return Activity::class;
     }
 
-    /*
+/*
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -22,4 +25,5 @@ class ActivityCrudController extends AbstractCrudController
         ];
     }
     */
+
 }
