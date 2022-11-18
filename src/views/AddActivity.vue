@@ -53,11 +53,11 @@
                         <ion-label position="floating">Company</ion-label>
                         <ion-textarea v-model="company"></ion-textarea>
                     </ion-item>
-                    <!-- Phone Number -->
+                    <!-- Phone Number
                     <ion-item>
                         <ion-label position="floating">Phone Number</ion-label>
                         <ion-textarea v-model="phoneNumber"></ion-textarea>
-                    </ion-item>
+                    </ion-item>  -->
                     <!-- Duration -->
                     <ion-item>
                         <ion-label position="floating">Duration</ion-label>
@@ -144,9 +144,8 @@ export default defineComponent({
         shortDescription: '',
         description: '',
         company: '',
-        phoneNumber: '',
+        //phoneNumber: '',
         duration: '',
-        //unit: '',
         //picture: '',
         //price: '',
         //schedule: ''
@@ -173,9 +172,9 @@ export default defineComponent({
                 shortDescription: this.shortDescription,
                 description: this.description,
                 company: this.company,
-                phoneNumber: this.phoneNumber,
+                //phoneNumber: this.phoneNumber,
                 duration: this.duration,
-                //unit: this.unitId,
+                units: this.units,
             };
             try {
                 await axios.post("http://127.0.0.1:8000/api/activities", dataActivity);
