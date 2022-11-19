@@ -74,4 +74,10 @@ class FeaturesLabel
 
         return $this;
     }
+
+    // Admin
+    public function __toString()
+    {
+       return $this->id;
+    }
 }

@@ -3,7 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Activity;
-//use App\Entity\User;
+use App\Entity\Features;
+use App\Entity\FeaturesLabel;
+use App\Entity\Review;
+use App\Entity\User;
+
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -30,9 +34,7 @@ class DashboardController extends AbstractDashboardController
             ->generateUrl();
         
         return $this->redirect($url);
-    
-       // return parent::index();
-        
+
     }
 
 
@@ -47,12 +49,38 @@ class DashboardController extends AbstractDashboardController
         //yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
 
-        yield MenuItem::section('Activities', 'fa fa-home');
+        yield MenuItem::section('Users', 'fa-solid fa-user');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Create Activity', 'fas fa-plus', Activity::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Show Activities', 'fas fa-plus', Activity::class)
+            MenuItem::linkToCrud('Create User', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Users', 'fas fa-eye', Activity::class)
         ]);
 
+        yield MenuItem::section('Activities', 'fa-solid fa-earth-europe');
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Create Activity', 'fas fa-plus', Activity::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Activities', 'fas fa-eye', Activity::class)
+        ]);
+
+        yield MenuItem::section('Reviews', 'fa-solid fa-pen');
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Create Review', 'fas fa-plus', Review::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Reviews', 'fas fa-eye', Review::class)
+        ]);
+
+        yield MenuItem::section('Labels', 'fa-solid fa-question');
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Create Label', 'fas fa-plus', FeaturesLabel::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Label', 'fas fa-eye', FeaturesLabel::class)
+        ]);
+
+        yield MenuItem::section('Labels Value', 'fa-solid fa-check');
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Create Label value', 'fas fa-plus', Features::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Labels value', 'fas fa-eye', Features::class)
+        ]);
+
+        
+        
 
     }
 

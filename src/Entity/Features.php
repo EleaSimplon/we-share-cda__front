@@ -71,4 +71,10 @@ class Features
         return $this;
     }
 
+    // Admin : get unit type when adding an feature value
+    public function __toString()
+    {
+        return $this->id;
+    }
+
 }

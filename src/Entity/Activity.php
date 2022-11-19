@@ -358,4 +358,10 @@ class Activity
 
         return $this;
     }
+
+        // Admin : get unit type when adding an activity
+        public function __toString()
+        {
+            return $this->id;
+        }
 }
