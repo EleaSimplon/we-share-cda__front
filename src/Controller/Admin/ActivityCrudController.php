@@ -59,15 +59,5 @@ class ActivityCrudController extends AbstractCrudController
         ];
     }
 
-    /*
-    public function persistEntity(EntityManagerInterface $em, $entityInstance): void
-    {
-        if (!$entityInstance instanceof Activity) return;
-        $entityInstance->set??(new \DateTimeImmutable);
-        parent::persistEntity($em, $entityInstance);
-    }
-    */
-
-    
 
 }

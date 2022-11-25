@@ -52,7 +52,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Users', 'fa-solid fa-user');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Create User', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Show Users', 'fas fa-eye', Activity::class)
+            MenuItem::linkToCrud('Show Users', 'fas fa-eye', User::class)
         ]);
 
         yield MenuItem::section('Activities', 'fa-solid fa-earth-europe');
@@ -80,8 +80,6 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         
-        
-
     }
 
         // Option 1. You can make your dashboard redirect to some common page of your backend

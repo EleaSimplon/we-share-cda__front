@@ -78,6 +78,6 @@ class FeaturesLabel
     // Admin
     public function __toString()
     {
-       return $this->id;
+       return $this->label;
     }
 }

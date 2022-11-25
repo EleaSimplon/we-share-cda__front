@@ -85,7 +85,7 @@ class Activity
 
     #[ORM\Column(length: 255)]
     #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
-    private ?string $price = null;
+    private ?int $price = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(["user:read", "activity:write", 'read:activities:collection'])]
@@ -251,12 +251,12 @@ class Activity
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?int
     {
         return $this->price;
     }
 
-    public function setPrice(string $price): self
+    public function setPrice(int $price): self
     {
         $this->price = $price;
 
@@ -359,9 +359,9 @@ class Activity
         return $this;
     }
 
-        // Admin : get unit type when adding an activity
-        public function __toString()
-        {
-            return $this->id;
-        }
+    // Admin : get unit type when adding an activity
+    public function __toString()
+    {
+        return $this->name;
+    }
 }
