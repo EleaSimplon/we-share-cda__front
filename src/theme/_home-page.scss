@@ -1,0 +1,17 @@
+// SEC - Cards Activities
+.sec-home-top-rated__cards {
+    overflow: scroll;
+    // CP - Card Activity Home
+    .cp-card-activity-home {
+        margin-right: 20px;
+        flex: 0 0 60%;
+    }
+}
+
+@media (min-width: 992px) {
+    .sec-home-top-rated__cards {
+        .cp-card-activity-home {
+            flex: 0 0 36%;
+        }
+    }
+}

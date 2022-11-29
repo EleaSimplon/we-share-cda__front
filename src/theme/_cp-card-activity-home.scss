@@ -1,0 +1,38 @@
+.cp-card-activity-home {
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 280px;
+    border-radius: 20px;
+
+    .cp-card-activity-home__content {
+        position: relative;
+        padding: 20px 30px;
+
+        .cp-card-activity-home__content__location,
+        .cp-card-activity-home__content__name,
+        .cp-card-activity-home__content__rate {
+            position: relative;
+            z-index: 3;
+        }
+    }
+    .cp-card-activity-home__content:before {
+        position: absolute;
+        content: "";
+        background: white;
+        width: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        border-radius: 0 20px 20px 0;
+    }
+}
+
+/* Media XS Mobile */
+@media (max-width: 576px) {
+    .cp-card-activity-home__content:before {
+        width: 80%;
+    }
+}

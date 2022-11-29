@@ -21,9 +21,9 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/HomePage.vue')
       },
       {
-        name: 'search',
-        path: 'search',
-        component: () => import('@/views/SearchPage.vue')
+        name: 'explore',
+        path: 'explore',
+        component: () => import('@/views/ExplorePage.vue')
       },
       {
         name: 'tab3',

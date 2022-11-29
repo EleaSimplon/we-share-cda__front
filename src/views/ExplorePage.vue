@@ -1,12 +1,12 @@
 <template>
     <ion-page>
         <ion-content :fullscreen="true">
-            <!-- Header -  -->
+            <!-- Header -->
             <ion-grid class="search-header w-100">
                 <ion-row>
                     <ion-col class="mb-35" size-xs="12" size-sm="12" size-md="12" size-lg="12">
                         <div class="search-header-content">
-                            <h1 class="center bold ">We Share</h1>
+                            <h1 class="center bold ">Explore</h1>
                             <div class="d-flex align-center justify-center mt-50">
                                 <div class="searchbar">
                                 <ion-searchbar animated show-cancel-button="always"></ion-searchbar>
@@ -139,7 +139,7 @@ import {
 import router from '../router'
 //CardPost
 export default defineComponent({
-  name: 'SearchPage',
+  name: 'ExplorePage',
   components: {
     IonContent,
     IonPage,

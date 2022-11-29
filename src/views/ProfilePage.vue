@@ -2,13 +2,6 @@
     <ion-page>
         <!-- Header -->
         <ion-content :fullscreen="true">
-            <ion-grid>
-                <ion-row>
-                    <ion-col class="mb-50" size-xs="12" size-sm="12" size-md="12" size-lg="12">
-                        <h1 class="center bold">We Share</h1>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
             <!-- ***** IF NOT AUTH ***** -->
             <div v-if="!isAuthenticated">
                 <!-- buttons forms -->
@@ -90,7 +83,8 @@
             <!-- ***** IF AUTH ***** -->
             <ion-grid v-if="isAuthenticated">
                 <div class="user-profile">
-                    <user-infos v-if="isAuthenticated" @done="loadUser()"></user-infos>
+                    <!-- <user-infos v-if="isAuthenticated" @done="loadUser()"></user-infos> -->
+                    <user-infos v-if="isAuthenticated"></user-infos>
                     <!-- Component Tab -->
                     <div class="cp-tabs d-flex space-around">
                         <!-- Tab links  -->
@@ -136,7 +130,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonPage, IonContent, IonCard, IonLabel, IonInput, IonItem, IonCol, IonGrid, IonRow } from '@ionic/vue';
+import { IonPage, IonContent, IonCard, IonGrid, IonLabel, IonInput, IonItem } from '@ionic/vue';
 import axios from 'axios';
 import store from '../store';
 import {BackendMixin} from '../mixins/backend';
@@ -148,7 +142,7 @@ import EditProfile from '../components/EditProfile.vue';
 export default defineComponent({
   name: 'ProfilePage',
   mixins: [BackendMixin],
-  components: { IonContent, IonPage, IonLabel, IonInput, IonItem, IonCol, IonGrid, IonRow, IonCard, UserInfos, EditProfile },
+  components: { IonContent, IonPage, IonGrid, IonLabel, IonInput, IonItem, IonCard, UserInfos, EditProfile },
   // Recup les data passées dans les inputs
   data(){
     // console.log(store.state.auth);
@@ -221,7 +215,6 @@ export default defineComponent({
         onClickEditProfile() {
             router.push({ name: 'editProfile' })
         },
-        
         
     },
 });
