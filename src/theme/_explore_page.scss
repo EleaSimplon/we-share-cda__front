@@ -6,17 +6,22 @@
     overflow: hidden;
     z-index: 20;
 }
-/* Button Filter */
+/*** Button Filter ***/
 .search-header-filters button {
     width: 40px;
     height: 40px;
     border-radius: 26px;
 }
-/* Card LISTING */ 
-.cards-listing {
-    padding-top: 220px;
+/*** SEC - Card LISTING ***/ 
+.sec-cards-listing {
+    padding: 250px 20px 10px;
+
+    .cp-card-activity-home {
+        margin: 0 9px 20px;
+        flex: 0 0 46%;
+    }
 }
-/* Modal */
+/*** Modal ***/
 ion-modal {
     --height: 50%;
     --border-radius: 16px;
@@ -36,9 +41,26 @@ ion-modal ion-toolbar {
     background: var(--color-primary);
 }
 
+/* Media - Mobile XS */
+@media (max-width: 576px) {
+    /* Card LISTING */
+    .sec-cards-listing {
+    
+        .cp-card-activity-home {
+            margin-bottom: 20px;
+            flex: 0 0 100%;
+        }
+    }
+}
+
+/* Media - Desktop */
 @media (min-width: 992px) {
     /* Card LISTING */
-    .cards-listing {
-        padding-top: 250px;
+    .sec-cards-listing {
+        padding-top: 300px;
+        .cp-card-activity-home {
+            margin: 0 15px 20px;
+            flex: 0 0 30%;
+        }
     }
 }

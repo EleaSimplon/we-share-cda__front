@@ -1,0 +1,15 @@
+.cp-tag-category {
+    background: var(--color-secondary);
+    border-radius: 34px;
+    width: fit-content;
+    padding: 8px;
+    .cp-tag-category__icon {
+        background-color: white;
+        border-radius: 50%;
+        padding: 10px;
+        svg {
+            width: 30px;
+            height: 30px
+        }
+    }
+}

@@ -14,43 +14,62 @@
 
 body * {
     font-family: var(--typo-body);
+    box-sizing: border-box;
 }
 
 /* TYPO */
 h1,
+.h1,
 h2,
+.h2,
 h3,
+.h3,
 h4,
+.h4,
 h5,
-h6 {
+.h5,
+h6,
+.h6 {
     color: var(--color-tertiary);
 }
-h1 {
+h1,
+.h1 {
     font-size: 28px;
 }
-h2 {
+h2,
+.h2 {
     font-size: 25px;
 }
-h3 {
+h3,
+.h3 {
     font-size: 22px;
 }
 h1,
+.h1,
 h2,
-h3 {
+.h2,
+h3,
+.h3{
     font-family: var(--typo-hn);
 }
-h4 {
+h4,
+.h4 {
     font-size: 19px;
 }
-h5 {
+h5,
+.h5 {
     font-size: 17px;
 }
-h6 {
+h6,
+.h6 {
     font-size: 15px;
 }
 h4,
+.h4,
 h5,
-h6 {
+.h5,
+h6,
+.h6 {
     font-family: var(--typo-body);
 }
 
@@ -74,22 +93,28 @@ ion-ripple-effect {
 }
 
 @media (min-width: 992px) {
-    h1 {
+    h1,
+    .h1 {
         font-size: 53px;
     }
-    h2 {
+    h2,
+    .h2 {
         font-size: 44px;
     }
-    h3 {
+    h3,
+    .h3 {
         font-size: 37px;
     }
-    h4 {
+    h4,
+    .h4 {
         font-size: 31px;
     }
-    h5 {
+    h5,
+    .h5 {
         font-size: 25px;
     }
-    h6 {
+    h6,
+    .h6 {
         font-size: 21px;
     }
     a,
@@ -136,5 +161,11 @@ ion-ripple-effect {
 @media (min-width: 992px) {
     .button-basic {
         width: fit-content;
+    }
+}
+
+@media (any-hover: hover) {
+    a:hover {
+        color: var(--color-tertiary) !important;
     }
 }

@@ -20,11 +20,8 @@
 .d-flex {
     display: flex;
 }
-.space-around {
-    justify-content: space-around;
-}
-.justify-center {
-    justify-content: center;
+.flex-wrap {
+    flex-wrap: wrap;
 }
 .align-center {
     align-items: center;
@@ -35,7 +32,13 @@
 .flex-no-wrap {
     flex-wrap: nowrap;
 }
-.justify-content-between {
+.justify-space-around {
+    justify-content: space-around;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
     justify-content: space-between;
 }
 /** ?? **/

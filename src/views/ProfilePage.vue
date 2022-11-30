@@ -86,7 +86,7 @@
                     <!-- <user-infos v-if="isAuthenticated" @done="loadUser()"></user-infos> -->
                     <user-infos v-if="isAuthenticated"></user-infos>
                     <!-- Component Tab -->
-                    <div class="cp-tabs d-flex space-around">
+                    <div class="cp-tabs d-flex justify-space-around">
                         <!-- Tab links  -->
                         <button class="tablinks" onclick="openTab(event, 'Activity')">Activity</button>
                         <button class="tablinks tab-active" onclick="openCity(event, 'Review')">Review</button>

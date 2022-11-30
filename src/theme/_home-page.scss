@@ -1,4 +1,4 @@
-// SEC - Cards Activities
+// SEC - TOP RATED
 .sec-home-top-rated__cards {
     overflow: scroll;
     // CP - Card Activity Home
@@ -7,7 +7,23 @@
         flex: 0 0 60%;
     }
 }
-
+// SEC - CATEGORY LIST
+.sec-home-categories {
+    .sec-home-categories__list {
+        overflow: scroll;
+    }
+}
+// Media XS Mobile
+@media (max-width: 576px) {
+    // SEC - Cards Activities
+    .sec-home-top-rated__cards {
+        // CP - Card Activity Home
+        .cp-card-activity-home {
+            flex: 0 0 78%;
+        }
+    }
+}
+// Media Desktop
 @media (min-width: 992px) {
     .sec-home-top-rated__cards {
         .cp-card-activity-home {

@@ -58,33 +58,34 @@
                 </ion-row>
             </ion-grid>
             <!-- Cards - Activity List -->
-            <div class="cards-listing">
-                <ion-grid>
-                    <ion-row>
-                        <!-- {{activities["hydra:member"][0].company}} -->
-                        <div class="card-activity__col h-100" v-for="activity in activities['hydra:member']" :key="activity.id">
-                            <ion-card class="card-activity w-100 h-100" @click.prevent="onClickActivityPost()">
-                                <div class="card-activity__image">
-                                    <img src="https://images.pexels.com/photos/5171018/pexels-photo-5171018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">                       
+            <section class="sec-cards-listing">
+                <div class="d-flex justify-center flex-wrap">
+                    <!-- CP- Card -->
+                    <!-- {{activities["hydra:member"][0].company}} -->
+                    <a v-for="activity in activities['hydra:member']" :key="activity.id" class="cp-card-activity-home d-flex align-end" style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');" @click.prevent="onClickActivityPost()">
+                        <!-- Content -->
+                        <div class="cp-card-activity-home__content">
+                            <!-- Name -->
+                            <div class="cp-card-activity-home__content__location">
+                                {{ activity.country }}
+                            </div>
+                            <!-- Name -->
+                            <div class="cp-card-activity-home__content__name bold mt-5">
+                                {{ activity.name }}
+                            </div>
+                            <!-- Rate -->
+                            <div class="cp-card-activity-home__content__rate d-flex align-center mt-10">
+                                <div class="cp-card-activity-home__content__rate__icon">
+                                    <ion-icon name="star"></ion-icon>
                                 </div>
-                                <ion-card-header>
-                                    <ion-card-subtitle>{{ activity.country }}</ion-card-subtitle>
-                                    <ion-card-title>{{ activity.name }}</ion-card-title>
-                                </ion-card-header>
-                                <ion-card-content>
-                                    {{ activity.short_description }}...
-                                </ion-card-content>
-                                <div class="card-activity__rating center pb-20">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star-half"></ion-icon>
-                                    <ion-icon name="star-outline"></ion-icon>
+                                <div class="cp-card-activity-home__content__rate__number ml-10">
+                                    4.8
                                 </div>
-                            </ion-card>
-                        </div> 
-                        
-                        <!-- <div v-for="card in cards" :key="card.id">
+                            </div>
+                        </div>
+                    </a>
+                </div> 
+                <!-- <div v-for="card in cards" :key="card.id">
                             <card-post
                                 :image="card.image"
                                 :shortDescription="card.short_description"
@@ -93,10 +94,7 @@
                                 >
                             </card-post>
                         </div> -->
-                        
-                    </ion-row>
-                </ion-grid>
-            </div>
+            </section>
         </ion-content>
         <ion-fab vertical="bottom" horizontal="end" slot="fixed">
             <ion-fab-button color="dark" class="sec-card-activity__btn-add" @click.prevent="onClickAddActivity()">
@@ -117,11 +115,13 @@ import {
     IonGrid,
     IonRow,
     IonSearchbar,
+    /*
     IonCard,
     IonCardContent,
     IonCardHeader,
     IonCardSubtitle,
     IonCardTitle,
+    */
     IonFab,
     IonFabButton,
     IonIcon,
@@ -147,11 +147,13 @@ export default defineComponent({
     IonGrid,
     IonRow,
     IonSearchbar,
+    /*
     IonCard,
     IonCardContent,
     IonCardHeader,
     IonCardSubtitle,
     IonCardTitle,
+    */
     IonFab,
     IonFabButton,
     IonIcon,

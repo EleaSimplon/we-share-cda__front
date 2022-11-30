@@ -3,7 +3,7 @@
         <ion-content :fullscreen="true">
             <section class="sec-activity-post">
                 <!-- Header -->
-                <div class="sec-activity-post__header relative d-flex justify-content-between flex-no-wrap p-20">
+                <div class="sec-activity-post__header relative d-flex justify-between flex-no-wrap p-20">
                     <!-- Back To List Button -->
                     <div class="sec-activity-post__header__btn-back">
                         <a href="">
@@ -18,15 +18,20 @@
                 <!-- Content -->
                 <div class="sec-activity-post__content">
                     <!-- Heading -->
-                    <div class="sec-activity-post__content__heading center">
-                        <h2 class="bold">Activity Name</h2>
+                    <div class="sec-activity-post__content__heading d-flex align-center justify-">
+                        <div class="sec-activity-post__content__heading__name">
+                            <div class="h2 bold">Activity Name</div>
+                        </div>
+                        <div class="sec-activity-post__content__heading__duration">
+                            <div class="h5 bold">1 Day</div>
+                        </div>
                     </div>
                     <!-- Address -->
                     <div class="sec-activity-post__content__address mt-50">
                         519 Colombus Ave - New York - USA
                     </div>
                     <!-- Company -->
-                    <div class="sec-activity-post__content__infos mt-50 d-flex flex-wrap justify-content-between">
+                    <div class="sec-activity-post__content__infos mt-50 d-flex flex-wrap justify-between">
                         <div class="sec-activity-post__content__infos__phone-number">
                             <!-- href="tel:+496170961709" -->
                             <!-- Company Phone Number -->
@@ -60,7 +65,7 @@
                     <div class="sec-activity-post__reviews__title mt-20 bold">
                         Amazing experience !
                     </div>
-                    <div class="d-flex justify-content-between flex-no-wrap">
+                    <div class="d-flex justify-between flex-no-wrap">
                         <!-- User Name -->
                         <div class="sec-activity-post__reviews__by small mt-20">
                             UserName
