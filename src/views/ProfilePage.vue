@@ -80,8 +80,19 @@
                     </div>
                 </ion-card>
             </div>
-            <!-- ***** IF AUTH ***** -->
-            <ion-grid v-if="isAuthenticated">
+            <!-- --- IF AUTH --- *** SEC - PROFILE USER HEADER ***-->
+            <section class="sec-profile-header p-sec" v-if="isAuthenticated">
+                <div class="container">
+                    <div class="sec-profile-header__title">
+                        <h5 class="center bold">Profile</h5>
+                    </div>
+                    <div class="sec-profile-header__picture">
+                        <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                    </div>
+                </div>
+            </section>
+            <!-- --- IF AUTH --- SEC - PROFILE USER ***-->
+            <section class="sec-profile-header p-sec" v-if="isAuthenticated">
                 <div class="user-profile">
                     <!-- <user-infos v-if="isAuthenticated" @done="loadUser()"></user-infos> -->
                     <user-infos v-if="isAuthenticated"></user-infos>
@@ -92,29 +103,15 @@
                         <button class="tablinks tab-active" onclick="openCity(event, 'Review')">Review</button>
                         <button class="tablinks" onclick="openTab(event, 'Favourite')">Favourite</button>
                     </div>
-                    <!-- Tab content
-                    <div id="Review" class="tabcontent">
-                        <h3>Review</h3>
-                        <p>London is the capital city of England.</p>
-                    </div>
-
-                    <div id="Post" class="tabcontent">
-                        <h3>Post</h3>
-                        <p>Paris is the capital of France.</p>
-                    </div>
-
-                    <div id="Favorite" class="tabcontent">
-                        <h3>Favorite</h3>
-                        <p>Tokyo is the capital of Japan.</p>
-                    </div> -->
                        
-                    <!-- Button Edit -->
+                    <!-- Button Edit
                     <div class="button-logout center mt-50">
                         <button class="button-basic button-primary">
                             Edit my profile
                         </button>
                         <edit-profile v-if="isAuthenticated"></edit-profile>
                     </div>
+                    -->
 
                     <!-- Button LogOut -->
                     <div class="button-logout center mt-50">
@@ -123,26 +120,27 @@
                         </button>
                     </div>
                 </div>
-            </ion-grid>
+            </section>
         </ion-content>
     </ion-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonPage, IonContent, IonCard, IonGrid, IonLabel, IonInput, IonItem } from '@ionic/vue';
+import { IonPage, IonContent, IonCard, IonLabel, IonInput, IonItem } from '@ionic/vue';
 import axios from 'axios';
 import store from '../store';
 import {BackendMixin} from '../mixins/backend';
 import router from '../router';
 import UserInfos from '../components/UserInfos.vue';
-import EditProfile from '../components/EditProfile.vue';
+//import EditProfile from '../components/EditProfile.vue';
 
 
 export default defineComponent({
   name: 'ProfilePage',
   mixins: [BackendMixin],
-  components: { IonContent, IonPage, IonGrid, IonLabel, IonInput, IonItem, IonCard, UserInfos, EditProfile },
+  components: { IonContent, IonPage, IonLabel, IonInput, IonItem, IonCard, UserInfos },
+//   components: { IonContent, IonPage, IonLabel, IonInput, IonItem, IonCard, UserInfos, EditProfile },
   // Recup les data passées dans les inputs
   data(){
     // console.log(store.state.auth);

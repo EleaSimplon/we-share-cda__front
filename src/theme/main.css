@@ -98,9 +98,15 @@
   /** primary **/
   --color-primary: #c8d1ce;
   --color-primary-rgb: 200, 209, 206;
+  --ion-color-primary: #d8ad5c;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #c8d1ce;
+  --ion-color-primary-tint: #c8d1ce;
   /** secondary **/
   --color-secondary: #e4ede8;
   --color-secondary-rgb: 228, 237, 232;
+  --ion-color-secondary: #e4ede8;
   /** secondary dark 
   --color-secondary-dark: #a7c2bd;
   --color-secondary-dark-rgb: 228, 237, 232;
@@ -108,9 +114,14 @@
   /** tertiary **/
   --color-tertiary: #212738;
   --color-tertiary-rgb: 33, 39, 56;
+  --ion-color-tertiary: #212738;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-shade: #212738;
+  --ion-color-tertiary-tint: #212738;
   /** mustard **/
   --color-mustard: #d8ad5c;
   --color-mustard-rgb: 216, 173, 92;
+  --background-checked: #212738;
   /** Border Radius **/
   --border-radius: 20px;
   /** Spacing **/
@@ -272,22 +283,6 @@ p {
   background-color: var(--color-mustard);
 }
 
-/* Tab Nav */
-.tab-selected {
-  border-top: 2px solid var(--color-mustard);
-  color: var(--color-tertiary);
-}
-
-.tab-has-label a:hover {
-  color: var(--color-primary);
-}
-
-.search-header {
-  background-color: var(--color-primary);
-  border-bottom-right-radius: var(--border-radius);
-  border-bottom-left-radius: var(--border-radius);
-}
-
 @media (min-width: 992px) {
   .button-basic {
     width: fit-content;
@@ -383,9 +378,15 @@ p {
   /** primary **/
   --color-primary: #c8d1ce;
   --color-primary-rgb: 200, 209, 206;
+  --ion-color-primary: #d8ad5c;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #c8d1ce;
+  --ion-color-primary-tint: #c8d1ce;
   /** secondary **/
   --color-secondary: #e4ede8;
   --color-secondary-rgb: 228, 237, 232;
+  --ion-color-secondary: #e4ede8;
   /** secondary dark 
   --color-secondary-dark: #a7c2bd;
   --color-secondary-dark-rgb: 228, 237, 232;
@@ -393,12 +394,33 @@ p {
   /** tertiary **/
   --color-tertiary: #212738;
   --color-tertiary-rgb: 33, 39, 56;
+  --ion-color-tertiary: #212738;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-shade: #212738;
+  --ion-color-tertiary-tint: #212738;
   /** mustard **/
   --color-mustard: #d8ad5c;
   --color-mustard-rgb: 216, 173, 92;
+  --background-checked: #212738;
   /** Border Radius **/
   --border-radius: 20px;
   /** Spacing **/
+}
+
+/* Tab Nav */
+.tab-selected {
+  border-top: 2px solid var(--color-mustard);
+  color: var(--color-tertiary);
+}
+
+.tab-has-label a:hover {
+  color: var(--color-primary);
+}
+
+.search-header {
+  background-color: var(--color-primary);
+  border-bottom-right-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
 }
 
 .card-activity__col {
@@ -547,9 +569,15 @@ p {
   /** primary **/
   --color-primary: #c8d1ce;
   --color-primary-rgb: 200, 209, 206;
+  --ion-color-primary: #d8ad5c;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #c8d1ce;
+  --ion-color-primary-tint: #c8d1ce;
   /** secondary **/
   --color-secondary: #e4ede8;
   --color-secondary-rgb: 228, 237, 232;
+  --ion-color-secondary: #e4ede8;
   /** secondary dark 
   --color-secondary-dark: #a7c2bd;
   --color-secondary-dark-rgb: 228, 237, 232;
@@ -557,23 +585,31 @@ p {
   /** tertiary **/
   --color-tertiary: #212738;
   --color-tertiary-rgb: 33, 39, 56;
+  --ion-color-tertiary: #212738;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-shade: #212738;
+  --ion-color-tertiary-tint: #212738;
   /** mustard **/
   --color-mustard: #d8ad5c;
   --color-mustard-rgb: 216, 173, 92;
+  --background-checked: #212738;
   /** Border Radius **/
   --border-radius: 20px;
   /** Spacing **/
 }
 
 /* Header */
-.search-header {
+.sec-search-header {
   position: fixed;
   overflow: hidden;
   z-index: 20;
+  background: var(--color-primary);
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  padding-bottom: 30px;
+  /*** Button Filter ***/
 }
-
-/*** Button Filter ***/
-.search-header-filters button {
+.sec-search-header .sec-search-header__content__modal button {
   width: 40px;
   height: 40px;
   border-radius: 26px;

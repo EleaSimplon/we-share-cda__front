@@ -2,61 +2,57 @@
     <ion-page>
         <ion-content :fullscreen="true">
             <!-- Header -->
-            <ion-grid class="search-header w-100">
-                <ion-row>
-                    <ion-col class="mb-35" size-xs="12" size-sm="12" size-md="12" size-lg="12">
-                        <div class="search-header-content">
-                            <h1 class="center bold ">Explore</h1>
-                            <div class="d-flex align-center justify-center mt-50">
-                                <div class="searchbar">
-                                <ion-searchbar animated show-cancel-button="always"></ion-searchbar>
-                                </div>
-                                <div class="search-header-filters">
-                                    <button @click="setOpenModal(true)">
-                                        <ion-icon name="filter-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="search-header-filters__filter">
-                                <ion-modal :is-open="isModalOpen">
-                                    <ion-content>
-                                        <ion-toolbar>
-                                            <ion-title>Filters</ion-title>
-                                            <ion-buttons slot="end">
-                                                <ion-button color="light" @click="setOpenModal(false)">
-                                                   <ion-icon name="close-outline">X</ion-icon>
-                                                </ion-button>
-                                            </ion-buttons>
-                                        </ion-toolbar>
-                                        <ion-list>
-                                            <ion-item>
-                                                <ion-label>Pet Friendly</ion-label>
-                                                <ion-toggle>
-                                                </ion-toggle>
-                                            </ion-item>
-                                            <ion-item>
-                                                <ion-label>Kids</ion-label>
-                                                <ion-toggle>
-                                                </ion-toggle>
-                                            </ion-item>
-                                            <ion-accordion-group>
-                                                <ion-accordion value="first">
-                                                    <ion-item slot="header">
-                                                        <ion-label>Budget</ion-label>
-                                                    </ion-item>
-                                                    <div class="ion-padding" slot="content">
-                                                        First Content
-                                                    </div>
-                                                </ion-accordion>
-                                            </ion-accordion-group>
-                                        </ion-list>
-                                    </ion-content>
-                                </ion-modal>
-                            </div>
+            <section class="sec-search-header w-100">
+                <div class="sec-search-header__content">
+                    <h1 class="center bold ">Explore</h1>
+                    <div class="d-flex align-center justify-center mt-50">
+                        <div class="searchbar">
+                        <ion-searchbar animated show-cancel-button="always"></ion-searchbar>
                         </div>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
+                        <div class="sec-search-header__content__modal">
+                            <button @click="setOpenModal(true)">
+                                <ion-icon name="filter-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sec-search-header__modal__filters">
+                        <ion-modal :is-open="isModalOpen">
+                            <ion-content>
+                                <ion-toolbar>
+                                    <ion-title>Filters</ion-title>
+                                    <ion-buttons slot="end">
+                                        <ion-button color="light" @click="setOpenModal(false)">
+                                            <ion-icon name="close-outline">X</ion-icon>
+                                        </ion-button>
+                                    </ion-buttons>
+                                </ion-toolbar>
+                                <ion-list>
+                                    <ion-item>
+                                        <ion-label>Pet Friendly</ion-label>
+                                        <ion-toggle>
+                                        </ion-toggle>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label>Kids</ion-label>
+                                        <ion-toggle>
+                                        </ion-toggle>
+                                    </ion-item>
+                                    <ion-accordion-group>
+                                        <ion-accordion value="first">
+                                            <ion-item slot="header">
+                                                <ion-label>Budget</ion-label>
+                                            </ion-item>
+                                            <div class="ion-padding" slot="content">
+                                                First Content
+                                            </div>
+                                        </ion-accordion>
+                                    </ion-accordion-group>
+                                </ion-list>
+                            </ion-content>
+                        </ion-modal>
+                    </div>
+                </div>
+            </section>
             <!-- Cards - Activity List -->
             <section class="sec-cards-listing">
                 <div class="d-flex justify-center flex-wrap">
@@ -111,9 +107,6 @@ import axios from 'axios';
 import {
     IonPage,
     IonContent,
-    IonCol,
-    IonGrid,
-    IonRow,
     IonSearchbar,
     /*
     IonCard,
@@ -143,9 +136,6 @@ export default defineComponent({
   components: {
     IonContent,
     IonPage,
-    IonCol,
-    IonGrid,
-    IonRow,
     IonSearchbar,
     /*
     IonCard,

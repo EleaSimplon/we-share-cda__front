@@ -149,20 +149,6 @@ ion-ripple-effect {
 .button-basic.button-mustard {
     background-color: var(--color-mustard);
 }
-/* Tab Nav */
-.tab-selected {
-    border-top: 2px solid var(--color-mustard);
-    color: var(--color-tertiary);
-}
-.tab-has-label a:hover {
-    color: var(--color-primary);
-}
- 
-.search-header {
-    background-color: var(--color-primary);
-    border-bottom-right-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
-}
 
 @media (min-width: 992px) {
     .button-basic {
