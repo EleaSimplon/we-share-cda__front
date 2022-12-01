@@ -1,5 +1,5 @@
 
-/* Header */
+/* SEC - Header */
 .sec-activity-post__header {
     background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
     background-size: cover;
@@ -25,12 +25,43 @@
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
-/* Content */
+/* SEC - Content */
 .sec-activity-post__content,
 .sec-activity-post__reviews {
     padding: 20px 30px;
 }
+.sec-activity-post__content {
+    /* Duration */
+    .sec-activity-post__content__heading__duration__icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    /* Infos */
+    .sec-activity-post__content__infos {
+        /*** CP - Category ***/
+        .cp-tag-category {
+            padding: 6px;
+            .cp-tag-category__icon {
+                padding: 8px;
+                svg {
+                    width: 26px;
+                    height: 26px;
+                }
+            }
+        }
+    }
+
+}
+
 /* Reviews */
 .sec-activity-post__reviews {
     border-top: 1px solid var(--color-primary);
+}
+
+/* Media - Desktop */
+@media (min-width: 992px) {
+    /* SEC - Header */
+    .sec-activity-post__header {
+        height: 395px;
+    }
 }

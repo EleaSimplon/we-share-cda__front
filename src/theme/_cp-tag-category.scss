@@ -3,6 +3,7 @@
     border-radius: 34px;
     width: fit-content;
     padding: 8px;
+    /* Icon */
     .cp-tag-category__icon {
         background-color: white;
         border-radius: 50%;
@@ -11,5 +12,9 @@
             width: 30px;
             height: 30px
         }
+    }
+    /* Text */
+    .cp-tag-category__text {
+        white-space: nowrap;
     }
 }

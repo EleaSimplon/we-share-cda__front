@@ -1,19 +1,45 @@
-// SEC - TOP RATED
-.sec-home-top-rated__cards {
-    overflow: scroll;
-    // CP - Card Activity Home
-    .cp-card-activity-home {
-        margin-right: 20px;
-        flex: 0 0 60%;
+/*** SEC - SEARCH ***/
+.sec-home-search {
+    ion-searchbar.custom {
+        --background: var(--color-primary);
+        --color: var(--color-tertiary);
+        --placeholder-color: var(--color-tertiary);
+        --icon-color: #fff;
+        --clear-button-color: #fff;
+        --border-radius: 4px;
     }
 }
-// SEC - CATEGORY LIST
+
+
+/*** SEC - TOP RATED ***/
+.sec-home-top-rated,
+.sec-home-near-by {
+    .sec-home-top-rated__cards,
+    .sec-home-near-by__cards {
+        margin: 0 -15px;
+        overflow: scroll;
+        // CP - Card Activity Home
+        .cp-card-activity-home {
+            margin-right: 20px;
+            flex: 0 0 60%;
+        }
+        .cp-card-activity-home:first-child {
+            margin-left: 15px;
+        }
+    }
+}
+
+/*** SEC - CATEGORY LIST ***/
 .sec-home-categories {
     .sec-home-categories__list {
         overflow: scroll;
+        margin: 0 -15px;
+        .cp-tag-category:first-child {
+            margin-left: 15px;
+        }
     }
 }
-// Media XS Mobile
+/*** Media XS Mobile ***/
 @media (max-width: 576px) {
     // SEC - Cards Activities
     .sec-home-top-rated__cards {
@@ -23,7 +49,7 @@
         }
     }
 }
-// Media Desktop
+/*** Media Desktop ***/
 @media (min-width: 992px) {
     .sec-home-top-rated__cards {
         .cp-card-activity-home {

@@ -65,7 +65,7 @@
                     <a v-for="activity in activities['hydra:member']" :key="activity.id" class="cp-card-activity-home d-flex align-end" style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');" @click.prevent="onClickActivityPost()">
                         <!-- Content -->
                         <div class="cp-card-activity-home__content">
-                            <!-- Name -->
+                            <!-- Country -->
                             <div class="cp-card-activity-home__content__location">
                                 {{ activity.country }}
                             </div>

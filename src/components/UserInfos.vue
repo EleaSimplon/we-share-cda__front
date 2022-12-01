@@ -60,8 +60,9 @@ methods: {
             this.user = resp.data
             this.$emit("done")
         }
+        // REGLER LE PB AVEC JEANDU
         catch (err) {
-            this.addError(this.getErrorText(err))
+            //this.addError(this.getErrorText(err))
         }
     }
 }

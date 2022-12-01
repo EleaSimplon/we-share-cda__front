@@ -45,6 +45,9 @@
 .w-100 {
     width: 100%;
 }
+.width-content {
+    width: fit-content;
+}
 .h-100 {
     height: 100%;
 }
@@ -60,4 +63,7 @@
     overflow: -webkit-box;
 }
 
-/* margin */
+/* Border radius */
+.border-round {
+    border-radius: 50% !important;
+}

@@ -55,6 +55,10 @@
   width: 100%;
 }
 
+.width-content {
+  width: fit-content;
+}
+
 .h-100 {
   height: 100%;
 }
@@ -72,71 +76,20 @@
   overflow: -webkit-box;
 }
 
-/* margin */
-.card-activity__col {
-  flex: 0 0 43%;
-  margin: 0 10px 10px;
+/* Border radius */
+.border-round {
+  border-radius: 50% !important;
 }
 
-.card-activity__image {
-  height: 190px;
-  width: 100%;
+.container {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.card-activity__image img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-@media (min-width: 775px) {
-  .card-activity__col {
-    flex: 0 0 33%;
-  }
-}
-@media (min-width: 992px) {
-  .card-activity__image {
-    height: 250px;
-  }
-  .card-activity__col {
-    flex: 0 0 20%;
-  }
-}
-.cp-card-activity-home {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 280px;
-  border-radius: 20px;
-}
-.cp-card-activity-home .cp-card-activity-home__content {
-  position: relative;
-  padding: 20px 30px;
-}
-.cp-card-activity-home .cp-card-activity-home__content .cp-card-activity-home__content__location,
-.cp-card-activity-home .cp-card-activity-home__content .cp-card-activity-home__content__name,
-.cp-card-activity-home .cp-card-activity-home__content .cp-card-activity-home__content__rate {
-  position: relative;
-  z-index: 3;
-}
-.cp-card-activity-home .cp-card-activity-home__content:before {
-  position: absolute;
-  content: "";
-  background: white;
-  width: 100%;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 1;
-  border-radius: 0 20px 20px 0;
-}
-
-/* Media XS Mobile */
-@media (max-width: 576px) {
-  .cp-card-activity-home__content:before {
-    width: 80%;
-  }
-}
 /** CSS Variables **/
 :root {
   /** Font **/
@@ -172,9 +125,14 @@
   font-family: "Miloner";
   src: local("Miloner"), url(/Applications/MAMP/htdocs/WeShare/WeShare_Front/we-share-vue/public/assets/fonts/MilonerRegular.ttf) format("truetype");
 }
-body * {
+body, * {
   font-family: var(--typo-body);
+}
+
+* {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 /* TYPO */
@@ -340,6 +298,247 @@ p {
     color: var(--color-tertiary) !important;
   }
 }
+/*** Margin ***/
+.m-0 {
+  margin: 0 auto;
+}
+
+/* Top */
+.mt-5 {
+  margin-top: 5px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+/* Right */
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mr-20 {
+  margin-right: 20px;
+}
+
+/* Bottom */
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-25 {
+  margin-bottom: 25px;
+}
+
+.mb-35 {
+  margin-bottom: 35px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.mb-120 {
+  margin-bottom: 120px;
+}
+
+/* Left */
+.ml-10 {
+  margin-left: 10px;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}
+
+/*** Padding ***/
+/* all */
+.p-20 {
+  padding: 20px;
+}
+
+/* Bottom */
+.pb-20 {
+  padding-bottom: 20px;
+}
+
+/*** Spacing Section ***/
+.p-sec {
+  padding: 30px 0;
+}
+
+/** CSS Variables **/
+:root {
+  /** Font **/
+  --typo-hn: "Against";
+  --typo-body: "Miloner";
+  /** primary **/
+  --color-primary: #c8d1ce;
+  --color-primary-rgb: 200, 209, 206;
+  /** secondary **/
+  --color-secondary: #e4ede8;
+  --color-secondary-rgb: 228, 237, 232;
+  /** secondary dark 
+  --color-secondary-dark: #a7c2bd;
+  --color-secondary-dark-rgb: 228, 237, 232;
+  **/
+  /** tertiary **/
+  --color-tertiary: #212738;
+  --color-tertiary-rgb: 33, 39, 56;
+  /** mustard **/
+  --color-mustard: #d8ad5c;
+  --color-mustard-rgb: 216, 173, 92;
+  /** Border Radius **/
+  --border-radius: 20px;
+  /** Spacing **/
+}
+
+.card-activity__col {
+  flex: 0 0 43%;
+  margin: 0 10px 10px;
+}
+
+.card-activity__image {
+  height: 190px;
+  width: 100%;
+}
+
+.card-activity__image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 775px) {
+  .card-activity__col {
+    flex: 0 0 33%;
+  }
+}
+@media (min-width: 992px) {
+  .card-activity__image {
+    height: 250px;
+  }
+  .card-activity__col {
+    flex: 0 0 20%;
+  }
+}
+.cp-card-activity-home {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 280px;
+  border-radius: 20px;
+}
+.cp-card-activity-home .cp-card-activity-home__content {
+  position: relative;
+  padding: 20px 30px;
+}
+.cp-card-activity-home .cp-card-activity-home__content .cp-card-activity-home__content__location,
+.cp-card-activity-home .cp-card-activity-home__content .cp-card-activity-home__content__name,
+.cp-card-activity-home .cp-card-activity-home__content .cp-card-activity-home__content__rate {
+  position: relative;
+  z-index: 3;
+}
+.cp-card-activity-home .cp-card-activity-home__content:before {
+  position: absolute;
+  content: "";
+  background: white;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  border-radius: 0 20px 20px 0;
+}
+
+/* Media XS Mobile */
+@media (max-width: 576px) {
+  .cp-card-activity-home__content:before {
+    width: 80%;
+  }
+}
+.cp-tag-category {
+  background: var(--color-secondary);
+  border-radius: 34px;
+  width: fit-content;
+  padding: 8px;
+  /* Icon */
+  /* Text */
+}
+.cp-tag-category .cp-tag-category__icon {
+  background-color: white;
+  border-radius: 50%;
+  padding: 10px;
+}
+.cp-tag-category .cp-tag-category__icon svg {
+  width: 30px;
+  height: 30px;
+}
+.cp-tag-category .cp-tag-category__text {
+  white-space: nowrap;
+}
+
+/*** SEC - SEARCH ***/
+.sec-home-search ion-searchbar.custom {
+  --background: var(--color-primary);
+  --color: var(--color-tertiary);
+  --placeholder-color: var(--color-tertiary);
+  --icon-color: #fff;
+  --clear-button-color: #fff;
+  --border-radius: 4px;
+}
+
+/*** SEC - TOP RATED ***/
+.sec-home-top-rated .sec-home-top-rated__cards,
+.sec-home-top-rated .sec-home-near-by__cards,
+.sec-home-near-by .sec-home-top-rated__cards,
+.sec-home-near-by .sec-home-near-by__cards {
+  margin: 0 -15px;
+  overflow: scroll;
+}
+.sec-home-top-rated .sec-home-top-rated__cards .cp-card-activity-home,
+.sec-home-top-rated .sec-home-near-by__cards .cp-card-activity-home,
+.sec-home-near-by .sec-home-top-rated__cards .cp-card-activity-home,
+.sec-home-near-by .sec-home-near-by__cards .cp-card-activity-home {
+  margin-right: 20px;
+  flex: 0 0 60%;
+}
+.sec-home-top-rated .sec-home-top-rated__cards .cp-card-activity-home:first-child,
+.sec-home-top-rated .sec-home-near-by__cards .cp-card-activity-home:first-child,
+.sec-home-near-by .sec-home-top-rated__cards .cp-card-activity-home:first-child,
+.sec-home-near-by .sec-home-near-by__cards .cp-card-activity-home:first-child {
+  margin-left: 15px;
+}
+
+/*** SEC - CATEGORY LIST ***/
+.sec-home-categories .sec-home-categories__list {
+  overflow: scroll;
+  margin: 0 -15px;
+}
+.sec-home-categories .sec-home-categories__list .cp-tag-category:first-child {
+  margin-left: 15px;
+}
+
+/*** Media XS Mobile ***/
+@media (max-width: 576px) {
+  .sec-home-top-rated__cards .cp-card-activity-home {
+    flex: 0 0 78%;
+  }
+}
+/*** Media Desktop ***/
+@media (min-width: 992px) {
+  .sec-home-top-rated__cards .cp-card-activity-home {
+    flex: 0 0 36%;
+  }
+}
 /** CSS Variables **/
 :root {
   /** Font **/
@@ -429,101 +628,7 @@ ion-modal ion-toolbar {
     flex: 0 0 30%;
   }
 }
-/*** Margin ***/
-/* Top */
-.mt-5 {
-  margin-top: 5px;
-}
-
-.mt-10 {
-  margin-top: 10px;
-}
-
-.mt-20 {
-  margin-top: 20px;
-}
-
-.mt-50 {
-  margin-top: 50px;
-}
-
-/* Right */
-.mr-10 {
-  margin-right: 10px;
-}
-
-.mr-20 {
-  margin-right: 20px;
-}
-
-/* Bottom */
-.mb-20 {
-  margin-bottom: 20px;
-}
-
-.mb-25 {
-  margin-bottom: 25px;
-}
-
-.mb-35 {
-  margin-bottom: 35px;
-}
-
-.mb-50 {
-  margin-bottom: 50px;
-}
-
-.mb-120 {
-  margin-bottom: 120px;
-}
-
-/* Left */
-.ml-10 {
-  margin-left: 10px;
-}
-
-.ml-20 {
-  margin-left: 20px;
-}
-
-/*** Padding ***/
-/* all */
-.p-20 {
-  padding: 20px;
-}
-
-/* Bottom */
-.pb-20 {
-  padding-bottom: 20px;
-}
-
-/** CSS Variables **/
-:root {
-  /** Font **/
-  --typo-hn: "Against";
-  --typo-body: "Miloner";
-  /** primary **/
-  --color-primary: #c8d1ce;
-  --color-primary-rgb: 200, 209, 206;
-  /** secondary **/
-  --color-secondary: #e4ede8;
-  --color-secondary-rgb: 228, 237, 232;
-  /** secondary dark 
-  --color-secondary-dark: #a7c2bd;
-  --color-secondary-dark-rgb: 228, 237, 232;
-  **/
-  /** tertiary **/
-  --color-tertiary: #212738;
-  --color-tertiary-rgb: 33, 39, 56;
-  /** mustard **/
-  --color-mustard: #d8ad5c;
-  --color-mustard-rgb: 216, 173, 92;
-  /** Border Radius **/
-  --border-radius: 20px;
-  /** Spacing **/
-}
-
-/* Header */
+/* SEC - Header */
 .sec-activity-post__header {
   background-image: url("https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
   background-size: cover;
@@ -550,10 +655,32 @@ ion-modal ion-toolbar {
   border-bottom-right-radius: 20px;
 }
 
-/* Content */
+/* SEC - Content */
 .sec-activity-post__content,
 .sec-activity-post__reviews {
   padding: 20px 30px;
+}
+
+.sec-activity-post__content {
+  /* Duration */
+  /* Infos */
+}
+.sec-activity-post__content .sec-activity-post__content__heading__duration__icon svg {
+  width: 20px;
+  height: 20px;
+}
+.sec-activity-post__content .sec-activity-post__content__infos {
+  /*** CP - Category ***/
+}
+.sec-activity-post__content .sec-activity-post__content__infos .cp-tag-category {
+  padding: 6px;
+}
+.sec-activity-post__content .sec-activity-post__content__infos .cp-tag-category .cp-tag-category__icon {
+  padding: 8px;
+}
+.sec-activity-post__content .sec-activity-post__content__infos .cp-tag-category .cp-tag-category__icon svg {
+  width: 26px;
+  height: 26px;
 }
 
 /* Reviews */
@@ -561,42 +688,12 @@ ion-modal ion-toolbar {
   border-top: 1px solid var(--color-primary);
 }
 
-.sec-home-top-rated__cards {
-  overflow: scroll;
-}
-.sec-home-top-rated__cards .cp-card-activity-home {
-  margin-right: 20px;
-  flex: 0 0 60%;
-}
-
-.sec-home-categories .sec-home-categories__list {
-  overflow: scroll;
-}
-
-@media (max-width: 576px) {
-  .sec-home-top-rated__cards .cp-card-activity-home {
-    flex: 0 0 78%;
-  }
-}
+/* Media - Desktop */
 @media (min-width: 992px) {
-  .sec-home-top-rated__cards .cp-card-activity-home {
-    flex: 0 0 36%;
+  /* SEC - Header */
+  .sec-activity-post__header {
+    height: 395px;
   }
-}
-.cp-tag-category {
-  background: var(--color-secondary);
-  border-radius: 34px;
-  width: fit-content;
-  padding: 8px;
-}
-.cp-tag-category .cp-tag-category__icon {
-  background-color: white;
-  border-radius: 50%;
-  padding: 10px;
-}
-.cp-tag-category .cp-tag-category__icon svg {
-  width: 30px;
-  height: 30px;
 }
 
 /*# sourceMappingURL=main.css.map */

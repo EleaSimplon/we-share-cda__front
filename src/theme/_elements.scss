@@ -3,18 +3,24 @@
 /*** Fonts ***/
 @font-face {
     font-family: "Against";
-    src: local("Against"),
+    src:
+        local("Against"),
         url(/Applications/MAMP/htdocs/WeShare/WeShare_Front/we-share-vue/public/assets/fonts/against-regular.ttf) format("truetype");
 }
 @font-face {
     font-family: "Miloner";
-    src: local("Miloner"),
+    src:
+        local("Miloner"),
         url(/Applications/MAMP/htdocs/WeShare/WeShare_Front/we-share-vue/public/assets/fonts/MilonerRegular.ttf) format("truetype");
 }
 
-body * {
+body, * {
     font-family: var(--typo-body);
+}
+* {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 /* TYPO */

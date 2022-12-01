@@ -1,11 +1,15 @@
+// ATOMIC
 @import 'atomic';
-@import 'cp-card-activity';
-@import 'cp-card-activity-home';
+@import 'layout';
 @import 'elements';
-@import 'profile_page';
-@import 'explore_page';
 @import 'spacing';
 @import 'variables';
-@import 'activity-post';
-@import 'home-page';
+//COMPONENTS
+@import 'cp-card-activity';
+@import 'cp-card-activity-home';
 @import 'cp-tag-category';
+// PAGES
+@import 'home-page';
+@import 'profile_page';
+@import 'explore_page';
+@import 'activity-post';

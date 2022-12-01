@@ -1,4 +1,7 @@
 /*** Margin ***/
+.m-0 {
+  margin: 0 auto;
+}
 /* Top */
 .mt-5 {
   margin-top: 5px;
@@ -51,4 +54,9 @@
 /* Bottom */
 .pb-20 {
   padding-bottom: 20px;
+}
+
+/*** Spacing Section ***/
+.p-sec {
+  padding: 30px 0;
 }
