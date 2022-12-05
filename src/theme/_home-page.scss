@@ -10,7 +10,6 @@
     }
 }
 
-
 /*** SEC - TOP RATED ***/
 .sec-home-top-rated,
 .sec-home-near-by {
@@ -19,11 +18,11 @@
         margin: 0 -15px;
         overflow: scroll;
         // CP - Card Activity Home
-        .cp-card-activity-home {
+        .cp-card-activity {
             margin-right: 20px;
             flex: 0 0 60%;
         }
-        .cp-card-activity-home:first-child {
+        .cp-card-activity:first-child {
             margin-left: 15px;
         }
     }
@@ -44,7 +43,7 @@
     // SEC - Cards Activities
     .sec-home-top-rated__cards {
         // CP - Card Activity Home
-        .cp-card-activity-home {
+        .cp-card-activity {
             flex: 0 0 78%;
         }
     }
@@ -52,7 +51,7 @@
 /*** Media Desktop ***/
 @media (min-width: 992px) {
     .sec-home-top-rated__cards {
-        .cp-card-activity-home {
+        .cp-card-activity {
             flex: 0 0 36%;
         }
     }

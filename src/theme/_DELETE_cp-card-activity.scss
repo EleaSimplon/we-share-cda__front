@@ -1,0 +1,28 @@
+.card-activity__col {
+    flex: 0 0 43%;
+    margin: 0 10px 10px;
+}
+.card-activity__image {
+    height: 190px;
+    width: 100%;
+}
+.card-activity__image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 775px) {
+    .card-activity__col {
+        flex: 0 0 33%;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-activity__image {
+        height: 250px;
+    }
+    .card-activity__col {
+        flex: 0 0 20%;
+    }
+}

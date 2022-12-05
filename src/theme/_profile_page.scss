@@ -1,0 +1,66 @@
+@import 'mixins';
+
+/*** SEC - HEADER ***/
+.sec-profile-header {
+    @include bck-header-banner;
+    .sec-profile-header__content {
+        .sec-profile-header__content__picture {
+
+            border-radius: 50%;
+            width: 95px;
+            height: 95px;
+    
+            img {
+                object-fit: cover;
+            }
+        }
+    }
+    
+}
+$data: attr('data-target');
+
+/*** SEC - TABS ***/
+.sec-profile-tabs {
+    .cp-tabs {
+        .tab-title.active:after {
+            position: absolute;
+            content: "";
+            width: 110px;
+            height: 2px;
+            background-color: var(--color-mustard);
+            left: -17px;
+            right: 0;
+            bottom: -6px;
+        }
+        .cp-tab-content__tab-1 {
+            flex: 0 0 50%;
+        }
+    }
+}
+
+// Media - Mobile XS 
+@media (max-width: 576px) {
+    .sec-profile-tabs {
+        .cp-tabs {
+            .cp-tab-content__tab-1 {
+                flex: 0 0 100%;
+            }
+        }
+    }
+}
+
+// Media - Desktop
+@media (min-width: 992px) {
+    .sec-profile-tabs {
+        .cp-tabs {
+            .tab-title:hover {
+                cursor: pointer;
+            }
+            .cp-tab-content__tab-1 {
+                flex: 0 0 30%;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+        }
+    }
+}

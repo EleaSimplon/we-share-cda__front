@@ -86,23 +86,170 @@
                     <div class="sec-profile-header__title">
                         <h5 class="center bold">Profile</h5>
                     </div>
-                    <div class="sec-profile-header__picture">
-                        <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                    <div class="sec-profile-header__content d-flex align-center mt-50">
+                        <div class="sec-profile-header__content__picture overflow-hidden">
+                            <!-- <img class="w-100 h-100" v-if="{{user.profile_picture}}" src="{{user.profile_picture}}">
+                            <img v-else src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"></img> -->
+                            <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                        </div>
+                        <div class="sec-profile-header__content__infos ml-20">
+                            <div class="opacity-50">
+                                Welcome back,
+                            </div>
+                            <div class="mt-10">
+                                <div class="h3">{{user.name}} !</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-            <!-- --- IF AUTH --- SEC - PROFILE USER ***-->
-            <section class="sec-profile-header p-sec" v-if="isAuthenticated">
-                <div class="user-profile">
-                    <!-- <user-infos v-if="isAuthenticated" @done="loadUser()"></user-infos> -->
-                    <user-infos v-if="isAuthenticated"></user-infos>
+            <!-- *** IF AUTH --- SEC - PROFILE USER ***-->
+            <section class="sec-profile-infos p-sec" v-if="isAuthenticated">
+                <div class="container">
+                    <div class="opacity-50">
+                        About,
+                    </div>
+                    <div class="mt-10">
+                        {{user.description}}
+                    </div>
+                    
+                </div>
+            </section> 
+            <!-- *** SEC - TABS ***  -->
+            <section class="sec-profile-tabs p-sec" v-if="isAuthenticated">
+                <div class="container">
+                    <div class="cp-tabs">
+                        <!-- Tab title -->
+                        <div class="d-flex justify-space-around mb-20">
+                            <div class="tab-title h4 bold relative" data-target="tabs-1">Activity</div>
+                            <div class="tab-title h4 bold relative" data-target="tabs-2">Review</div>
+                            <div class="tab-title h4 bold relative" data-target="tabs-3">Favorites</div>
+                        </div>
+                        <!-- Tab content -->
+                        <div class="tabs-content">
+                            <!-- Activities List -->
+                            <div class="tab-content d-flex flex-wrap" id="tabs-1">
+                                <!-- CP- Card -->
+                                <div class="cp-tab-content__tab-1 mb-20">
+                                    <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+                                        <!-- Content -->
+                                        <div class="cp-card-activity__content">
+                                            <!-- Name -->
+                                            <div class="cp-card-activity__content__location">
+                                                Sahara
+                                            </div>
+                                            <!-- Name -->
+                                            <div class="cp-card-activity__content__name h6 bold mt-5">
+                                                Quad in the desert
+                                            </div>
+                                            <!-- Rate -->
+                                            <div class="cp-card-activity__content__rate d-flex align-center mt-10">
+                                                <div class="cp-card-activity__content__rate__icon">
+                                                    <ion-icon name="star"></ion-icon>
+                                                </div>
+                                                <div class="cp-card-activity__content__rate__number ml-10">
+                                                    4.8
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- CP- Card -->
+                                <div class="cp-tab-content__tab-1 mb-20">
+                                    <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+                                        <!-- Content -->
+                                        <div class="cp-card-activity__content">
+                                            <!-- Name -->
+                                            <div class="cp-card-activity__content__location">
+                                                France
+                                            </div>
+                                            <!-- Name -->
+                                            <div class="cp-card-activity__content__name h6 bold mt-5">
+                                                Hot air balloon
+                                            </div>
+                                            <!-- Rate -->
+                                            <div class="cp-card-activity__content__rate d-flex align-center mt-10">
+                                                <div class="cp-card-activity__content__rate__icon">
+                                                    <ion-icon name="star"></ion-icon>
+                                                </div>
+                                                <div class="cp-card-activity__content__rate__number ml-10">
+                                                    4.3
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="cp-tab-content__pagination">
+                                    
+                                </div>
+                            </div>
+                            <!-- Reviews List -->
+                            <div class="tab-content" id="tabs-2">Review</div>
+                            <!-- Favorites List -->
+                            <div class="tab-content" id="tabs-3">
+                                <!-- CP- Card -->
+                                <div class="mb-20">
+                                    <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/11020216/pexels-photo-11020216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+                                        <!-- Content -->
+                                        <div class="cp-card-activity__content">
+                                            <!-- Name -->
+                                            <div class="cp-card-activity__content__location">
+                                                Canada
+                                            </div>
+                                            <!-- Name -->
+                                            <div class="cp-card-activity__content__name h6 bold mt-5">
+                                                Chien de tréneau
+                                            </div>
+                                            <!-- Rate -->
+                                            <div class="cp-card-activity__content__rate d-flex align-center mt-10">
+                                                <div class="cp-card-activity__content__rate__icon">
+                                                    <ion-icon name="star"></ion-icon>
+                                                </div>
+                                                <div class="cp-card-activity__content__rate__number ml-10">
+                                                    5
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- CP- Card -->
+                                <div class="mb-20">
+                                    <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/9814953/pexels-photo-9814953.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+                                        <!-- Content -->
+                                        <div class="cp-card-activity__content">
+                                            <!-- Name -->
+                                            <div class="cp-card-activity__content__location">
+                                                Canada
+                                            </div>
+                                            <!-- Name -->
+                                            <div class="cp-card-activity__content__name h6 bold mt-5">
+                                                Motoneige
+                                            </div>
+                                            <!-- Rate -->
+                                            <div class="cp-card-activity__content__rate d-flex align-center mt-10">
+                                                <div class="cp-card-activity__content__rate__icon">
+                                                    <ion-icon name="star"></ion-icon>
+                                                </div>
+                                                <div class="cp-card-activity__content__rate__number ml-10">
+                                                    4.8
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+                <!-- <div class="user-profile">
+                </div> -->
                     <!-- Component Tab -->
-                    <div class="cp-tabs d-flex justify-space-around">
-                        <!-- Tab links  -->
+                    <!-- <div class="cp-tabs d-flex justify-space-around">
                         <button class="tablinks" onclick="openTab(event, 'Activity')">Activity</button>
                         <button class="tablinks tab-active" onclick="openCity(event, 'Review')">Review</button>
                         <button class="tablinks" onclick="openTab(event, 'Favourite')">Favourite</button>
-                    </div>
+                    </div> -->
                        
                     <!-- Button Edit
                     <div class="button-logout center mt-50">
@@ -114,49 +261,77 @@
                     -->
 
                     <!-- Button LogOut -->
-                    <div class="button-logout center mt-50">
-                        <button class="button-basic button-mustard w-100" @click.prevent="onLogout()">
-                            LogOut
-                        </button>
-                    </div>
+            <section class="button-logout center p-sec mt-50">
+                <div class="container">
+                    <button class="button-basic button-mustard w-100" @click.prevent="onLogout()">
+                        LogOut
+                    </button>
                 </div>
             </section>
+        
         </ion-content>
     </ion-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonPage, IonContent, IonCard, IonLabel, IonInput, IonItem } from '@ionic/vue';
+import { IonPage, IonContent, IonCard, IonLabel, IonInput, IonItem, IonIcon } from '@ionic/vue';
 import axios from 'axios';
 import store from '../store';
 import {BackendMixin} from '../mixins/backend';
 import router from '../router';
-import UserInfos from '../components/UserInfos.vue';
+//import UserInfos from '../components/UserInfos.vue';
 //import EditProfile from '../components/EditProfile.vue';
+// import jquery
+import $ from 'jquery';
+// import pagination
+//import VueAwesomePaginate from "vue-awesome-paginate";
+//import "vue-awesome-paginate/dist/style.css";
+// Register the package
+//createApp(App).use(VueAwesomePaginate).mount("#app");
 
 
 export default defineComponent({
   name: 'ProfilePage',
   mixins: [BackendMixin],
-  components: { IonContent, IonPage, IonLabel, IonInput, IonItem, IonCard, UserInfos },
-//   components: { IonContent, IonPage, IonLabel, IonInput, IonItem, IonCard, UserInfos, EditProfile },
+  components: { IonContent, IonPage, IonLabel, IonInput, IonItem, IonCard, IonIcon },
+  // components: { IonContent, IonPage, IonLabel, IonInput, IonItem, IonCard, UserInfos, EditProfile, UserInfos },
   // Recup les data passées dans les inputs
-  data(){
+    data(){
     // console.log(store.state.auth);
-    return {
-        name: '',
-        email: '',
-        password: '',
-        description: '',
-        isRegistered: false,
-        user: []
-    }
-  },
-  computed: {
-    username() {
-      return store.getters.userName
+        return {
+            name: '',
+            email: '',
+            password: '',
+            description: '',
+            isRegistered: false,
+            user: []
+        }
     },
+    // Display user infos
+    mounted() {
+        this.loadUser()
+        console.log("ppl mounted user infos");
+        // Jquery display div for tabs
+        $(".tabs-content .tab-content:not(:first)").hide()
+        $(".tab-title:first").addClass('active')
+
+        $('.tab-title').click(function() {
+        let btn = $(this)
+        let target = btn.attr('data-target')
+            
+        // Ajouter la classe active sur le bon bouton et la retirer des autres
+        btn.addClass('active').siblings().removeClass('active')
+        
+        // Afficher le bon contenu
+        $('.tabs-content div[id="' + target + '"]').show().siblings().hide()
+        });
+
+    },
+    computed: {
+        username() {
+            return store.getters.userName
+        },
     isAuthenticated() {
       return store.getters.isAuthenticated
     },
@@ -213,6 +388,18 @@ export default defineComponent({
         onClickEditProfile() {
             router.push({ name: 'editProfile' })
         },
+        // Display user infos
+        async loadUser() {
+        try {
+            let resp = await axios.get("http://127.0.0.1:8000/api/users/" + this.userId)
+            this.user = resp.data
+            this.$emit("done")
+        }
+        // REGLER LE PB AVEC JEANDU
+        catch (err) {
+            this.addError(this.getErrorText(err))
+        }
+    }
         
     },
 });

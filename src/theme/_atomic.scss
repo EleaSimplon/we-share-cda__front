@@ -56,6 +56,9 @@
 .overflow-auto {
     overflow: auto;
 }
+.overflow-hidden {
+    overflow: hidden;
+}
 .overflow-scroll {
     overflow: scroll;
 }
@@ -66,4 +69,8 @@
 /* Border radius */
 .border-round {
     border-radius: 50% !important;
+}
+
+.opacity-50 {
+    opacity: 0.5;
 }

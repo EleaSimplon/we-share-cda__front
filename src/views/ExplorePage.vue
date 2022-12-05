@@ -2,7 +2,7 @@
     <ion-page>
         <ion-content :fullscreen="true">
             <!-- Header -->
-            <section class="sec-search-header w-100">
+            <section class="sec-search-header p-sec w-100">
                 <div class="sec-search-header__content">
                     <h1 class="center bold ">Explore</h1>
                     <div class="d-flex align-center justify-center mt-50">
@@ -58,23 +58,23 @@
                 <div class="d-flex justify-center flex-wrap">
                     <!-- CP- Card -->
                     <!-- {{activities["hydra:member"][0].company}} -->
-                    <a v-for="activity in activities['hydra:member']" :key="activity.id" class="cp-card-activity-home d-flex align-end" style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');" @click.prevent="onClickActivityPost()">
+                    <a v-for="activity in activities['hydra:member']" :key="activity.id" class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');" @click.prevent="onClickActivityPost()">
                         <!-- Content -->
-                        <div class="cp-card-activity-home__content">
+                        <div class="cp-card-activity__content">
                             <!-- Country -->
-                            <div class="cp-card-activity-home__content__location">
+                            <div class="cp-card-activity__content__location">
                                 {{ activity.country }}
                             </div>
                             <!-- Name -->
-                            <div class="cp-card-activity-home__content__name bold mt-5">
+                            <div class="cp-card-activity__content__name bold mt-5">
                                 {{ activity.name }}
                             </div>
                             <!-- Rate -->
-                            <div class="cp-card-activity-home__content__rate d-flex align-center mt-10">
-                                <div class="cp-card-activity-home__content__rate__icon">
+                            <div class="cp-card-activity__content__rate d-flex align-center mt-10">
+                                <div class="cp-card-activity__content__rate__icon">
                                     <ion-icon name="star"></ion-icon>
                                 </div>
-                                <div class="cp-card-activity-home__content__rate__number ml-10">
+                                <div class="cp-card-activity__content__rate__number ml-10">
                                     4.8
                                 </div>
                             </div>

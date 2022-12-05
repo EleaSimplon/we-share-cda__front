@@ -22,69 +22,69 @@
                     </div>
                     <div class="sec-home-top-rated__cards d-flex">
                         <!-- CP- Card -->
-                        <a class="cp-card-activity-home d-flex align-end" style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
                             <!-- Content -->
-                            <div class="cp-card-activity-home__content">
+                            <div class="cp-card-activity__content">
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__location">
+                                <div class="cp-card-activity__content__location">
                                     Sahara
                                 </div>
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__name h6 bold mt-5">
+                                <div class="cp-card-activity__content__name h6 bold mt-5">
                                     Quad in the desert
                                 </div>
                                 <!-- Rate -->
-                                <div class="cp-card-activity-home__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity-home__content__rate__icon">
+                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
+                                    <div class="cp-card-activity__content__rate__icon">
                                         <ion-icon name="star"></ion-icon>
                                     </div>
-                                    <div class="cp-card-activity-home__content__rate__number ml-10">
+                                    <div class="cp-card-activity__content__rate__number ml-10">
                                         4.8
                                     </div>
                                 </div>
                             </div>
                         </a>
                         <!-- CP- Card -->
-                        <a class="cp-card-activity-home d-flex align-end" style="background-image: url('https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
                             <!-- Content -->
-                            <div class="cp-card-activity-home__content">
+                            <div class="cp-card-activity__content">
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__location">
+                                <div class="cp-card-activity__content__location">
                                     France
                                 </div>
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__name h6 bold mt-5">
+                                <div class="cp-card-activity__content__name h6 bold mt-5">
                                     Hot air balloon
                                 </div>
                                 <!-- Rate -->
-                                <div class="cp-card-activity-home__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity-home__content__rate__icon">
+                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
+                                    <div class="cp-card-activity__content__rate__icon">
                                         <ion-icon name="star"></ion-icon>
                                     </div>
-                                    <div class="cp-card-activity-home__content__rate__number ml-10">
+                                    <div class="cp-card-activity__content__rate__number ml-10">
                                         4.3
                                     </div>
                                 </div>
                             </div>
                         </a>
                         <!-- CP- Card -->
-                        <a class="cp-card-activity-home d-flex align-end" style="background-image: url('https://images.pexels.com/photos/3702806/pexels-photo-3702806.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/3702806/pexels-photo-3702806.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
                             <!-- Content -->
-                            <div class="cp-card-activity-home__content">
+                            <div class="cp-card-activity__content">
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__location">
+                                <div class="cp-card-activity__content__location">
                                     UK
                                 </div>
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__name h6 bold mt-5">
+                                <div class="cp-card-activity__content__name h6 bold mt-5">
                                     Skydiving
                                 </div>
                                 <!-- Rate -->
-                                <div class="cp-card-activity-home__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity-home__content__rate__icon">
+                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
+                                    <div class="cp-card-activity__content__rate__icon">
                                         <ion-icon name="star"></ion-icon>
                                     </div>
-                                    <div class="cp-card-activity-home__content__rate__number ml-10">
+                                    <div class="cp-card-activity__content__rate__number ml-10">
                                         5
                                     </div>
                                 </div>
@@ -161,69 +161,69 @@
                     </div>
                     <div class="sec-home-near-by__cards d-flex">
                         <!-- CP- Card -->
-                        <a class="cp-card-activity-home d-flex align-end" style="background-image: url('https://images.pexels.com/photos/9814953/pexels-photo-9814953.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/9814953/pexels-photo-9814953.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
                             <!-- Content -->
-                            <div class="cp-card-activity-home__content">
+                            <div class="cp-card-activity__content">
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__location">
+                                <div class="cp-card-activity__content__location">
                                     Canada
                                 </div>
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__name h6 bold mt-5">
+                                <div class="cp-card-activity__content__name h6 bold mt-5">
                                     Motoneige
                                 </div>
                                 <!-- Rate -->
-                                <div class="cp-card-activity-home__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity-home__content__rate__icon">
+                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
+                                    <div class="cp-card-activity__content__rate__icon">
                                         <ion-icon name="star"></ion-icon>
                                     </div>
-                                    <div class="cp-card-activity-home__content__rate__number ml-10">
+                                    <div class="cp-card-activity__content__rate__number ml-10">
                                         4.8
                                     </div>
                                 </div>
                             </div>
                         </a>
                         <!-- CP- Card -->
-                        <a class="cp-card-activity-home d-flex align-end" style="background-image: url('https://images.pexels.com/photos/2916819/pexels-photo-2916819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/2916819/pexels-photo-2916819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
                             <!-- Content -->
-                            <div class="cp-card-activity-home__content">
+                            <div class="cp-card-activity__content">
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__location">
+                                <div class="cp-card-activity__content__location">
                                     Canada
                                 </div>
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__name h6 bold mt-5">
+                                <div class="cp-card-activity__content__name h6 bold mt-5">
                                     Canoé
                                 </div>
                                 <!-- Rate -->
-                                <div class="cp-card-activity-home__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity-home__content__rate__icon">
+                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
+                                    <div class="cp-card-activity__content__rate__icon">
                                         <ion-icon name="star"></ion-icon>
                                     </div>
-                                    <div class="cp-card-activity-home__content__rate__number ml-10">
+                                    <div class="cp-card-activity__content__rate__number ml-10">
                                         4.5
                                     </div>
                                 </div>
                             </div>
                         </a>
                         <!-- CP- Card -->
-                        <a class="cp-card-activity-home d-flex align-end" style="background-image: url('https://images.pexels.com/photos/11020216/pexels-photo-11020216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/11020216/pexels-photo-11020216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
                             <!-- Content -->
-                            <div class="cp-card-activity-home__content">
+                            <div class="cp-card-activity__content">
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__location">
+                                <div class="cp-card-activity__content__location">
                                     Canada
                                 </div>
                                 <!-- Name -->
-                                <div class="cp-card-activity-home__content__name h6 bold mt-5">
+                                <div class="cp-card-activity__content__name h6 bold mt-5">
                                     Chien de tréneau
                                 </div>
                                 <!-- Rate -->
-                                <div class="cp-card-activity-home__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity-home__content__rate__icon">
+                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
+                                    <div class="cp-card-activity__content__rate__icon">
                                         <ion-icon name="star"></ion-icon>
                                     </div>
-                                    <div class="cp-card-activity-home__content__rate__number ml-10">
+                                    <div class="cp-card-activity__content__rate__number ml-10">
                                         5
                                     </div>
                                 </div>

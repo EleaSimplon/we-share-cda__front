@@ -1,15 +1,14 @@
 @use 'variables';
+@import 'mixins';
+
 
 /* Header */
 .sec-search-header {
     position: fixed;
     overflow: hidden;
     z-index: 20;
-    background: var(--color-primary);
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+    @include bck-header-banner;
     padding-bottom: 30px;
-
 
     /*** Button Filter ***/
     .sec-search-header__content__modal button {
@@ -23,7 +22,7 @@
 .sec-cards-listing {
     padding: 250px 20px 10px;
 
-    .cp-card-activity-home {
+    .cp-card-activity {
         margin: 0 9px 20px;
         flex: 0 0 46%;
     }
@@ -53,7 +52,7 @@ ion-modal ion-toolbar {
     /* Card LISTING */
     .sec-cards-listing {
     
-        .cp-card-activity-home {
+        .cp-card-activity {
             margin-bottom: 20px;
             flex: 0 0 100%;
         }
@@ -65,7 +64,7 @@ ion-modal ion-toolbar {
     /* Card LISTING */
     .sec-cards-listing {
         padding-top: 300px;
-        .cp-card-activity-home {
+        .cp-card-activity {
             margin: 0 15px 20px;
             flex: 0 0 30%;
         }
