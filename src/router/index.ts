@@ -44,6 +44,16 @@ const routes: Array<RouteRecordRaw> = [
         name: 'activityPost',
         path: 'activity-post',
         component: () => import('@/views/ActivityPost.vue')
+      },
+      {
+        name: 'loginPage',
+        path: 'login-page',
+        component: () => import('@/views/LoginPage.vue')
+      },
+      {
+        name: 'registerPage',
+        path: 'register-page',
+        component: () => import('@/views/RegisterPage.vue')
       }
     ]
   }

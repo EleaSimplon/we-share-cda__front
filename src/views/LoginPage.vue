@@ -1,0 +1,92 @@
+<template v-if="!isAuthenticated">
+
+    <ion-page>
+        <ion-content :fullscreen="true">
+            <section class="sec-login">
+                <div class="container">
+                    <section class="sec-forms__login">
+                        <div class="sec-forms__login__header p-sec center">
+                            <h3 class="bold">Welcome back,</h3>
+                            <div class="opacity-50">You've been missed !</div>
+                        </div>
+                        <div class="sec-forms__login__form p-20">
+                            <!-- Email -->
+                            <ion-item>
+                                <ion-label position="floating">Email</ion-label>
+                                <ion-input type="email" v-model="email"></ion-input>
+                            </ion-item>
+                            <!-- Password -->
+                            <ion-item>
+                                <ion-label position="floating">Password</ion-label>
+                                <ion-input type="password" v-model="password"></ion-input>
+                            </ion-item>
+                            <!-- Button Submit-->
+                            <div class="sec-forms__login__form__button mt-20">
+                                <button class="button-basic button-primary w-100" @click.prevent = "logIn()">
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </ion-content>
+    </ion-page>
+
+</template>
+
+
+
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { IonPage, IonContent, IonInput, IonLabel, IonItem } from '@ionic/vue';
+
+import store from '../store';
+import {BackendMixin} from '../mixins/backend';
+import router from '../router';
+
+
+export default defineComponent({
+    name: 'loginPage',
+    mixins: [BackendMixin],
+    components: { IonContent, IonPage, IonInput, IonLabel, IonItem },
+    data(){
+        return {
+            email: '',
+            password: '',
+            user: []
+        }
+    },
+    computed: {
+        username() {
+            return store.getters.userName
+        },
+        isAuthenticated() {
+        return store.getters.isAuthenticated
+        },
+        backendName() {
+        return store.getters.backendName
+        },
+        userId() {
+            return store.getters.userId
+        }
+    },
+    methods: {
+        // function in mixins => backends
+        async logIn() {
+            try {
+                this.login(this.email, this.password)
+                // await router.push({ name: 'profile', }).then(
+                //     () => {
+                //         window.location.reload()
+                //     }
+                // )
+            }
+            catch (err) {
+                this.addError(this.getErrorText(err))
+            }
+        }
+    },
+});
+</script>

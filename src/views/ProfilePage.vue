@@ -2,96 +2,49 @@
     <ion-page>
         <!-- Header -->
         <ion-content :fullscreen="true">
-            <!-- ***** IF NOT AUTH ***** -->
-            <div v-if="!isAuthenticated">
-                <!-- buttons forms -->
-                <div class="d-flex justify-center">
-                    <!-- Button Login -->
-                    <div class="button-signIn mr-10 ml-10">
-                        <button class="button-basic  button-primary" @click.prevent = "isRegistered = false">
-                            Login
-                        </button>
+            <!-- ****** --- IF NOT AUTH ---  ****** -->
+            <section class="sec-forms-redirect p-sec" v-if="!isAuthenticated">
+                <div class="container">
+                    <div class="sec-forms-redirect__header center mb-20">
+                        <div class="h5 opacity-50">Welcome to</div>
+                        <h1>We Share !</h1>
+                        <div class="mt-20">Get Inspiration for your next trip !</div>
                     </div>
-                    <!-- Button Sign In -->
-                    <div class="button-signIn mr-10 ml-10">
-                        <button class="button-basic button-secondary"  @click.prevent = "isRegistered = true">
-                            Sign Up
-                        </button>
-                    </div>
-                </div>
-                <!-- Form -->
-                <!-- Request POST ON ROUTE LOCALHOST  -->
-                <ion-card>
-                    <!-- register -->
-                    <div class="form-signIn p-20" v-if="isRegistered === true">
-                        <h3 class="center">Please, register here :</h3>
-                        <!-- Name -->
-                        <ion-item>
-                            <ion-label position="floating">Enter your Name</ion-label>
-                            <ion-input type="text" v-model="name"></ion-input>
-                        </ion-item>
-                        <!-- Email -->
-                        <ion-item>
-                            <ion-label position="floating">Enter your email</ion-label>
-                            <ion-input type="email" v-model="email"></ion-input>
-                        </ion-item>
-                        <!-- Password -->
-                        <ion-item>
-                            <ion-label position="floating">Enter your password</ion-label>
-                            <ion-input type="password" v-model="password"></ion-input>
-                        </ion-item>
-                        <!-- Description -->
-                        <ion-item>
-                            <ion-label position="floating">Enter your description</ion-label>
-                            <ion-input type="text" v-model="description"></ion-input>
-                        </ion-item>
-                        <!-- Profile Picture -->
-                        <!-- multi part form data -->
-                        <!-- graphic art  -->
-                        <!-- {{ email }}
-                        {{ password }} -->
-
-                        <!-- Button Submit-->
-                        <div class="button-signIn mt-20">
-                            <button class="button-basic button-primary w-100" @click.prevent = "signUp()" >
-                                Sign Up
-                            </button>
-                        </div>
-                    </div>
-                    <!-- login -->
-                    <div class="form-signIn p-20" v-else>
-                        <h3 class="center">Please, login here :</h3>
-                        <!-- Email -->
-                        <ion-item>
-                            <ion-label position="floating">Enter your email</ion-label>
-                            <ion-input type="email" v-model="email"></ion-input>
-                        </ion-item>
-                        <!-- Password -->
-                        <ion-item>
-                            <ion-label position="floating">Enter your password</ion-label>
-                            <ion-input type="password" v-model="password"></ion-input>
-                        </ion-item>
-                        <!-- Button Submit-->
-                        <div class="button-signIn mt-20">
-                            <button class="button-basic button-primary w-100" @click.prevent = "logIn()" >
+                    <!-- buttons forms -->
+                    <div class="sec-forms-redirect__buttons">
+                        <!-- Button Login -->
+                        <div class="sec-forms-redirect__buttons__login mr-10 ml-10 mb-20">
+                            <button class="button-basic  button-primary" @click.prevent="onClickLoginPage()">
                                 Login
                             </button>
                         </div>
+                        <!-- Button Sign In -->
+                        <div class="sec-forms-redirect__buttons__register mr-10 ml-10">
+                            <button class="button-basic button-secondary" @click.prevent="onClickRegisterPage()">
+                                Get started
+                            </button>
+                        </div>
                     </div>
-                </ion-card>
-            </div>
-            <!-- --- IF AUTH --- *** SEC - PROFILE USER HEADER ***-->
+                </div>
+            </section>
+            <!-- ****** --- IF AUTH --- SECS - USER PROFILE ****** -->
+            <!--  *** SEC - PROFILE USER HEADER ***-->
             <section class="sec-profile-header p-sec" v-if="isAuthenticated">
                 <div class="container">
                     <div class="sec-profile-header__title">
                         <h5 class="center bold">Profile</h5>
                     </div>
-                    <div class="sec-profile-header__content d-flex align-center mt-50">
+                    <div class="sec-profile-header__content relative d-flex align-center mt-50">
+                        <!-- IMG -->
                         <div class="sec-profile-header__content__picture overflow-hidden">
                             <!-- <img class="w-100 h-100" v-if="{{user.profile_picture}}" src="{{user.profile_picture}}">
                             <img v-else src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"></img> -->
                             <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
                         </div>
+                        <!-- TAG ROLE -->
+                        <!-- <div class="sec-profile-header__content__role-tag absolute" v-if="user.roles[0] === 'ROLE_ADMIN'">
+                            Amdin
+                        </div> -->
                         <div class="sec-profile-header__content__infos ml-20">
                             <div class="opacity-50">
                                 Welcome back,
@@ -103,7 +56,7 @@
                     </div>
                 </div>
             </section>
-            <!-- *** IF AUTH --- SEC - PROFILE USER ***-->
+            <!-- *** SEC - PROFILE USER ***-->
             <section class="sec-profile-infos p-sec" v-if="isAuthenticated">
                 <div class="container">
                     <div class="opacity-50">
@@ -112,7 +65,6 @@
                     <div class="mt-10">
                         {{user.description}}
                     </div>
-                    
                 </div>
             </section> 
             <!-- *** SEC - TABS ***  -->
@@ -242,26 +194,18 @@
                     </div>
                 </div>
             </section>
-                <!-- <div class="user-profile">
-                </div> -->
-                    <!-- Component Tab -->
-                    <!-- <div class="cp-tabs d-flex justify-space-around">
-                        <button class="tablinks" onclick="openTab(event, 'Activity')">Activity</button>
-                        <button class="tablinks tab-active" onclick="openCity(event, 'Review')">Review</button>
-                        <button class="tablinks" onclick="openTab(event, 'Favourite')">Favourite</button>
-                    </div> -->
                        
-                    <!-- Button Edit
-                    <div class="button-logout center mt-50">
-                        <button class="button-basic button-primary">
-                            Edit my profile
-                        </button>
-                        <edit-profile v-if="isAuthenticated"></edit-profile>
-                    </div>
-                    -->
+                <!-- Button Edit
+                <div class="button-logout center mt-50">
+                    <button class="button-basic button-primary">
+                        Edit my profile
+                    </button>
+                    <edit-profile v-if="isAuthenticated"></edit-profile>
+                </div>
+                -->
 
-                    <!-- Button LogOut -->
-            <section class="button-logout center p-sec mt-50">
+            <!-- *** SEC - Button LogOut *** -->
+            <section class="button-logout center p-sec mt-50" v-if="isAuthenticated">
                 <div class="container">
                     <button class="button-basic button-mustard w-100" @click.prevent="onLogout()">
                         LogOut
@@ -274,133 +218,118 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { IonPage, IonContent, IonCard, IonLabel, IonInput, IonItem, IonIcon } from '@ionic/vue';
-import axios from 'axios';
-import store from '../store';
-import {BackendMixin} from '../mixins/backend';
-import router from '../router';
-//import UserInfos from '../components/UserInfos.vue';
-//import EditProfile from '../components/EditProfile.vue';
-// import jquery
-import $ from 'jquery';
-// import pagination
-//import VueAwesomePaginate from "vue-awesome-paginate";
-//import "vue-awesome-paginate/dist/style.css";
-// Register the package
-//createApp(App).use(VueAwesomePaginate).mount("#app");
+    import { defineComponent } from 'vue';
+    import { IonPage, IonContent, IonIcon } from '@ionic/vue';
+    import axios from 'axios';
+    import store from '../store';
+    import {BackendMixin} from '../mixins/backend';
+    import router from '../router';
+
+    //import EditProfile from '../components/EditProfile.vue';
+
+    // import jquery
+    import $ from 'jquery';
+
+    // import pagination
+    //import VueAwesomePaginate from "vue-awesome-paginate";
+    //import "vue-awesome-paginate/dist/style.css";
+    // Register the package
+    //createApp(App).use(VueAwesomePaginate).mount("#app");
 
 
-export default defineComponent({
-  name: 'ProfilePage',
-  mixins: [BackendMixin],
-  components: { IonContent, IonPage, IonLabel, IonInput, IonItem, IonCard, IonIcon },
-  // components: { IonContent, IonPage, IonLabel, IonInput, IonItem, IonCard, UserInfos, EditProfile, UserInfos },
-  // Recup les data passées dans les inputs
-    data(){
-    // console.log(store.state.auth);
-        return {
-            name: '',
-            email: '',
-            password: '',
-            description: '',
-            isRegistered: false,
-            user: []
-        }
-    },
-    // Display user infos
-    mounted() {
-        this.loadUser()
-        console.log("ppl mounted user infos");
-        // Jquery display div for tabs
-        $(".tabs-content .tab-content:not(:first)").hide()
-        $(".tab-title:first").addClass('active')
+    export default defineComponent({
+        name: 'ProfilePage',
+        mixins: [BackendMixin],
+        components: { IonContent, IonPage, IonIcon },
+        // components: { IonContent, IonPage, IonLabel, IonInput, IonItem, IonCard, UserInfos, EditProfile, UserInfos },
+        // Recup les data passées dans les inputs
+        data(){
+        // console.log(store.state.auth);
+            return {
+                name: '',
+                email: '',
+                password: '',
+                description: '',
+                user: []
+            }
+        },
+        mounted() {
+            // Display user infos
+            this.loadUser()
+            console.log("ppl mounted user infos");
 
-        $('.tab-title').click(function() {
-        let btn = $(this)
-        let target = btn.attr('data-target')
+            // Jquery display div for tabs
+            $(".tabs-content .tab-content:not(:first)").hide()
+            $(".tab-title:first").addClass('active')
+
+            $('.tab-title').click(function() {
+            let btn = $(this)
+            let target = btn.attr('data-target')
+                
+            // Ajouter la classe active sur le bon bouton et la retirer des autres
+            btn.addClass('active').siblings().removeClass('active')
             
-        // Ajouter la classe active sur le bon bouton et la retirer des autres
-        btn.addClass('active').siblings().removeClass('active')
-        
-        // Afficher le bon contenu
-        $('.tabs-content div[id="' + target + '"]').show().siblings().hide()
-        });
+            // Afficher le bon contenu
+            $('.tabs-content div[id="' + target + '"]').show().siblings().hide()
+            });
 
-    },
-    computed: {
-        username() {
-            return store.getters.userName
         },
-    isAuthenticated() {
-      return store.getters.isAuthenticated
-    },
-    backendName() {
-      return store.getters.backendName
-    },
-    // To get the infos of the connected user
-    // userProfile() {
-    //     return store.getters.userProfile
-    // },
-    userId() {
-        return store.getters.userId
-    }
-  },
-  
-  // Create a method asyn to get the data and send it to the api using axios
-  // axios va encrer une method qui va appeler l'api
-  // axios facilite les appelles api
-    methods: {
-        async signUp(){
-            const dataRegister = {
-                name: this.name,
-                email: this.email,
-                plainPassword: this.password,
-                description: this.description
-            };
-            try {
-                await axios.post("http://127.0.0.1:8000/api/users", dataRegister);
-                await this.login(this.email, this.password)
-            }
-            catch (err) {
-                this.addError(this.getErrorText(err))
+        computed: {
+            username() {
+                return store.getters.userName
+            },
+            isAuthenticated() {
+            return store.getters.isAuthenticated
+            },
+            backendName() {
+            return store.getters.backendName
+            },
+            // To get the infos of the connected user
+            // userProfile() {
+            //     return store.getters.userProfile
+            // },
+            userId() {
+                return store.getters.userId
             }
         },
-        // function in mixins => backends
-        logIn() {
-        try {
-            this.login(this.email, this.password)
-        }
-        catch (err) {
-            this.addError(this.getErrorText(err))
-        }
-        },
-        onLogout() {
-        this.logout().then(() => {
-            router.push({ name: 'profile', }).then(
-            () => {
-                window.location.reload()
-                //console.log('logout')
+    
+        // Create a method asyn to get the data and send it to the api using axios
+        // axios va encrer une method qui va appeler l'api
+        // axios facilite les appelles api
+        methods: {
+            onLogout() {
+                this.logout().then(() => {
+                    router.push({ name: 'profile', }).then(
+                        () => {
+                            window.location.reload()
+                            //console.log('logout')
+                        }
+                    )
+                })
+            },
+            // Login Page
+            onClickLoginPage() {
+                router.push({ name: 'loginPage' })
+            },
+            // Register Page
+            onClickRegisterPage() {
+                router.push({ name: 'registerPage' })
+            },
+            // Edit Profile
+            onClickEditProfile() {
+                router.push({ name: 'editProfile' })
+            },
+            // Display user infos
+            async loadUser() {
+                try {
+                    let resp = await axios.get("http://127.0.0.1:8000/api/users/" + this.userId)
+                    this.user = resp.data
+                    this.$emit("done")
+                }
+                catch (err) {
+                    this.addError(this.getErrorText(err))
+                }
             }
-            )
-        })
         },
-        onClickEditProfile() {
-            router.push({ name: 'editProfile' })
-        },
-        // Display user infos
-        async loadUser() {
-        try {
-            let resp = await axios.get("http://127.0.0.1:8000/api/users/" + this.userId)
-            this.user = resp.data
-            this.$emit("done")
-        }
-        // REGLER LE PB AVEC JEANDU
-        catch (err) {
-            this.addError(this.getErrorText(err))
-        }
-    }
-        
-    },
-});
+    });
 </script>

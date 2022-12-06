@@ -558,6 +558,16 @@ p {
 .sec-profile-header .sec-profile-header__content .sec-profile-header__content__picture img {
   object-fit: cover;
 }
+.sec-profile-header .sec-profile-header__content .sec-profile-header__content__role-tag {
+  background: white;
+  z-index: 3;
+  bottom: -13px;
+  left: 15px;
+  right: 0;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 10px;
+}
 
 /*** SEC - TABS ***/
 .sec-profile-tabs .cp-tabs .tab-title.active:after {
