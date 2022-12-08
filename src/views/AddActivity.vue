@@ -5,7 +5,6 @@
             <section class="sec-add-activity__header p-sec">
                 <div class="container">
                     <h3 class="center">Add a new activity :</h3>
-                    <h1 class="center">--- USER ID : {{ userId }} ---</h1>
                 </div>
             </section>
             <!-- *** SEC - Form *** -->
@@ -48,11 +47,7 @@
                                 <ion-label position="floating">Description</ion-label>
                                 <ion-input type="text" v-model="description"></ion-input>
                             </ion-item>
-                            <!-- Phone Number
-                            <ion-item>
-                                <ion-label position="floating">Phone Number</ion-label>
-                                <ion-textarea v-model="phoneNumber"></ion-textarea>
-                            </ion-item>  -->
+                            <!-- Phone Number -->
                             <!-- Duration -->
                             <ion-item>
                                 <ion-label position="floating">Duration</ion-label>
@@ -61,19 +56,14 @@
                             <!-- Unit -->
                             <ion-list>
                                 <ion-item>
-                                    <ion-select interface="popover" placeholder="Unit">
-                                        <IonSelectOption v-for="unit in units['hydra:member']" :key="unit.id" value="{{ unit.id }}" v-model="unitId">
+                                    <select interface="popover" placeholder="Unit" @change="onUnitChange($event)">
+                                        <option v-for="unit in units['hydra:member']" :key="unit.id" :value="unit.id">
                                             {{ unit.type }}
-                                        </IonSelectOption>
-                                    </ion-select>
+                                        </option>
+                                    </select>
                                 </ion-item>
                             </ion-list>
-                            <!-- Picture 
-                            <ion-item>
-                                <ion-label position="floating">Picture</ion-label>
-                                <ion-textarea v-model="picture"></ion-textarea>
-                            </ion-item>
-                            -->
+                            <!-- Picture -->
                             <!-- Labels value 
                             <ion-item>
                                 <ion-select placeholder="Select all tag that matches" :multiple="true">
@@ -94,12 +84,7 @@
                                         <IonSelectOption value="days">$$$</IonSelectOption>
                                     </ion-select> -->
                                 </ion-item>
-                            <!-- Schedule 
-                            <ion-item>
-                                <ion-label position="floating">Schedule</ion-label>
-                                <ion-textarea v-model="schedule"></ion-textarea>
-                            </ion-item>
-                            -->
+                            <!-- Schedule  -->
                             <!-- Button Submit-->
                             <div class="button-signIn mt-20">
                                 <button class="button-basic button-primary w-100" @click.prevent = "addActivity()">
@@ -121,16 +106,17 @@
 <script lang="ts">
     import { defineComponent } from 'vue';
     // import CardPost from '../components/CardPost.vue';
-    import { IonPage, IonContent, IonCard, IonInput, IonLabel, IonItem, IonSelect, IonSelectOption, IonList } from '@ionic/vue';
+    import { IonPage, IonContent, IonCard, IonInput, IonLabel, IonItem, IonList } from '@ionic/vue';
     import store from '../store';
     import axios from 'axios';
-    import { unionTypeAnnotation } from '@babel/types';
+    import router from '../router';
+
 
     //recup le token
 
     export default defineComponent({
         name: 'add-activity',
-        components: { IonContent, IonPage, IonCard, IonInput, IonLabel, IonItem, IonSelect, IonSelectOption, IonList },
+        components: { IonContent, IonPage, IonCard, IonInput, IonLabel, IonItem, IonList },
         data(){
             return {
                 units: [],
@@ -158,17 +144,29 @@
                 return store.getters.userId
             }
         },
+        // whatch: {
+        //     unitId: function(unit) {
+        //         return unit.id
+        //     },      
+        // },
         mounted() {
             this.loadUnits();
         },
         methods: {
+            onUnitChange(e) {
+               this.unitId = e.target.value
+               console.log('target.value', e.target.value)
+               //return this.unitId
+            },
             async addActivity(){
+                console.log(this.duration);
+                
                 const dataActivity = {
                     name: this.name,
                     country: this.country,
                     city: this.city,
                     address: this.address,
-                    shortDescription: this.shortDescription,
+                    short_description: this.shortDescription,
                     description: this.description,
                     company: this.company,
                     //phoneNumber: this.phoneNumber,
@@ -176,12 +174,18 @@
                     price: parseInt(this.price),
                     //schedule: this.schedule,
                     duration: parseInt(this.duration),
-                    unitId: this.unitId,
-                    userId: this.userId
+                    unit: {"id": parseInt(this.unitId)},
+                    user: {"id": this.userId}
                 };
-                console.log("DATA UNITS :", this.unitId )
+                console.log("DATA ACTIVITY :", dataActivity)
+                console.log("DATA UNITS :", this.unitId)
                 try {
                     await axios.post("http://127.0.0.1:8000/api/activities", dataActivity);
+                    router.push({ name: 'explore', }).then(
+                        () => {
+                            window.location.reload()
+                        }
+                    )
                 }
                 // REGLER LE PB AVEC JEANDU
                 catch (err) {
@@ -197,6 +201,7 @@
                 }).catch(e => {
                     console.log('Error', e);
                 });
+                
             }
         },
     });

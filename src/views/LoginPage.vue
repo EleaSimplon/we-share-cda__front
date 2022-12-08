@@ -77,11 +77,7 @@ export default defineComponent({
         async logIn() {
             try {
                 this.login(this.email, this.password)
-                // await router.push({ name: 'profile', }).then(
-                //     () => {
-                //         window.location.reload()
-                //     }
-                // )
+                await router.push({ name: 'home', })
             }
             catch (err) {
                 this.addError(this.getErrorText(err))

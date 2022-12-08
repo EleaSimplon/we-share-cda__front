@@ -26,9 +26,9 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/ExplorePage.vue')
       },
       {
-        name: 'tab3',
-        path: 'tab3',
-        component: () => import('@/views/Tab3Page.vue')
+        name: 'preparePage',
+        path: 'prepare',
+        component: () => import('@/views/PreparePage.vue')
       },
       {
         name: 'profile',
@@ -43,6 +43,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         name: 'activityPost',
         path: 'activity-post',
+        props: true,
         component: () => import('@/views/ActivityPost.vue')
       },
       {

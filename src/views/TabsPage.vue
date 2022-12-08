@@ -12,7 +12,7 @@
                     <ion-icon name="search-outline"></ion-icon>
                 </ion-tab-button>
                 <!-- PREPARE -->
-                <ion-tab-button tab="tab3" href="/tabs/tab3">
+                <ion-tab-button tab="prepare" href="/tabs/prepare">
                     <ion-icon name="heart-half-outline"></ion-icon>
                 </ion-tab-button>
                 <!-- PROFILE -->

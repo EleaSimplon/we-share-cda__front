@@ -60,7 +60,12 @@
                 <div class="d-flex justify-center flex-wrap">
                     <!-- CP- Card -->
                     <!-- {{activities["hydra:member"][0].company}} -->
-                    <a v-for="activity in activities['hydra:member']" :key="activity.id" class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');" @click.prevent="onClickActivityPost()">
+                    <a v-for="activity in activities['hydra:member']"
+                        :key="activity.id"
+                        @click.prevent="onClickActivityPost(activity)"
+                        class="cp-card-activity d-flex align-end"
+                        style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"
+                    >
                         <!-- Content -->
                         <div class="cp-card-activity__content">
                             <!-- Country -->
@@ -103,92 +108,97 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import axios from 'axios';
-// import CardPost from '../components/CardPost.vue';
-import {
-    IonPage,
-    IonContent,
-    IonSearchbar,
-    /*
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonCardTitle,
-    */
-    IonFab,
-    IonFabButton,
-    IonIcon,
-    IonToolbar,
-    IonTitle,
-    IonItem,
-    IonList,
-    IonButtons,
-    IonButton,
-    IonModal,
-    IonLabel,
-    IonToggle,
-    IonAccordion, 
-    IonAccordionGroup } from '@ionic/vue';
-import router from '../router'
-//CardPost
-export default defineComponent({
-  name: 'ExplorePage',
-  components: {
-    IonContent,
-    IonPage,
-    IonSearchbar,
-    /*
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonCardTitle,
-    */
-    IonFab,
-    IonFabButton,
-    IonIcon,
-    IonToolbar,
-    IonTitle,
-    IonItem,
-    IonList,
-    IonButtons,
-    IonButton,
-    IonModal,
-    IonLabel,
-    IonToggle,
-    IonAccordion, 
-    IonAccordionGroup },
-    data() {
-        return {
-            filter: false,
-            isModalOpen: false,
-            activities: []
-        }
-    },
-    mounted() {
-        this.loadActivities();
-    },
-    methods: {
-        onClickAddActivity() {
-            router.push({ name: 'addActivity' })
+    import { defineComponent } from 'vue';
+    import axios from 'axios';
+    import {BackendMixin} from '../mixins/backend';
+    // import CardPost from '../components/CardPost.vue';
+    import {
+        IonPage,
+        IonContent,
+        IonSearchbar,
+        IonFab,
+        IonFabButton,
+        IonIcon,
+        IonToolbar,
+        IonTitle,
+        IonItem,
+        IonList,
+        IonButtons,
+        IonButton,
+        IonModal,
+        IonLabel,
+        IonToggle,
+        IonAccordion, 
+        IonAccordionGroup } from '@ionic/vue';
+    import router from '../router'
+import { mapActions } from 'vuex';
+    //CardPost
+    export default defineComponent({
+    name: 'ExplorePage',
+    mixins: [BackendMixin],
+    components: {
+        IonContent,
+        IonPage,
+        IonSearchbar,
+        IonFab,
+        IonFabButton,
+        IonIcon,
+        IonToolbar,
+        IonTitle,
+        IonItem,
+        IonList,
+        IonButtons,
+        IonButton,
+        IonModal,
+        IonLabel,
+        IonToggle,
+        IonAccordion, 
+        IonAccordionGroup },
+        data() {
+            return {
+                filter: false,
+                isModalOpen: false,
+                activities: [],
+                activity: [],
+                activityId: ''
+            }
         },
-        onClickActivityPost() {
-            router.push({ name: 'activityPost' })
+        mounted() {
+            this.loadActivities();
         },
-        setOpenModal(isModalOpen: boolean) {
-            this.isModalOpen = isModalOpen;
+        methods: {
+            ...mapActions(["addError", "addSuccess"]),
+            onClickAddActivity() {
+                router.push({ name: 'addActivity' })
+            },
+            onClickActivityPost(activity) {
+                this.activityId = activity.id
+                this.loadActivity()
+                console.log('ROUTER', this.activityId);
+                
+                router.push({ name: 'activityPost', params: { activityId: this.activityId }})
+            },
+            setOpenModal(isModalOpen: boolean) {
+                this.isModalOpen = isModalOpen;
+            },
+            async loadActivities() {
+                await axios.get("http://127.0.0.1:8000/api/activities/")
+                .then((response) => {
+                    this.activities = response.data;
+                    console.log("ICI activities", response.data);
+                }).catch(e => {
+                    console.log('Error', e);
+                });
+            },
+            async loadActivity() {
+                try {
+                    let resp = await axios.get("http://127.0.0.1:8000/api/activities/"+ this.activityId)
+                    this.activity = resp.data
+                }
+                catch (err) {
+                    this.addError(this.getErrorText(err))
+                }
+            }
         },
-        async loadActivities() {
-            await axios.get("http://127.0.0.1:8000/api/activities/")
-            .then((response) => {
-                this.activities = response.data;
-                console.log(response.data);
-            }).catch(e => {
-                console.log('Error', e);
-            });
-        }
-    },
-});
+    });
 </script>
