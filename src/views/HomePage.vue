@@ -237,22 +237,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {
-IonContent,
-IonPage,
-IonIcon,
-IonSearchbar
-} from '@ionic/vue';
+    import { defineComponent } from 'vue';
+    import {
+    IonContent,
+    IonPage,
+    IonIcon,
+    IonSearchbar
+    } from '@ionic/vue';
 
-export default  defineComponent({
-    name: 'HomePage',
-    components: {
-        IonContent,
-        IonPage,
-        IonIcon,
-        IonSearchbar
-    },
-});
+    export default  defineComponent({
+        name: 'HomePage',
+        components: {
+            IonContent,
+            IonPage,
+            IonIcon,
+            IonSearchbar
+        },
+    });
 
 </script>

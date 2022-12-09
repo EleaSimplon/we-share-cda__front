@@ -20,14 +20,28 @@
                     <form id="msform">
                         <!-- progressbar -->
                         <ul id="progressbar">
-                            <li class="active">Step 1</li>
-                            <li class="active">Step 2</li>
-                        <li class="active">Step 3</li>
+                            <li class="active"></li>
+                            <li class="active"></li>
+                            <li class="active"></li>
+                            <li class="active"></li>
+                            <li class="active"></li>
+                            <li class="active"></li>
+                            <li class="active"></li>
                         </ul>
+                        <div
+                            v-for="feature in features['hydra:member']"
+                            :key="feature.id"
+                        >
+                        {{ features }}
+                        </div>
                         <!-- fieldsets -->
-                        <fieldset>
-                            <h2 class="fs-title">Step 1</h2>
-                            <h3 class="fs-subtitle">What budget do you have ?</h3>
+                        <fieldset
+                            v-for="feature in features['hydra:member']"
+                            :key="feature.id"
+                        >
+                            <h2 class="fs-subtitle">
+                                {{ feature.value }}
+                            </h2>
                             <ion-radio-group value="strawberries">
                                 <ion-item>
                                     <ion-label>$</ion-label>
@@ -44,26 +58,29 @@
                                     <ion-radio slot="end" value="$$$"></ion-radio>
                                 </ion-item>
                             </ion-radio-group>
+                            <div class="mt-20">
+                                <input type="button" name="next" class="next action-button button-basic button-primary" value="Next" />
+                            </div>
                         </fieldset>
-                        <!-- <fieldset>
-                            <h2 class="fs-title">Step 2</h2>
-                            <h3 class="fs-subtitle">This is step  2</h3>
-                            <input type="text" name="" placeholder="Twitter" />
-                            <input type="text" name="facebook" placeholder=">Facebook</a>" />
-                            <input type="text" name="gplus" placeholder="Google Plus" />
-                            <input type="button" name="previous" class="previous action-button" value="Previous" />
-                            <input type="button" name="next" class="next action-button" value="Next" />
-                        </fieldset>
-                        <fieldset>
-                            <h2 class="fs-title">Step 3</h2>
-                            <h3 class="fs-subtitle">This is step 3</h3>
-                            <input type="text" name="fname" placeholder="First Name" />
-                            <input type="text" name="lname" placeholder="Last Name" />
-                            <input type="text" name="phone" placeholder="Phone" />
-                            <textarea name="address" placeholder="Address"></textarea>
-                            <input type="button" name="previous" class="previous action-button" value="Previous" />
-                            <input type="submit" name="submit" class="submit action-button" value="Submit" />
-                        </fieldset> -->
+
+                            <!-- Buttons -->
+                            <!-- <div class="sec-prepare__form__buttons d-flex align-center justify-between mt-20">
+                                <div class="sec-prepare__form__buttons__btn-prev">
+                                    <input type="button" name="previous" class="previous action-button button-basic button-mustard" value="Previous" />
+                                </div>
+                                <div class="sec-prepare__form__buttons__btn-next">
+                                    <input type="submit" name="submit" class="submit action-button button-basic button-secondary" value="Submit" />
+                                </div>
+                            </div>
+                        <div class="sec-prepare__form__buttons d-flex align-center justify-between mt-20">
+                            <div class="sec-prepare__form__buttons__btn-prev">
+                                <input type="button" name="previous" class="previous action-button button-basic button-mustard" value="Previous" />
+                            </div>
+                            <div class="sec-prepare__form__buttons__btn-next">
+                                <input type="button" name="next" class="next action-button button-basic button-primary" value="Next" />
+                            </div>
+                        </div> -->
+
                     </form>
 
                 </div>
@@ -80,10 +97,16 @@
     //import $ from 'jquery';
 
     import store from '../store';
+    import axios from 'axios';
 
     export default defineComponent({
         name: 'PreparePage',
         components: { IonContent, IonPage, IonItem, IonLabel, IonRadio, IonRadioGroup },
+        data() {
+            return {
+                features: [],
+            }
+        },
         // JQUERY FOR THE MULTI STEP FORM IN MOUNTED
         // mounted() {
 
@@ -93,7 +116,20 @@
             return store.getters.isAuthenticated
             }
         },
+        mounted() {
+            this.loadFeatures();
+        },
         methods: {   
+            // Display List of activities
+            async loadFeatures() {
+                await axios.get("http://127.0.0.1:8000/api/features/")
+                .then((response) => {
+                    this.features = response.data;
+                    console.log("ICI FEATURES", response.data);
+                }).catch(e => {
+                    console.log('Error', e);
+                });
+            },
         },
     });
 </script>

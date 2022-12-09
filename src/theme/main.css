@@ -85,6 +85,7 @@
   border-radius: 50% !important;
 }
 
+/* Opacity */
 .opacity-50 {
   opacity: 0.5;
 }
@@ -770,10 +771,14 @@ ion-modal ion-toolbar {
     height: 395px;
   }
 }
+/*** SEC FORM ***/
+.sec-prepare__form .sec-prepare__form__buttons__btn-prev,
+.sec-prepare__form .sec-prepare__form__buttons__btn-next {
+  flex: 0 0 48%;
+}
+
 /*form styles*/
 #msform {
-  width: 400px;
-  margin: 50px auto;
   text-align: center;
   position: relative;
 }
@@ -842,7 +847,7 @@ ion-modal ion-toolbar {
   color: var(--color-tertiary);
   text-transform: uppercase;
   font-size: 9px;
-  width: 33.33%;
+  width: 13.33%;
   float: left;
   position: relative;
 }

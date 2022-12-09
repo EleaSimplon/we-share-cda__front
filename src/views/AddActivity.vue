@@ -54,15 +54,13 @@
                                 <ion-input type="number" v-model="duration"></ion-input>
                             </ion-item>
                             <!-- Unit -->
-                            <ion-list>
-                                <ion-item>
-                                    <select interface="popover" placeholder="Unit" @change="onUnitChange($event)">
-                                        <option v-for="unit in units['hydra:member']" :key="unit.id" :value="unit.id">
-                                            {{ unit.type }}
-                                        </option>
-                                    </select>
-                                </ion-item>
-                            </ion-list>
+                            <ion-item>
+                                <select interface="popover" placeholder="Unit" @change="onUnitChange($event)">
+                                    <option v-for="unit in units['hydra:member']" :key="unit.id" :value="unit.id">
+                                        {{ unit.type }}
+                                    </option>
+                                </select>
+                            </ion-item>
                             <!-- Picture -->
                             <!-- Labels value 
                             <ion-item>
@@ -106,7 +104,7 @@
 <script lang="ts">
     import { defineComponent } from 'vue';
     // import CardPost from '../components/CardPost.vue';
-    import { IonPage, IonContent, IonCard, IonInput, IonLabel, IonItem, IonList } from '@ionic/vue';
+    import { IonPage, IonContent, IonCard, IonInput, IonLabel, IonItem } from '@ionic/vue';
     import store from '../store';
     import axios from 'axios';
     import router from '../router';
@@ -116,7 +114,7 @@
 
     export default defineComponent({
         name: 'add-activity',
-        components: { IonContent, IonPage, IonCard, IonInput, IonLabel, IonItem, IonList },
+        components: { IonContent, IonPage, IonCard, IonInput, IonLabel, IonItem },
         data(){
             return {
                 units: [],
@@ -138,7 +136,7 @@
         },
         computed: {
             isAuthenticated() {
-            return store.getters.isAuthenticated
+                return store.getters.isAuthenticated
             },
             userId() {
                 return store.getters.userId
@@ -153,13 +151,14 @@
             this.loadUnits();
         },
         methods: {
+            // On click option in select Unit->getUnit value
             onUnitChange(e) {
                this.unitId = e.target.value
                console.log('target.value', e.target.value)
                //return this.unitId
             },
+            // Add an activity
             async addActivity(){
-                console.log(this.duration);
                 
                 const dataActivity = {
                     name: this.name,
@@ -177,8 +176,7 @@
                     unit: {"id": parseInt(this.unitId)},
                     user: {"id": this.userId}
                 };
-                console.log("DATA ACTIVITY :", dataActivity)
-                console.log("DATA UNITS :", this.unitId)
+                
                 try {
                     await axios.post("http://127.0.0.1:8000/api/activities", dataActivity);
                     router.push({ name: 'explore', }).then(
@@ -193,6 +191,7 @@
                     //this.addError(this.getErrorText(err))
                 }
             },
+            // Load Units infos
             async loadUnits() {
                 await axios.get("http://127.0.0.1:8000/api/units/")
                 .then((response) => {

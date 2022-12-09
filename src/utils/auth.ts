@@ -17,7 +17,7 @@ export function cleanStorage(): void {
 
 
 export function loadToken() : string|void {
-  console.log('ici');
+  //console.log('ici');
   const encryptedValue = window.localStorage.getItem('token')
   if (encryptedValue) {
     let value = ''
@@ -34,7 +34,7 @@ export function loadToken() : string|void {
 }
 
 export function loadUser(): User {
-  console.log('ici loadUser function');
+  //console.log('ici loadUser function');
   const encryptedValue = window.localStorage.getItem('user')
   if (encryptedValue) {
     let value = ''
@@ -45,13 +45,13 @@ export function loadUser(): User {
     }
     if (value) {
       try {
-        console.log('array user value :', JSON.parse(value));
+        //console.log('array user value :', JSON.parse(value));
         
         const user: User = JSON.parse(value)
         return user
         // eslint-disable-next-line no-empty
       } catch (exc2){
-        console.error('error recupe user')
+        //console.error('error recupe user')
       }
     }
   }

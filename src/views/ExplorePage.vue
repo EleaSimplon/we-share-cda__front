@@ -8,7 +8,7 @@
                         <h1 class="center bold ">Explore</h1>
                         <div class="d-flex align-center justify-center mt-50">
                             <div class="searchbar">
-                            <ion-searchbar animated show-cancel-button="always"></ion-searchbar>
+                                <ion-searchbar animated show-cancel-button="always"></ion-searchbar>
                             </div>
                             <div class="sec-search-header__content__modal">
                                 <button @click="setOpenModal(true)">
@@ -129,9 +129,10 @@
         IonLabel,
         IonToggle,
         IonAccordion, 
-        IonAccordionGroup } from '@ionic/vue';
-    import router from '../router'
-import { mapActions } from 'vuex';
+        IonAccordionGroup
+    } from '@ionic/vue';
+    import router from '../router';
+    import { mapActions } from 'vuex';
     //CardPost
     export default defineComponent({
     name: 'ExplorePage',
@@ -168,19 +169,11 @@ import { mapActions } from 'vuex';
         },
         methods: {
             ...mapActions(["addError", "addSuccess"]),
-            onClickAddActivity() {
-                router.push({ name: 'addActivity' })
-            },
-            onClickActivityPost(activity) {
-                this.activityId = activity.id
-                this.loadActivity()
-                console.log('ROUTER', this.activityId);
-                
-                router.push({ name: 'activityPost', params: { activityId: this.activityId }})
-            },
+            // Open filters modal
             setOpenModal(isModalOpen: boolean) {
                 this.isModalOpen = isModalOpen;
             },
+            // Display List of activities
             async loadActivities() {
                 await axios.get("http://127.0.0.1:8000/api/activities/")
                 .then((response) => {
@@ -190,6 +183,11 @@ import { mapActions } from 'vuex';
                     console.log('Error', e);
                 });
             },
+            // Push to page add activity
+            onClickAddActivity() {
+                router.push({ name: 'addActivity' })
+            },
+            // Load activity by ID
             async loadActivity() {
                 try {
                     let resp = await axios.get("http://127.0.0.1:8000/api/activities/"+ this.activityId)
@@ -198,6 +196,14 @@ import { mapActions } from 'vuex';
                 catch (err) {
                     this.addError(this.getErrorText(err))
                 }
+            },
+            // On click go to activity show
+            onClickActivityPost(activity) {
+                this.activityId = activity.id
+                this.loadActivity()
+                console.log('ROUTER', this.activityId);
+                
+                router.push({ name: 'activityPost', params: { activityId: this.activityId }})
             }
         },
     });

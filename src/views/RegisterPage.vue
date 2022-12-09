@@ -42,6 +42,12 @@
                                 Sign Up
                             </button>
                         </div>
+                        <!-- IF ACCOUNT -->
+                        <div class="sec-forms__login__form__btn-register mt-20">
+                            <button class="button-basic button-mustard w-100" @click.prevent="onClickLogin()">
+                                Already have an account ?
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -102,6 +108,9 @@
                     this.addError(this.getErrorText(err))
                 }
             },
+            onClickLogin() {
+                router.push({ name: 'loginPage' })
+            }
         },
     });
 </script>

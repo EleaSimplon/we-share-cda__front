@@ -26,6 +26,12 @@
                                     Login
                                 </button>
                             </div>
+                            <!-- IF ! ACCOUNT -->
+                            <div class="sec-forms__login__form__btn-register mt-20">
+                                <button class="button-basic button-mustard w-100" @click.prevent="onClickRegister()">
+                                    Don't have an account yet ?
+                                </button>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -63,10 +69,10 @@ export default defineComponent({
             return store.getters.userName
         },
         isAuthenticated() {
-        return store.getters.isAuthenticated
+            return store.getters.isAuthenticated
         },
         backendName() {
-        return store.getters.backendName
+            return store.getters.backendName
         },
         userId() {
             return store.getters.userId
@@ -82,6 +88,9 @@ export default defineComponent({
             catch (err) {
                 this.addError(this.getErrorText(err))
             }
+        },
+        onClickRegister() {
+            router.push({ name: 'registerPage' })
         }
     },
 });
