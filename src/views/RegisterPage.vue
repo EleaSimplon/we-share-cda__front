@@ -7,6 +7,9 @@
                     <div class="sec-registe__header center">
                         <h3 class="bold">Welcome,</h3>
                         <div class="opacity-50">You're finaly here !</div>
+                        <div>
+                            <img src="https://cdn.dribbble.com/users/743832/screenshots/3969009/media/01e144130c475078dec9ccafc8026f65.gif" alt="">
+                        </div>
                     </div>
                     <!-- Request POST ON ROUTE LOCALHOST  -->
                     <div class="sec-register__form p-20">

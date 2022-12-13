@@ -55,6 +55,26 @@ const routes: Array<RouteRecordRaw> = [
         name: 'registerPage',
         path: 'register-page',
         component: () => import('@/views/RegisterPage.vue')
+      },
+      {
+        name: 'editProfile',
+        path: 'edit-profile',
+        component: () => import('@/views/EditProfile.vue')
+      },
+      {
+        name: 'userActivities',
+        path: 'user-activities',
+        component: () => import('@/views/UserActivities.vue')
+      },
+      {
+        name: 'userFavorites',
+        path: 'user-favorites',
+        component: () => import('@/views/UserFavorites.vue')
+      },
+      {
+        name: 'userReviews',
+        path: 'user-reviews',
+        component: () => import('@/views/UserReviews.vue')
       }
     ]
   }

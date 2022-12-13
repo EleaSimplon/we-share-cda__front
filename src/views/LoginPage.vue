@@ -8,6 +8,9 @@
                         <div class="sec-forms__login__header p-sec center">
                             <h3 class="bold">Welcome back,</h3>
                             <div class="opacity-50">You've been missed !</div>
+                            <div>
+                                <img src="https://cdn.dribbble.com/users/743832/screenshots/3996183/media/2f69f00106d6c72eda4f4ff2ce0ffb3a.gif" alt="">
+                            </div>
                         </div>
                         <div class="sec-forms__login__form p-20">
                             <!-- Email -->
@@ -18,7 +21,8 @@
                             <!-- Password -->
                             <ion-item>
                                 <ion-label position="floating">Password</ion-label>
-                                <ion-input type="password" v-model="password"></ion-input>
+                                <ion-input id="#password" type="password" v-model="password">
+                                </ion-input>
                             </ion-item>
                             <!-- Button Submit-->
                             <div class="sec-forms__login__form__button mt-20">

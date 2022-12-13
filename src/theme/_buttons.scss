@@ -1,0 +1,23 @@
+/*** Butons ***/
+.button-basic {
+    border-radius: var(--border-radius);
+    color: var(--color-tertiary);
+    width: 100%;
+    padding: 18px;
+    font-weight: bold;
+}
+.button-basic.button-primary {
+    background-color: var(--color-primary);
+}
+.button-basic.button-secondary {
+    border: 1px solid var(--color-primary);
+}
+.button-basic.button-mustard {
+    background-color: var(--color-mustard);
+}
+
+@media (min-width: 992px) {
+    .button-basic {
+        width: fit-content;
+    }
+}

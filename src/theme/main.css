@@ -90,11 +90,16 @@
   opacity: 0.5;
 }
 
+/* Boder bottom */
+.border-bottom {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.231372549);
+}
+
 .container {
   margin: 0 auto;
   max-width: 1000px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 30px;
+  padding-left: 30px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -133,7 +138,6 @@
   --background-checked: #212738;
   /** Border Radius **/
   --border-radius: 20px;
-  /** Spacing **/
 }
 
 /*** Fonts ***/
@@ -272,31 +276,6 @@ p {
   border-radius: var(--border-radius);
 }
 
-/*** Butons ***/
-.button-basic {
-  border-radius: var(--border-radius);
-  color: var(--color-tertiary);
-  width: 100%;
-  padding: 18px;
-}
-
-.button-basic.button-primary {
-  background-color: var(--color-primary);
-}
-
-.button-basic.button-secondary {
-  border: 1px solid var(--color-primary);
-}
-
-.button-basic.button-mustard {
-  background-color: var(--color-mustard);
-}
-
-@media (min-width: 992px) {
-  .button-basic {
-    width: fit-content;
-  }
-}
 @media (any-hover: hover) {
   a:hover {
     color: var(--color-tertiary) !important;
@@ -373,6 +352,11 @@ p {
   padding: 20px;
 }
 
+.pt-pb-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 /* Bottom */
 .pb-20 {
   padding-bottom: 20px;
@@ -417,7 +401,6 @@ p {
   --background-checked: #212738;
   /** Border Radius **/
   --border-radius: 20px;
-  /** Spacing **/
 }
 
 /* Tab Nav */
@@ -436,6 +419,32 @@ p {
   border-bottom-left-radius: var(--border-radius);
 }
 
+/*** Butons ***/
+.button-basic {
+  border-radius: var(--border-radius);
+  color: var(--color-tertiary);
+  width: 100%;
+  padding: 18px;
+  font-weight: bold;
+}
+
+.button-basic.button-primary {
+  background-color: var(--color-primary);
+}
+
+.button-basic.button-secondary {
+  border: 1px solid var(--color-primary);
+}
+
+.button-basic.button-mustard {
+  background-color: var(--color-mustard);
+}
+
+@media (min-width: 992px) {
+  .button-basic {
+    width: fit-content;
+  }
+}
 .cp-card-activity {
   background-position: center;
   background-repeat: no-repeat;
@@ -634,7 +643,6 @@ p {
   --background-checked: #212738;
   /** Border Radius **/
   --border-radius: 20px;
-  /** Spacing **/
 }
 
 /* Header */
