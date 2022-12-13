@@ -56,22 +56,18 @@
                             <!-- Unit -->
                             <ion-item>
                                 <select interface="popover" placeholder="Unit" @change="onUnitChange($event)">
-                                    <option v-for="unit in units['hydra:member']" :key="unit.id" :value="unit.id">
+                                    <option v-for="unit in units" :key="unit.id" :value="unit.id">
                                         {{ unit.type }}
                                     </option>
                                 </select>
                             </ion-item>
                             <!-- Picture -->
-                            <!-- Labels value 
-                            <ion-item>
-                                <ion-select placeholder="Select all tag that matches" :multiple="true">
-                                    <ion-select-option value="sport">Sport</ion-select-option>
-                                    <ion-select-option value="art">Art</ion-select-option>
-                                    <ion-select-option value="indoor">Indoor</ion-select-option>
-                                    <ion-select-option value="outdoor">OutDoor</ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                            -->
+                            <!-- <div>
+                                <input type="file" id="avatar" v-model="picture" name="avatar">
+                            </div> -->
+                            <div>
+                                <ion-input type="file" v-model="picture"></ion-input>
+                            </div> 
                             <!-- Price -->
                                 <ion-item>
                                     <ion-label position="floating">Price</ion-label>
@@ -128,10 +124,9 @@
                 company: '',
                 //phoneNumber: '',
                 duration: '',
-                //picture: '',
+                picture: '',
                 price: '',
                 //schedule: '',
-                //user_id: this.userId
             }
         },
         computed: {
@@ -169,7 +164,7 @@
                     description: this.description,
                     company: this.company,
                     //phoneNumber: this.phoneNumber,
-                    //picture: this.picture,
+                    picture: this.picture,
                     price: parseInt(this.price),
                     //schedule: this.schedule,
                     duration: parseInt(this.duration),

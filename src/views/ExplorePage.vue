@@ -60,7 +60,7 @@
                 <div class="d-flex justify-center flex-wrap">
                     <!-- CP- Card -->
                     <!-- {{activities["hydra:member"][0].company}} -->
-                    <a v-for="activity in activities['hydra:member']"
+                    <a v-for="activity in activities"
                         :key="activity.id"
                         @click.prevent="onClickActivityPost(activity)"
                         class="cp-card-activity d-flex align-end"
@@ -187,22 +187,11 @@
             onClickAddActivity() {
                 router.push({ name: 'addActivity' })
             },
-            // Load activity by ID
-            async loadActivity() {
-                try {
-                    let resp = await axios.get("http://127.0.0.1:8000/api/activities/"+ this.activityId)
-                    this.activity = resp.data
-                }
-                catch (err) {
-                    this.addError(this.getErrorText(err))
-                }
-            },
+
             // On click go to activity show
             onClickActivityPost(activity) {
                 this.activityId = activity.id
-                this.loadActivity()
                 console.log('ROUTER', this.activityId);
-                
                 router.push({ name: 'activityPost', params: { activityId: this.activityId }})
             }
         },

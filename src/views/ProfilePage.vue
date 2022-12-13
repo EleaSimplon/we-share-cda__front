@@ -240,8 +240,7 @@
     export default defineComponent({
         name: 'ProfilePage',
         mixins: [BackendMixin],
-        components: { IonContent, IonPage, IonIcon },
-        // components: { IonContent, IonPage, IonLabel, IonInput, IonItem, IonCard, UserInfos, EditProfile, UserInfos },
+        components: { IonContent, IonPage, IonIcon }, //EditProfile
         // Recup les data passées dans les inputs
         data(){
         // console.log(store.state.auth);
@@ -250,13 +249,12 @@
                 email: '',
                 password: '',
                 description: '',
-                user: []
             }
         },
         mounted() {
             // Display user infos
             this.loadUser()
-            console.log("ppl mounted user infos");
+            console.log("ppl mounted user infos", this.user);
 
             // Jquery display div for tabs
             $(".tabs-content .tab-content:not(:first)").hide()
@@ -279,15 +277,15 @@
                 return store.getters.userName
             },
             isAuthenticated() {
-            return store.getters.isAuthenticated
+                return store.getters.isAuthenticated
             },
             backendName() {
-            return store.getters.backendName
+                return store.getters.backendName
             },
             // To get the infos of the connected user
-            // userProfile() {
-            //     return store.getters.userProfile
-            // },
+            user() {
+                return store.getters.userProfile
+            },
             userId() {
                 return store.getters.userId
             }

@@ -28,34 +28,24 @@
                             <li class="active"></li>
                             <li class="active"></li>
                         </ul>
-                        <div
+                        <!-- <div
                             v-for="feature in features['hydra:member']"
                             :key="feature.id"
                         >
                         {{ features }}
-                        </div>
+                        </div> -->
                         <!-- fieldsets -->
                         <fieldset
-                            v-for="feature in features['hydra:member']"
+                            v-for="feature in features"
                             :key="feature.id"
                         >
                             <h2 class="fs-subtitle">
-                                {{ feature.value }}
+                                {{ feature.features_label.label }}
                             </h2>
-                            <ion-radio-group value="strawberries">
+                            <ion-radio-group value="">
                                 <ion-item>
-                                    <ion-label>$</ion-label>
+                                    <ion-label>{{ feature.value }}</ion-label>
                                     <ion-radio slot="end" value="$"></ion-radio>
-                                </ion-item>
-
-                                <ion-item>
-                                    <ion-label>$$</ion-label>
-                                    <ion-radio slot="end" value="$$"></ion-radio>
-                                </ion-item>
-
-                                <ion-item>
-                                    <ion-label>$$$</ion-label>
-                                    <ion-radio slot="end" value="$$$"></ion-radio>
                                 </ion-item>
                             </ion-radio-group>
                             <div class="mt-20">
@@ -104,7 +94,7 @@
         components: { IonContent, IonPage, IonItem, IonLabel, IonRadio, IonRadioGroup },
         data() {
             return {
-                features: [],
+                features: []
             }
         },
         // JQUERY FOR THE MULTI STEP FORM IN MOUNTED
@@ -113,14 +103,15 @@
         // },
         computed: {
             isAuthenticated() {
-            return store.getters.isAuthenticated
+                return store.getters.isAuthenticated
             }
         },
         mounted() {
             this.loadFeatures();
+
         },
         methods: {   
-            // Display List of activities
+            // Display List of Features
             async loadFeatures() {
                 await axios.get("http://127.0.0.1:8000/api/features/")
                 .then((response) => {
