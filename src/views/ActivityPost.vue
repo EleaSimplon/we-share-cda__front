@@ -15,25 +15,38 @@
                 </div>
             </section>
             <!-- *** SEC - Content *** -->
-            <section class="sec-activity-post__content">
+            <section class="sec-activity-post__content mb-30">
                 <!-- Heading -->
-                <div class="sec-activity-post__content__heading d-flex align-center justify-between">
+                <div class="sec-activity-post__content__heading">
                     <div class="sec-activity-post__content__heading__name">
                         <div class="h2 bold">{{ activity.name }}</div>
-                    </div>
-                    <div class="sec-activity-post__content__heading__duration d-flex align-center">
-                        <div class="sec-activity-post__content__heading__duration__icon d-flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="m245.333 117.333a21.334 21.334 0 0 0 -21.333 21.334v128a21.334 21.334 0 0 0 21.333 21.333h96a21.334 21.334 0 1 0 0-42.667h-74.666v-106.666a21.335 21.335 0 0 0 -21.334-21.334z" fill="#212738" data-original="#000000" class=""/><path d="m421.938 90.068c-91.5-91.5-240.376-91.5-331.876 0a21.331 21.331 0 0 0 30.167 30.166c74.854-74.864 196.667-74.864 271.542 0 74.854 74.86 74.854 196.672 0 271.532-66.024 66.009-169.171 73.576-244.145 22.434l19.041-6.347a21.335 21.335 0 0 0 -13.5-40.479l-55.3 18.437a21.342 21.342 0 0 0 -14.25 24.016l11.383 63.282a21.348 21.348 0 0 0 20.979 17.563 21.6 21.6 0 0 0 3.8-.344 21.334 21.334 0 0 0 17.221-24.771l-1.534-8.528a234.931 234.931 0 0 0 286.472-35.1c91.489-91.491 91.489-240.367 0-331.861z" fill="#212738" data-original="#000000" class=""/><path d="m73.344 143.7a21.319 21.319 0 0 0 -28.521 9.839q-2.593 5.311-4.875 10.718a21.331 21.331 0 1 0 39.271 16.667c1.25-2.927 2.562-5.833 3.958-8.708a21.327 21.327 0 0 0 -9.833-28.516z" fill="#212738" data-original="#000000" class=""/><path d="m42.74 272.083a21.323 21.323 0 0 0 21.312-20.783q.156-6.039.677-12.083a21.329 21.329 0 1 0 -42.5-3.678q-.64 7.322-.823 14.667a21.334 21.334 0 0 0 20.771 21.875c.188.002.375.002.563.002z" fill="#212738" data-original="#000000" class=""/><path d="m71.938 310.8a21.332 21.332 0 1 0 -40.876 12.219c1.115 3.739 2.323 7.469 3.626 11.161a21.333 21.333 0 1 0 40.25-14.156q-1.61-4.583-3-9.224z" fill="#212738" data-original="#000000" class=""/></g></svg>
-                        </div>
-                        <div class="sec-activity-post__content__heading__duration__text h5 bold ml-10">{{ activity.duration }} {{ activity.unit?.type ?? "" }}</div> <!--   -->
                     </div>
                 </div>
                 <!-- Address -->
                 <div class="sec-activity-post__content__address mt-50">
                     {{ activity.address }} - {{ activity.city }} - {{ activity.country }}
                 </div>
-                <!-- Company -->
+
                 <div class="sec-activity-post__content__infos mt-50 d-flex flex-wrap justify-center">
+                    <!-- Duration -->
+                    <div class="cp-tag-category mr-10 mb-20">
+                        <div class="cp-tag-category__icon m-0 width-content">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="m245.333 117.333a21.334 21.334 0 0 0 -21.333 21.334v128a21.334 21.334 0 0 0 21.333 21.333h96a21.334 21.334 0 1 0 0-42.667h-74.666v-106.666a21.335 21.335 0 0 0 -21.334-21.334z" fill="#212738" data-original="#000000" class=""/><path d="m421.938 90.068c-91.5-91.5-240.376-91.5-331.876 0a21.331 21.331 0 0 0 30.167 30.166c74.854-74.864 196.667-74.864 271.542 0 74.854 74.86 74.854 196.672 0 271.532-66.024 66.009-169.171 73.576-244.145 22.434l19.041-6.347a21.335 21.335 0 0 0 -13.5-40.479l-55.3 18.437a21.342 21.342 0 0 0 -14.25 24.016l11.383 63.282a21.348 21.348 0 0 0 20.979 17.563 21.6 21.6 0 0 0 3.8-.344 21.334 21.334 0 0 0 17.221-24.771l-1.534-8.528a234.931 234.931 0 0 0 286.472-35.1c91.489-91.491 91.489-240.367 0-331.861z" fill="#212738" data-original="#000000" class=""/><path d="m73.344 143.7a21.319 21.319 0 0 0 -28.521 9.839q-2.593 5.311-4.875 10.718a21.331 21.331 0 1 0 39.271 16.667c1.25-2.927 2.562-5.833 3.958-8.708a21.327 21.327 0 0 0 -9.833-28.516z" fill="#212738" data-original="#000000" class=""/><path d="m42.74 272.083a21.323 21.323 0 0 0 21.312-20.783q.156-6.039.677-12.083a21.329 21.329 0 1 0 -42.5-3.678q-.64 7.322-.823 14.667a21.334 21.334 0 0 0 20.771 21.875c.188.002.375.002.563.002z" fill="#212738" data-original="#000000" class=""/><path d="m71.938 310.8a21.332 21.332 0 1 0 -40.876 12.219c1.115 3.739 2.323 7.469 3.626 11.161a21.333 21.333 0 1 0 40.25-14.156q-1.61-4.583-3-9.224z" fill="#212738" data-original="#000000" class=""/></g></svg>
+                        </div>
+                        <div class="cp-tag-category__text mt-10 center ml-20 mr-20">
+                            {{ activity.duration }} {{ activity.unit?.type ?? "" }}
+                        </div>
+                    </div>
+                    <!-- budget -->
+                    <div class="cp-tag-category mr-10 mb-20" id="open-modal" expand="block">
+                        <div class="cp-tag-category__icon m-0 width-content">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 339.004 339.004" style="enable-background:new 0 0 339.004 339.004;" xml:space="preserve"><path d="M262.122,232.344c0.197-26.82-10.405-48.031-31.552-63.01c-16.333-11.533-36.154-17.549-55.325-23.33  c-39.936-12.107-51.521-18.484-51.521-37.582c0-21.273,27.646-28.842,51.313-28.842c17.236,0,37.066,5.359,49.381,13.301  l24.415-37.812c-16.095-10.434-38.123-17.551-59.875-19.76V0H143.92v37.785c-40.035,8.807-65.255,34.973-65.255,70.637  c0,24.977,10.379,44.785,30.79,58.756c15.524,10.666,34.457,16.393,52.746,21.938c39.172,11.84,55.079,19.055,54.898,42.949  l-0.001,0.176c0,20.055-26.577,27.184-49.346,27.184c-21.508,0-44.897-9.426-58.155-23.441l-32.719,30.949  c16.79,17.758,41.184,30.313,67.041,35.234v36.838h45.039v-36.045C233.445,296.592,262.078,269.809,262.122,232.344z"/><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                        </div>
+                        <div class="cp-tag-category__text mt-10 center ml-20 mr-20">
+                            Budget
+                        </div>
+                    </div>
+
                     <!-- call company -->
                     <div class="cp-tag-category mr-10 mb-20">
                         <div class="cp-tag-category__icon m-0 width-content">
@@ -41,17 +54,8 @@
                             </svg>
                         </div>
                         <!-- href="tel:+496170961709" -->
-                        <div class="cp-tag-category__text mt-10 small center ml-20 mr-20">
+                        <div class="cp-tag-category__text mt-10 center ml-20 mr-20">
                             Call Company
-                        </div>
-                    </div>
-                    <!-- budget -->
-                    <div class="cp-tag-category mr-10 mb-20">
-                        <div class="cp-tag-category__icon m-0 width-content">
-                            $$
-                        </div>
-                        <div class="cp-tag-category__text mt-10 small center ml-20 mr-20">
-                            Budget
                         </div>
                     </div>
                     <!-- Schedule -->
@@ -59,7 +63,7 @@
                         <div class="cp-tag-category__icon m-0 width-content">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" id="svg8" height="512" viewBox="0 0 25.399999 25.399999" width="512"><g id="layer2"><path id="rect828" d="m31.970703 5.9726562c-1.104573.0161723-1.986891.9247242-1.970703 2.0292969v1.9980469h-18c-3.2894057 0-6 2.710595-6 6v24.998047c-.03825 2.704645 4.03825 2.704645 4 0v-6.996094h9.998047c2.667968 0 2.667968-4.001953 0-4.001953h-9.998047v-14c0-1.142593.857407-2 2-2h18v1.996094c0 2.667968 4.001953 2.667968 4.001953 0v-1.996094h11.994141v1.996094c0 2.667968 4.001953 2.667968 4.001953 0v-1.996094h12.001953v1.996094c0 2.667968 4.001953 2.667968 4.001953 0v-1.996094h17.998047c1.142589 0 2 .857408 2 2v14h-38.003906c-2.667968 0-2.667968 4.001953 0 4.001953h38.003906v49.998047c0 1.142589-.857411 2-2 2h-72c-1.142593 0-2-.857411-2-2v-28.998047c.03825-2.704645-4.0382504-2.704645-4 0v28.998047c0 3.289406 2.7105935 6 6 6h72c3.289406 0 6-2.710594 6-6v-68c0-3.289406-2.710594-6-6-6h-17.998047v-1.9980469c.016553-1.1283027-.902964-2.0469353-2.03125-2.0292969-1.104573.0161723-1.986891.9247242-1.970703 2.0292969v1.9980469h-12.001953v-1.9980469c.016553-1.1283027-.902964-2.0469353-2.03125-2.0292969-1.104573.0161723-1.986891.9247242-1.970703 2.0292969v1.9980469h-11.994141v-1.9980469c.016553-1.1283027-.902964-2.0469353-2.03125-2.0292969zm-23.970703 40.0273438c-1.1045695 0-2 .895431-2 2s.8954305 2 2 2 2-.895431 2-2-.8954305-2-2-2zm16 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm-48 12c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm-48 12c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2zm12 0c-1.104569 0-2 .895431-2 2s.895431 2 2 2 2-.895431 2-2-.895431-2-2-2z" fill-rule="evenodd" transform="scale(.265)" font-variant-ligatures="normal" font-variant-position="normal" font-variant-caps="normal" font-variant-numeric="normal" font-variant-alternates="normal" font-feature-settings="normal" text-indent="0" text-align="start" text-decoration-line="none" text-decoration-style="solid" text-decoration-color="rgb(0,0,0)" text-transform="none" text-orientation="mixed" white-space="normal" shape-padding="0" isolation="auto" mix-blend-mode="normal" solid-color="rgb(0,0,0)" solid-opacity="1" vector-effect="none" paint-order="stroke fill markers"/></g></svg>
                         </div>
-                        <div class="cp-tag-category__text mt-10 small center ml-20 mr-20">
+                        <div class="cp-tag-category__text mt-10 center ml-20 mr-20">
                             Schedule
                         </div>
                     </div>
@@ -107,7 +111,7 @@
     import {
         IonContent,
         IonPage,
-        IonIcon
+        IonIcon,
     } from '@ionic/vue';
 
     import axios from 'axios';
@@ -119,7 +123,8 @@
     mixins: [BackendMixin],
     props: {
         activityId: String,
-        unit: []
+        unit: [],
+
     },
     components: {
         IonContent,

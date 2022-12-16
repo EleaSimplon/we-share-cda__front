@@ -28,33 +28,39 @@
                             <li class="active"></li>
                             <li class="active"></li>
                         </ul>
-                        <!-- <div
-                            v-for="feature in features['hydra:member']"
-                            :key="feature.id"
-                        >
-                        {{ features }}
-                        </div> -->
                         <!-- fieldsets -->
                         <fieldset
-                            v-for="feature in features"
-                            :key="feature.id"
+                            v-for="(featuresLabel, index) in featuresLabels"
+                            :key="featuresLabel.id"
                         >
                             <h2 class="fs-subtitle">
-                                {{ feature.features_label.label }}
+                                
+                                {{ featuresLabel.label }}
                             </h2>
-                            <ion-radio-group value="">
-                                <ion-item>
-                                    <ion-label>{{ feature.value }}</ion-label>
-                                    <ion-radio slot="end" value="$"></ion-radio>
+                            <ion-radio-group>
+                                <ion-item
+                                v-for="featuresValue in featuresLabel.features"
+                                :key="featuresValue.id"
+                                >
+                                    <ion-radio slot="end" value="{{ featuresValue.features_value.value }}"></ion-radio>
+                                    <ion-label>{{ featuresValue.features_value.value }}</ion-label>
                                 </ion-item>
                             </ion-radio-group>
-                            <div class="mt-20">
+                            <!-- INDEX FIRST -->
+                            <div class="mt-20" v-if="index == 0">
                                 <input type="button" name="next" class="next action-button button-basic button-primary" value="Next" />
                             </div>
-                        </fieldset>
-
-                            <!-- Buttons -->
-                            <!-- <div class="sec-prepare__form__buttons d-flex align-center justify-between mt-20">
+                            <!-- INDEX -->
+                            <div class="sec-prepare__form__buttons d-flex align-center justify-between mt-20" v-if="index != last && index != 0 ">
+                                <div class="sec-prepare__form__buttons__btn-prev">
+                                    <input type="button" name="previous" class="previous action-button button-basic button-mustard" value="Previous" />
+                                </div>
+                                <div class="sec-prepare__form__buttons__btn-next">
+                                    <input type="button" name="next" class="next action-button button-basic button-primary" value="Next" />
+                                </div>
+                            </div> 
+                            <!-- INDEX LAST -->
+                            <div class="sec-prepare__form__buttons d-flex align-center justify-between mt-20" v-if="index === last">
                                 <div class="sec-prepare__form__buttons__btn-prev">
                                     <input type="button" name="previous" class="previous action-button button-basic button-mustard" value="Previous" />
                                 </div>
@@ -62,14 +68,7 @@
                                     <input type="submit" name="submit" class="submit action-button button-basic button-secondary" value="Submit" />
                                 </div>
                             </div>
-                        <div class="sec-prepare__form__buttons d-flex align-center justify-between mt-20">
-                            <div class="sec-prepare__form__buttons__btn-prev">
-                                <input type="button" name="previous" class="previous action-button button-basic button-mustard" value="Previous" />
-                            </div>
-                            <div class="sec-prepare__form__buttons__btn-next">
-                                <input type="button" name="next" class="next action-button button-basic button-primary" value="Next" />
-                            </div>
-                        </div> -->
+                        </fieldset>
 
                     </form>
 
@@ -94,7 +93,10 @@
         components: { IonContent, IonPage, IonItem, IonLabel, IonRadio, IonRadioGroup },
         data() {
             return {
-                features: []
+                // features: [],
+                featuresLabels: [],
+                // featuresValues: []
+
             }
         },
         // JQUERY FOR THE MULTI STEP FORM IN MOUNTED
@@ -104,23 +106,39 @@
         computed: {
             isAuthenticated() {
                 return store.getters.isAuthenticated
+            },
+            // To get last of loop
+            last(){
+                return Object.keys(this.featuresLabels).length-1;
             }
         },
         mounted() {
-            this.loadFeatures();
-
+            // this.loadFeatures();
+            this.loadFeaturesLabel();
+            // this.loadFeaturesValue();
         },
         methods: {   
             // Display List of Features
-            async loadFeatures() {
-                await axios.get("http://127.0.0.1:8000/api/features/")
+            // async loadFeatures() {
+            //     await axios.get("http://127.0.0.1:8000/api/features/")
+            //     .then((response) => {
+            //         this.features = response.data;
+            //         console.log("ICI FEATURES", response.data);
+            //     }).catch(e => {
+            //         console.log('Error', e);
+            //     });
+            // },
+            async loadFeaturesLabel() {
+                
+                await axios.get("http://127.0.0.1:8000/api/features_labels/")
                 .then((response) => {
-                    this.features = response.data;
-                    console.log("ICI FEATURES", response.data);
+                    this.featuresLabels = response.data;
+                    console.log("ICI FEATURES LABELS", response.data);
                 }).catch(e => {
                     console.log('Error', e);
                 });
-            },
+                
+            }
         },
     });
 </script>

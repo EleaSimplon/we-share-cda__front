@@ -185,6 +185,18 @@
                     )
                 })
             },
+            // Display user infos
+            async loadUser() {
+                try {
+                    let resp = await axios.get("http://127.0.0.1:8000/api/users/" + this.userId)
+                    this.user = resp.data
+                    this.$emit("done")
+                }
+                catch (err) {
+                    this.addError(this.getErrorText(err))
+                }
+            },
+            // **** REDIRECT ROUTE ****
             // Login Page
             onClickLoginPage() {
                 router.push({ name: 'loginPage' })
@@ -208,17 +220,6 @@
             // User reviews
             onClickMyReviews() {
                 router.push({ name: 'userReviews' })
-            },
-            // Display user infos
-            async loadUser() {
-                try {
-                    let resp = await axios.get("http://127.0.0.1:8000/api/users/" + this.userId)
-                    this.user = resp.data
-                    this.$emit("done")
-                }
-                catch (err) {
-                    this.addError(this.getErrorText(err))
-                }
             }
         },
     });

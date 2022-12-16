@@ -38,10 +38,9 @@
                         <!-- graphic art  -->
                         <!-- {{ email }}
                         {{ password }} -->
-
                         <!-- Button Submit-->
                         <div class="button-signIn mt-20">
-                            <button class="button-basic button-primary w-100" @click.prevent = "signUp()" >
+                            <button class="button-basic button-primary w-100" @click.prevent="signUp()" >
                                 Sign Up
                             </button>
                         </div>
@@ -105,7 +104,8 @@
                 };
                 try {
                     await axios.post("http://127.0.0.1:8000/api/users", dataRegister);
-                    await this.login(this.email, this.password)
+                    this.login(this.email, this.password)
+                    await router.push({ name: 'profile'})
                 }
                 catch (err) {
                     this.addError(this.getErrorText(err))

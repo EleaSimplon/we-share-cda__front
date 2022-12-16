@@ -86,7 +86,7 @@ export default defineComponent({
         // function in mixins => backends
         async logIn() {
             try {
-                 this.login(this.email, this.password)
+                this.login(this.email, this.password)
                 await router.replace({ name: 'profile'})
             }
             catch (err) {

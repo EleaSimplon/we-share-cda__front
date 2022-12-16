@@ -325,6 +325,10 @@ p {
   margin-bottom: 25px;
 }
 
+.mb-30 {
+  margin-bottom: 30px;
+}
+
 .mb-35 {
   margin-bottom: 35px;
 }
@@ -745,18 +749,13 @@ ion-modal ion-toolbar {
 }
 
 .sec-activity-post__content {
-  /* Duration */
   /* Infos */
-}
-.sec-activity-post__content .sec-activity-post__content__heading__duration__icon svg {
-  width: 20px;
-  height: 20px;
 }
 .sec-activity-post__content .sec-activity-post__content__infos {
   /*** CP - Category ***/
 }
 .sec-activity-post__content .sec-activity-post__content__infos .cp-tag-category {
-  min-width: 143px;
+  min-width: 163px;
   padding: 6px;
 }
 .sec-activity-post__content .sec-activity-post__content__infos .cp-tag-category .cp-tag-category__icon {
