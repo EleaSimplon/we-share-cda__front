@@ -25,11 +25,6 @@
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
-/* SEC - Content */
-.sec-activity-post__content,
-.sec-activity-post__reviews {
-    padding: 20px 30px;
-}
 .sec-activity-post__content {
     /* Infos */
     .sec-activity-post__content__infos {
@@ -46,13 +41,50 @@
             }
         }
     }
-
 }
 
 /* Reviews */
 .sec-activity-post__reviews {
-    border-top: 1px solid var(--color-primary);
+    //border-top: 1px solid var(--color-primary);
+    .sec-activity-post__reviews__header {
+        width: 40px;
+        height: 40px;
+    }
+    .sec-activity-post__reviews__header:before {
+        position: absolute;
+        content: "";
+        width: 100px;
+        color: red;
+        height: 2px;
+        background: red;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
 }
+
+// .sec-activity-post__reviews:before {
+//     position: absolute;
+//     content: '';
+//     background: var(--color-tertiary-light);
+//     left: 15px;
+//     right: 15px;
+//     top: 15px;
+//     bottom: 0;
+//     border-radius: 30px;
+// }
+// .sec-activity-post__reviews:after {
+//     position: absolute;
+//     content: '';
+//     left: 50%;
+//     right: 0;
+//     top: 5px;
+//     width: 0; 
+//     height: 0; 
+//     border-left: 10px solid transparent;
+//     border-right: 10px solid transparent;
+//     border-bottom: 10px solid var(--color-tertiary-light);
+// }
 
 /* Media - Desktop */
 @media (min-width: 992px) {

@@ -20,6 +20,7 @@
     "axios": "^0.27.2",
     "core-js": "^3.6.5",
     "crypto-js": "^4.1.1",
+    "dayjs": "^1.11.7",
     "jquery": "^3.6.1",
     "vue": "^3.2.21",
     "vue-awesome-paginate": "^1.1.4",
