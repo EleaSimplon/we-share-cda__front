@@ -34,15 +34,15 @@
                             :key="featuresLabel.id"
                         >
                             <h2 class="fs-subtitle">
-                                
                                 {{ featuresLabel.label }}
                             </h2>
                             <ion-radio-group>
                                 <ion-item
-                                v-for="featuresValue in featuresLabel.features"
-                                :key="featuresValue.id"
+                                    v-for="featuresValue in featuresLabel.features"
+                                    :key="featuresValue.id"
+                                    :value="featuresValue.features_value.id"
                                 >
-                                    <ion-radio slot="end" value="{{ featuresValue.features_value.value }}"></ion-radio>
+                                    <ion-radio slot="end"></ion-radio>
                                     <ion-label>{{ featuresValue.features_value.value }}</ion-label>
                                 </ion-item>
                             </ion-radio-group>
@@ -82,7 +82,7 @@
     import { defineComponent } from 'vue';
     import { IonPage, IonContent, IonItem, IonLabel, IonRadio, IonRadioGroup } from '@ionic/vue';
 
-    // import jquery
+    //import jquery
     //import $ from 'jquery';
 
     import store from '../store';
@@ -100,9 +100,6 @@
             }
         },
         // JQUERY FOR THE MULTI STEP FORM IN MOUNTED
-        // mounted() {
-
-        // },
         computed: {
             isAuthenticated() {
                 return store.getters.isAuthenticated
@@ -132,8 +129,20 @@
                 
                 await axios.get("http://127.0.0.1:8000/api/features_labels/")
                 .then((response) => {
-                    this.featuresLabels = response.data;
-                    console.log("ICI FEATURES LABELS", response.data);
+                    
+                    let all  = response.data.map((featuresLabel)=>{
+                        let array:Array<string> = []
+                        // Use the native method "filter" of an Array to get an Array w/ unique values
+                        featuresLabel.features = featuresLabel.features.filter((features)=>{
+                            if (!array.includes(features.features_value.value)) {
+                                array.push(features.features_value.value)
+                                return true;
+                            }
+                        })
+                        return featuresLabel
+                    })
+                    console.log(all)
+                    this.featuresLabels = all
                 }).catch(e => {
                     console.log('Error', e);
                 });

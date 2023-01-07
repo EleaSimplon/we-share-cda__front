@@ -39,20 +39,35 @@
     }
 }
 /*** Media XS Mobile ***/
-@media (max-width: 576px) {
+@media screen and (max-width: 576px) {
     // SEC - Cards Activities
     .sec-home-top-rated__cards {
         // CP - Card Activity Home
         .cp-card-activity {
-            flex: 0 0 78%;
+            flex: 0 0 75% !important;
+        }
+    }
+    .sec-home-near-by {
+        .sec-home-near-by__cards {
+            .cp-card-activity {
+                flex: 0 0 75% !important;
+            }
         }
     }
 }
+
 /*** Media Desktop ***/
-@media (min-width: 992px) {
+@media screen and (min-width: 992px) {
     .sec-home-top-rated__cards {
         .cp-card-activity {
-            flex: 0 0 36%;
+            flex: 0 0 36% !important;
+        }
+    }
+    .sec-home-near-by {
+        .sec-home-near-by__cards {
+            .cp-card-activity {
+                flex: 0 0 36% !important;
+            }
         }
     }
 }

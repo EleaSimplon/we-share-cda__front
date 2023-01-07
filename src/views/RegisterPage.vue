@@ -16,22 +16,22 @@
                         <!-- Name -->
                         <ion-item>
                             <ion-label position="floating">Name</ion-label>
-                            <ion-input type="text" v-model="name"></ion-input>
+                            <ion-input type="text" v-model="name" required></ion-input>
                         </ion-item>
                         <!-- Email -->
                         <ion-item>
                             <ion-label position="floating">Email</ion-label>
-                            <ion-input type="email" v-model="email"></ion-input>
+                            <ion-input type="email" v-model="email" required></ion-input>
                         </ion-item>
                         <!-- Password -->
                         <ion-item>
                             <ion-label position="floating">Password</ion-label>
-                            <ion-input type="password" v-model="password"></ion-input>
+                            <ion-input type="password" v-model="password" required></ion-input>
                         </ion-item>
                         <!-- Description -->
                         <ion-item>
                             <ion-label position="floating">Description</ion-label>
-                            <ion-input type="text" v-model="description"></ion-input>
+                            <ion-input type="text" v-model="description" required></ion-input>
                         </ion-item>
                         <!-- Profile Picture -->
                         <!-- multi part form data -->

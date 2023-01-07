@@ -9,8 +9,10 @@
             </section>
             <!-- SEC - SEARCH BAR -->
             <section class="sec-home-search p-sec">
-                <div class="sec-home-search__bar">
-                    <ion-searchbar class="custom" animated="true" placeholder="Animated"></ion-searchbar>
+                <div class="container">
+                    <div class="sec-home-search__bar">
+                        <ion-searchbar class="custom" animated="true" placeholder="Animated"></ion-searchbar>
+                    </div>
                 </div>
             </section>
             <!-- SEC - TOP RATED -->

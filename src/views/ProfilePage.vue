@@ -190,6 +190,7 @@
                 try {
                     let resp = await axios.get("http://127.0.0.1:8000/api/users/" + this.userId)
                     this.user = resp.data
+                    
                     this.$emit("done")
                 }
                 catch (err) {

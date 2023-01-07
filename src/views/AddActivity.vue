@@ -148,7 +148,9 @@
         methods: {
             // On click option in select Unit->getUnit value
             onUnitChange(e) {
+                
                this.unitId = e.target.value
+
                console.log('target.value', e.target.value)
                //return this.unitId
             },

@@ -90,11 +90,71 @@
                     >
                         <!-- Rating -->
                         <div class="sec-activity-post__reviews__content__rating">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star-half"></ion-icon>
-                            <ion-icon name="star-outline"></ion-icon>
+                            <!-- IF RATE === 0 -->
+                            <div v-if="review.rate === 0">
+                                <ion-icon
+                                    name="star-outline"
+                                    v-for="star in 5"
+                                    v-bind:key="star"
+                                ></ion-icon>
+                            </div>
+                            <!-- IF RATE === 1 -->
+                            <div v-if="review.rate === 1">
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon
+                                    name="star-outline"
+                                    v-for="star in 4"
+                                    v-bind:key="star"
+                                ></ion-icon>
+                            </div>
+                            <!-- IF RATE === 2 -->
+                            <div v-if="review.rate === 2">
+                                <ion-icon
+                                    name="star"
+                                    v-for="star in 2"
+                                    v-bind:key="star"
+                                ></ion-icon>
+                                <ion-icon
+                                    name="star-outline"
+                                    v-for="star in 3"
+                                    v-bind:key="star"
+                                ></ion-icon>
+                            </div>
+                             <!-- IF RATE === 3 -->
+                             <div v-if="review.rate === 3">
+                                <ion-icon
+                                    name="star"
+                                    v-for="star in 3"
+                                    v-bind:key="star"
+                                ></ion-icon>
+                                <ion-icon
+                                    name="star-outline"
+                                    v-for="star in 2"
+                                    v-bind:key="star"
+                                ></ion-icon>
+                            </div>
+                             <!-- IF RATE === 4 -->
+                             <div v-if="review.rate === 4">
+                                <ion-icon
+                                    name="star"
+                                    v-for="star in 4"
+                                    v-bind:key="star"
+                                ></ion-icon>
+                                <ion-icon
+                                    name="star-outline"
+                                    v-for="star in 1"
+                                    v-bind:key="star"
+                                ></ion-icon>
+                            </div>
+                            <!-- IF RATE === 4 -->
+                            <div v-if="review.rate === 5">
+                                <ion-icon
+                                    name="star"
+                                    v-for="star in 5"
+                                    v-bind:key="star"
+                                ></ion-icon>
+                            </div>
+
                         </div>
                         <!-- Title -->
                         <div class="sec-activity-post__reviews__content__title mt-20 bold">
@@ -117,6 +177,13 @@
                     </div>
                 </div>
             </section>
+            <!-- <section class="mb-30" v-else>
+                <div class="container">
+                    <div class="center">
+                        Be the first one to add a review !
+                    </div>
+                </div>
+            </section> -->
             <!-- *** SEC - Add Reviews *** -->
             <section class="sec-activity-post__add-reviews">
                 <div class="container">
@@ -135,7 +202,7 @@
                             <!-- Rate -->
                             <ion-item>
                                 <ion-label position="floating">rate</ion-label>
-                                <ion-input type="number" v-model="rate"></ion-input>
+                                <ion-input type="number" min="0" max="5" v-model="rate"></ion-input>
                             </ion-item>
                             <div class="button-signIn mt-20">
                                 <button class="button-basic button-primary w-100" @click.prevent = "addReview()">
@@ -188,7 +255,7 @@
     },
     data() {
         return {
-            activity: [],
+            activity: {},
             title: '',
             description: '',
             rate: ''
@@ -213,11 +280,11 @@
         // Load the activity by ID
         async loadActivity() {
             try {
-                console.log('ID :', this.activityId);
+                //console.log('ID :', this.$route.params.activityId);
                 let resp = await axios.get("http://127.0.0.1:8000/api/activities/"+ this.$route.params.activityId)
                 
                 this.activity = resp.data
-                console.log("ICI ACTIVITY INFOS", resp.data);
+                //console.log("ICI ACTIVITY INFOS", resp.data);
             }
             catch (err) {
                 this.addError(this.getErrorText(err))
@@ -234,25 +301,17 @@
             )
         },
         async addReview(){
-                
             const dataReview = {
                 title: this.title,
                 description: this.description,
-                rate: this.rate,
-                activity: {"id": this.activityId},
+                rate: parseInt(this.rate),
+                activity: {"id": this.$route.params.activityId},
                 user: {"id": this.userId}
             };
-            
+            // console.log(dataReview);
             try {
-                await axios.post("http://127.0.0.1:8000/api/reviews", dataReview);
-
-                console.log(dataReview);
-                
-                router.push({ name: 'explore', }).then(
-                    () => {
-                        window.location.reload()
-                    }
-                )
+                let resp = await axios.post("http://127.0.0.1:8000/api/reviews", dataReview);
+                await this.loadActivity()
             }
             // REGLER LE PB AVEC JEANDU
             catch (err) {

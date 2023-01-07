@@ -8,7 +8,7 @@
                         <h1 class="center bold ">Explore</h1>
                         <div class="d-flex align-center justify-center mt-50">
                             <div class="searchbar">
-                                <ion-searchbar animated show-cancel-button="always"></ion-searchbar>
+                                <ion-searchbar animated show-cancel-button="always" v-model="search"></ion-searchbar>
                             </div>
                             <div class="sec-search-header__content__modal">
                                 <button @click="setOpenModal(true)">
@@ -82,7 +82,8 @@
                                     <ion-icon name="star"></ion-icon>
                                 </div>
                                 <div class="cp-card-activity__content__rate__number ml-10">
-                                    4.8
+                                    <!-- moyenne des rate = rate / nombre de rate -->
+                                    4
                                 </div>
                             </div>
                         </div>
@@ -161,7 +162,8 @@
                 isModalOpen: false,
                 activities: [],
                 activity: [],
-                activityId: ''
+                activityId: '',
+                search: '',
             }
         },
         mounted() {
@@ -178,11 +180,16 @@
                 await axios.get("http://127.0.0.1:8000/api/activities/")
                 .then((response) => {
                     this.activities = response.data;
-                    console.log("ICI activities", response.data);
                 }).catch(e => {
                     console.log('Error', e);
                 });
             },
+            // Function for the serach bar
+            // filteredList() {
+            //     return this.activities.filter(activity => {
+            //         return activity.name.toLowerCase().includes(this.search.toLowerCase());
+            //     });
+            // },
             // Push to page add activity
             onClickAddActivity() {
                 router.push({ name: 'addActivity' })
@@ -191,7 +198,7 @@
             // On click go to activity show
             onClickActivityPost(activity) {
                 this.activityId = activity.id
-                console.log('ROUTER', this.activityId);
+                //console.log('ROUTER', this.activityId);
                 router.push({ name: 'activityPost', params: { activityId: this.activityId }})
             }
         },

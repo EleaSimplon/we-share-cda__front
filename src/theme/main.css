@@ -549,15 +549,21 @@ p {
 }
 
 /*** Media XS Mobile ***/
-@media (max-width: 576px) {
+@media screen and (max-width: 576px) {
   .sec-home-top-rated__cards .cp-card-activity {
-    flex: 0 0 78%;
+    flex: 0 0 75% !important;
+  }
+  .sec-home-near-by .sec-home-near-by__cards .cp-card-activity {
+    flex: 0 0 75% !important;
   }
 }
 /*** Media Desktop ***/
-@media (min-width: 992px) {
+@media screen and (min-width: 992px) {
   .sec-home-top-rated__cards .cp-card-activity {
-    flex: 0 0 36%;
+    flex: 0 0 36% !important;
+  }
+  .sec-home-near-by .sec-home-near-by__cards .cp-card-activity {
+    flex: 0 0 36% !important;
   }
 }
 /*** SEC - HEADER ***/
@@ -772,12 +778,21 @@ ion-modal ion-toolbar {
   position: absolute;
   content: "";
   width: 100px;
-  color: red;
   height: 2px;
-  background: red;
+  background: var(--color-mustard);
   right: 0;
-  top: 0;
-  bottom: 0;
+  top: 50%;
+  right: 50px;
+}
+.sec-activity-post__reviews .sec-activity-post__reviews__header:after {
+  position: absolute;
+  content: "";
+  width: 100px;
+  height: 2px;
+  background: var(--color-mustard);
+  right: 0;
+  top: 50%;
+  left: 50px;
 }
 
 /* Media - Desktop */
