@@ -23,6 +23,10 @@
                             <div class="h2 bold">{{ activity.name }}</div>
                         </div>
                     </div>
+                    <div class="mt-20">
+                        <p v-if="average !== 0"> <ion-icon name="star"></ion-icon> {{average.average}}</p>
+                        <p v-else>There is no review yet</p>
+                    </div>
                     <!-- Address -->
                     <div class="sec-activity-post__content__address mt-50">
                         {{ activity.address }} - {{ activity.city }} - {{ activity.country }}
@@ -258,9 +262,16 @@
             activity: {},
             title: '',
             description: '',
-            rate: ''
+            rate: '',
+            average: 0
         }
     },
+    // created() {
+    //     axios.get("http://127.0.0.1:8000/api/activities/"+ this.$route.params.activityId + "/average" )
+    //     .then(response => {
+    //         this.average = response.data;
+    //     })
+    // },
     computed: {
         userId() {
             return store.getters.userId
@@ -270,9 +281,11 @@
     mounted() {
         //console.log(this.$route.params.activityId);
         this.loadActivity()
+        this.averageRate()
     },
     updated(){
         if (this.$route.params.activityId) {
+            this.averageRate()
             this.loadActivity()
         }
     },
@@ -289,6 +302,12 @@
             catch (err) {
                 this.addError(this.getErrorText(err))
             }
+        },
+        averageRate() {
+            axios.get("http://127.0.0.1:8000/api/activities/"+ this.$route.params.activityId + "/average" )
+            .then(response => {
+                this.average = response.data;
+            })
         },
         // To format date
         formatDate(dateString) {
@@ -312,6 +331,7 @@
             try {
                 let resp = await axios.post("http://127.0.0.1:8000/api/reviews", dataReview);
                 await this.loadActivity()
+                await this.averageRate()
             }
             // REGLER LE PB AVEC JEANDU
             catch (err) {
