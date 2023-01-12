@@ -124,8 +124,8 @@
                                     v-bind:key="star"
                                 ></ion-icon>
                             </div>
-                             <!-- IF RATE === 3 -->
-                             <div v-if="review.rate === 3">
+                            <!-- IF RATE === 3 -->
+                            <div v-if="review.rate === 3">
                                 <ion-icon
                                     name="star"
                                     v-for="star in 3"
@@ -137,8 +137,8 @@
                                     v-bind:key="star"
                                 ></ion-icon>
                             </div>
-                             <!-- IF RATE === 4 -->
-                             <div v-if="review.rate === 4">
+                            <!-- IF RATE === 4 -->
+                            <div v-if="review.rate === 4">
                                 <ion-icon
                                     name="star"
                                     v-for="star in 4"
@@ -179,6 +179,7 @@
                             {{ review.description }}
                         </div>
                     </div>
+                    
                 </div>
             </section>
             <!-- <section class="mb-30" v-else>
@@ -285,8 +286,8 @@
     },
     updated(){
         if (this.$route.params.activityId) {
-            this.averageRate()
             this.loadActivity()
+            this.averageRate()
         }
     },
     methods: {
@@ -306,7 +307,11 @@
         averageRate() {
             axios.get("http://127.0.0.1:8000/api/activities/"+ this.$route.params.activityId + "/average" )
             .then(response => {
-                this.average = response.data;
+                if(response.data.error){
+                    this.average = 0
+                }else{
+                    this.average = response.data;
+                }
             })
         },
         // To format date

@@ -66,7 +66,8 @@
                                 <input type="file" id="avatar" v-model="picture" name="avatar">
                             </div> -->
                             <div>
-                                <ion-input type="file" v-model="picture"></ion-input>
+                                <!-- <ion-input type="file" v-model="picture"></ion-input> -->
+                                <input type="file" @change="onFileChange" ref="pictureInput"/>
                             </div> 
                             <!-- Price -->
                                 <ion-item>
@@ -91,7 +92,6 @@
             </section>
         </ion-content>
     </ion-page>
-
 </template>
 
 
@@ -128,6 +128,12 @@
                 price: '',
                 //schedule: '',
             }
+            // activity : {
+            //     name: '',
+            //     description: '',
+            //     picture: null,
+            //     ...
+            // }
         },
         computed: {
             isAuthenticated() {
@@ -166,7 +172,7 @@
                     description: this.description,
                     company: this.company,
                     //phoneNumber: this.phoneNumber,
-                    picture: this.picture,
+                    //picture: this.picture,
                     price: parseInt(this.price),
                     //schedule: this.schedule,
                     duration: parseInt(this.duration),
@@ -187,7 +193,39 @@
                     console.log("ERREUR", err)
                     //this.addError(this.getErrorText(err))
                 }
+                
             },
+            // async addActivity() {
+            //     let formData = new FormData();
+            //     formData.append('name', this.activity.name);
+            //     formData.append('description', this.activity.description);
+            //     formData.append('short_description', this.activity.shortDescription);
+            //     formData.append('country', this.activity.country);
+            //     formData.append('city', this.activity.city);
+            //     formData.append('address', this.activity.address);
+            //     formData.append('company', this.activity.company);
+            //     formData.append('price', this.activity.price);
+            //     formData.append('duration', this.activity.duration);
+            //     formData.append('picture', this.activity.picture);
+            //     unit: {"id": parseInt(this.unitId)},
+            //     user: {"id": this.userId}
+            //     phoneNumber: this.phoneNumber,
+            //     schedule: this.schedule,
+
+            //     try {
+            //         let res = await axios.post("http://127.0.0.1:8000/api/activities", formData, {
+            //             headers: {
+            //                 'Content-Type': 'multipart/form-data'
+            //             }
+            //         });
+            //         console.log(res);
+            //     } catch (err) {
+            //         console.error(err);
+            //     }
+            // },
+            // onFileChange(e) {
+            //     this.activity.picture = e.target.files[0];
+            // },
             // Load Units infos
             async loadUnits() {
                 await axios.get("http://127.0.0.1:8000/api/units/")

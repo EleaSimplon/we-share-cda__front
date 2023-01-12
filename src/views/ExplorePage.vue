@@ -82,8 +82,6 @@
                                     <ion-icon name="star"></ion-icon>
                                 </div>
                                 <div class="cp-card-activity__content__rate__number ml-10">
-                                    <!-- moyenne des rate = rate / nombre de rate -->
-                                    4
                                 </div>
                             </div>
                         </div>
@@ -164,7 +162,14 @@
                 activity: [],
                 activityId: '',
                 search: '',
+                averageRates: {}
             }
+        },
+        created() {
+            axios.get('/api/activities')
+            .then(response => {
+                this.activities = response.data;
+            });
         },
         mounted() {
             this.loadActivities();
@@ -184,6 +189,13 @@
                     console.log('Error', e);
                 });
             },
+            // averageRate(activity) {
+            //     this.activityId = activity.id
+            //     axios.get("http://127.0.0.1:8000/api/activities/"+ this.activityId + "/average" )
+            //     .then(response => {
+            //         this.average = response.data;
+            //     })
+            // },
             // Function for the serach bar
             // filteredList() {
             //     return this.activities.filter(activity => {
