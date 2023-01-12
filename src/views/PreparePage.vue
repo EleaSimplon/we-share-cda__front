@@ -36,16 +36,31 @@
                             <h2 class="fs-subtitle">
                                 {{ featuresLabel.label }}
                             </h2>
-                            <ion-radio-group>
-                                <ion-item
-                                    v-for="featuresValue in featuresLabel.features"
-                                    :key="featuresValue.id"
-                                    :value="featuresValue.features_value.id"
+                                <!-- <ion-radio-group>
+                                    v-on:click="getFeaturesValueId($event)"
+                                    <ion-item
+                                        v-for="featuresValue in featuresLabel.features"
+                                        :key="featuresValue.id"
+                                        
+                                    >
+                                    <input v-model="value" @change="getFeaturesValueId" type="hidden" />
+                                        <ion-radio slot="end"></ion-radio>
+                                        <ion-label :value="featuresValue.features_value.id">{{ featuresValue.features_value.value }}</ion-label>
+                                    </ion-item>
+                                 
+                                </ion-radio-group> -->
+                                <div
+                                v-for="featuresValue in featuresLabel.features"
+                                        :key="featuresValue.id"
                                 >
-                                    <ion-radio slot="end"></ion-radio>
-                                    <ion-label>{{ featuresValue.features_value.value }}</ion-label>
-                                </ion-item>
-                            </ion-radio-group>
+                                        
+                                       
+                                        <input :value="featuresValue.features_value.id" type="radio" @click="getFeaturesValueId" />
+                                        <label for="sizeSmall">{{ featuresValue.features_value.value }} </label>
+                                </div>
+                                
+                                
+                            
                             <!-- INDEX FIRST -->
                             <div class="mt-20" v-if="index == 0">
                                 <input type="button" name="next" class="next action-button button-basic button-primary" value="Next" />
@@ -65,13 +80,14 @@
                                     <input type="button" name="previous" class="previous action-button button-basic button-mustard" value="Previous" />
                                 </div>
                                 <div class="sec-prepare__form__buttons__btn-next">
-                                    <input type="submit" name="submit" class="submit action-button button-basic button-secondary" value="Submit" />
+                                    <button class="submit action-button button-basic button-secondary" @click.prevent="submitFeaturesValueId()"></button>
                                 </div>
                             </div>
                         </fieldset>
 
                     </form>
 
+                    {{ featuresValuesId }}
                 </div>
             </section>
         </ion-content>
@@ -80,7 +96,7 @@
 
 <script lang="ts">
     import { defineComponent } from 'vue';
-    import { IonPage, IonContent, IonItem, IonLabel, IonRadio, IonRadioGroup } from '@ionic/vue';
+    import { IonPage, IonContent } from '@ionic/vue';
 
     //import jquery
     //import $ from 'jquery';
@@ -90,13 +106,11 @@
 
     export default defineComponent({
         name: 'PreparePage',
-        components: { IonContent, IonPage, IonItem, IonLabel, IonRadio, IonRadioGroup },
+        components: { IonContent, IonPage },
         data() {
             return {
-                // features: [],
                 featuresLabels: [],
-                // featuresValues: []
-
+                featuresValuesId: [] as string[],
             }
         },
         // JQUERY FOR THE MULTI STEP FORM IN MOUNTED
@@ -112,19 +126,9 @@
         mounted() {
             // this.loadFeatures();
             this.loadFeaturesLabel();
-            // this.loadFeaturesValue();
+            this.displaySuggestActivities();
         },
         methods: {   
-            // Display List of Features
-            // async loadFeatures() {
-            //     await axios.get("http://127.0.0.1:8000/api/features/")
-            //     .then((response) => {
-            //         this.features = response.data;
-            //         console.log("ICI FEATURES", response.data);
-            //     }).catch(e => {
-            //         console.log('Error', e);
-            //     });
-            // },
             async loadFeaturesLabel() {
                 
                 await axios.get("http://127.0.0.1:8000/api/features_labels/")
@@ -147,6 +151,43 @@
                     console.log('Error', e);
                 });
                 
+            },
+            getFeaturesValueId(e) {
+
+                this.featuresValuesId.push((e.target as HTMLInputElement).value);
+
+                console.log('event', this.featuresValuesId);
+            },
+            async submitFeaturesValueId() {
+
+                const featuresValuesId = {
+                    featuresValuesId : this.featuresValuesId
+                }
+                console.log('Before try', featuresValuesId);
+
+                try {
+                    await axios.post("http://127.0.0.1:8000/api/prepare", featuresValuesId)
+                    console.log('ppl',featuresValuesId);
+                }
+                catch (err) {
+                    console.log("ERREUR", err)
+                    //this.addError(this.getErrorText(err))
+                }
+
+            },
+            displaySuggestActivities() {
+
+                axios.get("http://127.0.0.1:8000/api/activities/prepare")
+
+                .then((response) => {
+
+                    this.featuresValuesId = response.data;
+                    console.log(response.data);
+
+                }).catch(e => {
+                    console.log('Error', e);
+                });
+
             }
         },
     });

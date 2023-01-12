@@ -67,7 +67,7 @@
                             </div> -->
                             <div>
                                 <!-- <ion-input type="file" v-model="picture"></ion-input> -->
-                                <input type="file" @change="onFileChange" ref="pictureInput"/>
+                                <!-- <input type="file" @change="onFileChange" ref="pictureInput"/> -->
                             </div> 
                             <!-- Price -->
                                 <ion-item>

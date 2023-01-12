@@ -267,12 +267,6 @@
             average: 0
         }
     },
-    // created() {
-    //     axios.get("http://127.0.0.1:8000/api/activities/"+ this.$route.params.activityId + "/average" )
-    //     .then(response => {
-    //         this.average = response.data;
-    //     })
-    // },
     computed: {
         userId() {
             return store.getters.userId
