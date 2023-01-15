@@ -56,6 +56,7 @@
                             <!-- Unit -->
                             <ion-item>
                                 <select interface="popover" placeholder="Unit" @change="onUnitChange($event)">
+                                    <option value="" selected disabled>Select a Unit...</option>
                                     <option v-for="unit in units" :key="unit.id" :value="unit.id">
                                         {{ unit.type }}
                                     </option>
@@ -80,6 +81,9 @@
                                     </ion-select> -->
                                 </ion-item>
                             <!-- Schedule  -->
+                            <!-- Date  -->
+                            <input v-model="published_at" disabled>
+                            <!-- <input type="hidden" v-model="published_at"> -->
                             <!-- Button Submit-->
                             <div class="button-signIn mt-20">
                                 <button class="button-basic button-primary w-100" @click.prevent = "addActivity()">
@@ -105,9 +109,6 @@
     import axios from 'axios';
     import router from '../router';
 
-
-    //recup le token
-
     export default defineComponent({
         name: 'add-activity',
         components: { IonContent, IonPage, IonCard, IonInput, IonLabel, IonItem },
@@ -127,13 +128,8 @@
                 picture: '',
                 price: '',
                 //schedule: '',
+                published_at: new Date().toISOString().slice(0,10)
             }
-            // activity : {
-            //     name: '',
-            //     description: '',
-            //     picture: null,
-            //     ...
-            // }
         },
         computed: {
             isAuthenticated() {
@@ -143,11 +139,6 @@
                 return store.getters.userId
             }
         },
-        // whatch: {
-        //     unitId: function(unit) {
-        //         return unit.id
-        //     },      
-        // },
         mounted() {
             this.loadUnits();
         },
@@ -157,8 +148,6 @@
                 
                this.unitId = e.target.value
 
-               console.log('target.value', e.target.value)
-               //return this.unitId
             },
             // Add an activity
             async addActivity(){
@@ -177,11 +166,13 @@
                     //schedule: this.schedule,
                     duration: parseInt(this.duration),
                     unit: {"id": parseInt(this.unitId)},
-                    user: {"id": this.userId}
+                    user: {"id": this.userId},
+                    published_at: new Date(Date.parse(this.published_at))
                 };
-                
+             
                 try {
                     await axios.post("http://127.0.0.1:8000/api/activities", dataActivity);
+                    
                     router.push({ name: 'explore', }).then(
                         () => {
                             window.location.reload()
@@ -195,37 +186,6 @@
                 }
                 
             },
-            // async addActivity() {
-            //     let formData = new FormData();
-            //     formData.append('name', this.activity.name);
-            //     formData.append('description', this.activity.description);
-            //     formData.append('short_description', this.activity.shortDescription);
-            //     formData.append('country', this.activity.country);
-            //     formData.append('city', this.activity.city);
-            //     formData.append('address', this.activity.address);
-            //     formData.append('company', this.activity.company);
-            //     formData.append('price', this.activity.price);
-            //     formData.append('duration', this.activity.duration);
-            //     formData.append('picture', this.activity.picture);
-            //     unit: {"id": parseInt(this.unitId)},
-            //     user: {"id": this.userId}
-            //     phoneNumber: this.phoneNumber,
-            //     schedule: this.schedule,
-
-            //     try {
-            //         let res = await axios.post("http://127.0.0.1:8000/api/activities", formData, {
-            //             headers: {
-            //                 'Content-Type': 'multipart/form-data'
-            //             }
-            //         });
-            //         console.log(res);
-            //     } catch (err) {
-            //         console.error(err);
-            //     }
-            // },
-            // onFileChange(e) {
-            //     this.activity.picture = e.target.files[0];
-            // },
             // Load Units infos
             async loadUnits() {
                 await axios.get("http://127.0.0.1:8000/api/units/")

@@ -39,7 +39,7 @@
     }
 }
 /*** Media XS Mobile ***/
-@media screen and (max-width: 576px) {
+@media (max-width: 576px) {
     // SEC - Cards Activities
     .sec-home-top-rated__cards {
         // CP - Card Activity Home
@@ -57,7 +57,7 @@
 }
 
 /*** Media Desktop ***/
-@media screen and (min-width: 992px) {
+@media (min-width: 992px) {
     .sec-home-top-rated__cards {
         .cp-card-activity {
             flex: 0 0 36% !important;

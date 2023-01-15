@@ -20,20 +20,26 @@
                 <div class="container">
                     <!-- Title -->
                     <div class="sec-home-top-rated__title mb-25">
-                        <h4 class="bold">Top activities</h4>
+                        <h4 class="bold">Latest activities</h4>
                     </div>
                     <div class="sec-home-top-rated__cards d-flex">
                         <!-- CP- Card -->
-                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+                        <a
+                            v-for="activity in activities"
+                            :key="activity.id"
+                            @click.prevent="onClickActivityPost(activity)"
+                            class="cp-card-activity d-flex align-end"
+                            style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"
+                        >
                             <!-- Content -->
                             <div class="cp-card-activity__content">
                                 <!-- Name -->
                                 <div class="cp-card-activity__content__location">
-                                    Sahara
+                                    {{ activity.country }}
                                 </div>
                                 <!-- Name -->
                                 <div class="cp-card-activity__content__name h6 bold mt-5">
-                                    Quad in the desert
+                                    {{ activity.name }}
                                 </div>
                                 <!-- Rate -->
                                 <div class="cp-card-activity__content__rate d-flex align-center mt-10">
@@ -46,52 +52,7 @@
                                 </div>
                             </div>
                         </a>
-                        <!-- CP- Card -->
-                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
-                            <!-- Content -->
-                            <div class="cp-card-activity__content">
-                                <!-- Name -->
-                                <div class="cp-card-activity__content__location">
-                                    France
-                                </div>
-                                <!-- Name -->
-                                <div class="cp-card-activity__content__name h6 bold mt-5">
-                                    Hot air balloon
-                                </div>
-                                <!-- Rate -->
-                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity__content__rate__icon">
-                                        <ion-icon name="star"></ion-icon>
-                                    </div>
-                                    <div class="cp-card-activity__content__rate__number ml-10">
-                                        4.3
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <!-- CP- Card -->
-                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/3702806/pexels-photo-3702806.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
-                            <!-- Content -->
-                            <div class="cp-card-activity__content">
-                                <!-- Name -->
-                                <div class="cp-card-activity__content__location">
-                                    UK
-                                </div>
-                                <!-- Name -->
-                                <div class="cp-card-activity__content__name h6 bold mt-5">
-                                    Skydiving
-                                </div>
-                                <!-- Rate -->
-                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity__content__rate__icon">
-                                        <ion-icon name="star"></ion-icon>
-                                    </div>
-                                    <div class="cp-card-activity__content__rate__number ml-10">
-                                        5
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                        
                     </div>
                 </div>
             </section>
@@ -246,6 +207,8 @@
     IonIcon,
     IonSearchbar
     } from '@ionic/vue';
+    import axios from 'axios';
+import router from '../router';
 
     export default  defineComponent({
         name: 'HomePage',
@@ -255,6 +218,35 @@
             IonIcon,
             IonSearchbar
         },
+        data() {
+            return {
+                activities: [],
+                activity: [],
+                activityId: ''
+            }
+        },
+        mounted() {
+            this.displayLatestActivities();
+        },
+        methods: {
+            // Display the 5 latest activities
+            async displayLatestActivities() {
+                await axios.get("http://127.0.0.1:8000/api/activities/latest")
+                .then((response) => {
+                    this.activities = response.data;
+                    console.log(response.data);
+                    
+                }).catch(e => {
+                    console.log('Error', e);
+                });
+            },
+            // On click go to activity show
+            onClickActivityPost(activity) {
+                this.activityId = activity.id
+                //console.log('ROUTER', this.activityId);
+                router.push({ name: 'activityPost', params: { activityId: this.activityId }})
+            }
+        }
     });
 
 </script>

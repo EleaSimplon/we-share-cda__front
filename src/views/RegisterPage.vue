@@ -23,6 +23,7 @@
                             <ion-label position="floating">Email</ion-label>
                             <ion-input type="email" v-model="email" required></ion-input>
                         </ion-item>
+                        <span v-if="errorMessage" class="error-message">{{ errorMessage }}</span>
                         <!-- Password -->
                         <ion-item>
                             <ion-label position="floating">Password</ion-label>
@@ -31,7 +32,7 @@
                         <!-- Description -->
                         <ion-item>
                             <ion-label position="floating">Description</ion-label>
-                            <ion-input type="text" v-model="description" required></ion-input>
+                            <ion-input type="text" v-model="description" ></ion-input>
                         </ion-item>
                         <!-- Profile Picture -->
                         <!-- multi part form data -->
@@ -65,7 +66,7 @@
     import axios from 'axios';
     import store from '../store';
     import {BackendMixin} from '../mixins/backend';
-
+    
 
     export default defineComponent({
         name: 'registerPage',
@@ -106,8 +107,7 @@
                     await axios.post("http://127.0.0.1:8000/api/users", dataRegister);
                     this.login(this.email, this.password)
                     await router.push({ name: 'profile'})
-                }
-                catch (err) {
+                } catch (err) {
                     this.addError(this.getErrorText(err))
                 }
             },

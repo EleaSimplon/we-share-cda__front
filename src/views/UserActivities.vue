@@ -13,6 +13,15 @@
                     </div>
                 </div>
             </section>
+             <!--  *** SEC - EDIT PROFILE FORM ***-->
+             <section class="p-sec">
+                <div class="container">
+                    <div class="center">
+                        Here you can retrieve the list of activities you have added to the app !
+                        Thanks for sharing your experience.
+                    </div>
+                </div>
+            </section>
            <!--  *** SEC - EDIT PROFILE FORM ***-->
             <section class="p-sec">
                 <div class="container">

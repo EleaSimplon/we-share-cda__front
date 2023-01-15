@@ -1,6 +1,7 @@
 <template>
     <ion-page>
         <ion-content :fullscreen="true">
+            
             <!-- *** SEC - HEADER *** -->
             <section class="sec-prepare-header p-sec">
                 <h1 class="center bold">Prepare</h1>
@@ -16,6 +17,7 @@
             <!--***  SEC - IF AUTH MSG *** -->
             <section class="sec-prepare" v-if="isAuthenticated">
                 <div class="sec-prepare__form">
+
                     <!-- multistep form -->
                     <form id="msform">
                         <!-- progressbar -->
@@ -28,6 +30,9 @@
                             <li class="active"></li>
                             <li class="active"></li>
                         </ul>
+
+                       FeaturesValue Id : {{ featuresValuesId }}
+
                         <!-- fieldsets -->
                         <fieldset
                             v-for="(featuresLabel, index) in featuresLabels"
@@ -87,7 +92,7 @@
 
                     </form>
 
-                    {{ featuresValuesId }}
+                    
                 </div>
             </section>
         </ion-content>
@@ -182,7 +187,7 @@
                 .then((response) => {
 
                     this.featuresValuesId = response.data;
-                    console.log(response.data);
+                    console.log('data prepare', response.data);
 
                 }).catch(e => {
                     console.log('Error', e);

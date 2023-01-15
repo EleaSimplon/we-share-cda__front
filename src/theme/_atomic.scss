@@ -10,13 +10,15 @@
 .center {
     text-align: center;
 }
-
 /** Typo **/
 .bold {
     font-weight: bold;
 }
 
 /** Flexbox **/
+.d-none {
+    display: none;
+}
 .d-flex {
     display: flex;
 }

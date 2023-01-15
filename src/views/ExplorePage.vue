@@ -76,14 +76,6 @@
                             <div class="cp-card-activity__content__name bold mt-5">
                                 {{ activity.name }}
                             </div>
-                            <!-- Rate -->
-                            <div class="cp-card-activity__content__rate d-flex align-center mt-10">
-                                <div class="cp-card-activity__content__rate__icon">
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
-                                <div class="cp-card-activity__content__rate__number ml-10">
-                                </div>
-                            </div>
                         </div>
                     </a>
                 </div> 
@@ -162,7 +154,6 @@
                 activity: [],
                 activityId: '',
                 search: '',
-                averageRates: {}
             }
         },
         created() {
@@ -175,12 +166,14 @@
             this.loadActivities();
         },
         methods: {
+            // Modal
             ...mapActions(["addError", "addSuccess"]),
             // Open filters modal
             setOpenModal(isModalOpen: boolean) {
                 this.isModalOpen = isModalOpen;
             },
-            // Display List of activities
+            
+            //Display List of activities
             async loadActivities() {
                 await axios.get("http://127.0.0.1:8000/api/activities/")
                 .then((response) => {
@@ -189,17 +182,11 @@
                     console.log('Error', e);
                 });
             },
-            // averageRate(activity) {
-            //     this.activityId = activity.id
-            //     axios.get("http://127.0.0.1:8000/api/activities/"+ this.activityId + "/average" )
-            //     .then(response => {
-            //         this.average = response.data;
-            //     })
-            // },
+            //***************
             // Function for the serach bar
             // filteredList() {
             //     return this.activities.filter(activity => {
-            //         return activity.name.toLowerCase().includes(this.search.toLowerCase());
+            //         return this.activity.toLowerCase().includes(this.search.toLowerCase());
             //     });
             // },
             // Push to page add activity
