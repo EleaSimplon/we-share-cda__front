@@ -92,6 +92,14 @@
 
                     </form>
 
+
+                    <div
+                    v-for="activity in displayActivities"
+                    :key="activity.id"
+                    >
+                    {{ activity.name }}
+                    </div>
+
                     
                 </div>
             </section>
@@ -116,6 +124,7 @@
             return {
                 featuresLabels: [],
                 featuresValuesId: [] as number[],
+                displayActivities: [{id: Number, name: String}]
             }
         },
         // JQUERY FOR THE MULTI STEP FORM IN MOUNTED
@@ -164,16 +173,18 @@
             },
             async submitFeaturesValueId() {
 
-                const featuresValuesId = {
-                    featuresValuesId : this.featuresValuesId
-                }
+                const featuresValuesId = this.featuresValuesId
+            
                 console.log('Before try', featuresValuesId);
                 try {
                     // featuresValuesId = integer
                     await axios.post("http://127.0.0.1:8000/api/prepare", featuresValuesId)
                     .then(async(response) => {
                         console.log('response: ', response.data);
-                        // create array dans data => = array = this.response.data
+                        
+                        this.displayActivities = response.data
+                        console.log('activities', this.displayActivities);
+                        
                     });
 
                     console.log('ppl',featuresValuesId);
