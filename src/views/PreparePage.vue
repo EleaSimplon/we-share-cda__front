@@ -115,7 +115,7 @@
         data() {
             return {
                 featuresLabels: [],
-                featuresValuesId: [] as string[],
+                featuresValuesId: [] as number[],
             }
         },
         // JQUERY FOR THE MULTI STEP FORM IN MOUNTED
@@ -131,7 +131,6 @@
         mounted() {
             // this.loadFeatures();
             this.loadFeaturesLabel();
-            this.displaySuggestActivities();
         },
         methods: {   
             async loadFeaturesLabel() {
@@ -159,7 +158,7 @@
             },
             getFeaturesValueId(e) {
 
-                this.featuresValuesId.push((e.target as HTMLInputElement).value);
+                this.featuresValuesId.push(e.target.value);
 
                 console.log('event', this.featuresValuesId);
             },
@@ -169,9 +168,14 @@
                     featuresValuesId : this.featuresValuesId
                 }
                 console.log('Before try', featuresValuesId);
-
                 try {
+                    // featuresValuesId = integer
                     await axios.post("http://127.0.0.1:8000/api/prepare", featuresValuesId)
+                    .then(async(response) => {
+                        console.log('response: ', response.data);
+                        // create array dans data => = array = this.response.data
+                    });
+
                     console.log('ppl',featuresValuesId);
                 }
                 catch (err) {
@@ -180,20 +184,20 @@
                 }
 
             },
-            displaySuggestActivities() {
+            // displaySuggestActivities() {
 
-                axios.get("http://127.0.0.1:8000/api/activities/prepare")
+            //     axios.get("http://127.0.0.1:8000/api/activities/prepare")
 
-                .then((response) => {
+            //     .then((response) => {
 
-                    this.featuresValuesId = response.data;
-                    console.log('data prepare', response.data);
+            //         this.featuresValuesId = response.data;
+            //         console.log('data prepare', response.data);
 
-                }).catch(e => {
-                    console.log('Error', e);
-                });
+            //     }).catch(e => {
+            //         console.log('Error', e);
+            //     });
 
-            }
+            // }
         },
     });
 </script>

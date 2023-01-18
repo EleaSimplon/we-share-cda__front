@@ -81,9 +81,6 @@
                                     </ion-select> -->
                                 </ion-item>
                             <!-- Schedule  -->
-                            <!-- Date  -->
-                            <input v-model="published_at" disabled>
-                            <!-- <input type="hidden" v-model="published_at"> -->
                             <!-- Button Submit-->
                             <div class="button-signIn mt-20">
                                 <button class="button-basic button-primary w-100" @click.prevent = "addActivity()">
@@ -128,7 +125,6 @@
                 picture: '',
                 price: '',
                 //schedule: '',
-                published_at: new Date().toISOString().slice(0,10)
             }
         },
         computed: {
@@ -167,7 +163,6 @@
                     duration: parseInt(this.duration),
                     unit: {"id": parseInt(this.unitId)},
                     user: {"id": this.userId},
-                    published_at: new Date(Date.parse(this.published_at))
                 };
              
                 try {

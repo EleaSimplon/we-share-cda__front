@@ -279,7 +279,7 @@
         IonCard,
         IonInput,
         IonLabel,
-        IonItem
+        IonItem,
     } from '@ionic/vue';
 
     import axios from 'axios';
