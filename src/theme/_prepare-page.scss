@@ -4,14 +4,17 @@
 	.sec-prepare__form__buttons__btn-next {
 		flex: 0 0 48%;
 	}
+	.sec-prepare__form__button-value.active {
+		border: 1px solid red;
+	}
 }
 
 /*form styles*/
-#msform {
+#multiStepForm {
 	text-align: center;
 	position: relative;
 }
-#msform fieldset {
+#multiStepForm fieldset {
 	background: white;
 	border: 0 none;
 	border-radius: 3px;
@@ -25,11 +28,11 @@
 	position: relative;
 }
 /*Hide all except first fieldset*/
-// #msform fieldset:not(:first-of-type) {
+// #multiStepForm fieldset:not(:first-of-type) {
 // 	display: none;
 // }
 /*inputs*/
-#msform input, #msform textarea {
+#multiStepForm input, #multiStepForm textarea {
 	padding: 15px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
@@ -41,7 +44,7 @@
 	font-size: 13px;
 }
 /*buttons*/
-#msform .action-button {
+#multiStepForm .action-button {
 	width: 100%;
 	// background: var(--color-mustard);
 	// font-weight: bold;
@@ -52,7 +55,7 @@
 	// padding: 10px 5px;
 	// margin: 10px 5px;
 }
-#msform .action-button:hover, #msform .action-button:focus {
+#multiStepForm .action-button:hover, #multiStepForm .action-button:focus {
 	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
 /*headings*/

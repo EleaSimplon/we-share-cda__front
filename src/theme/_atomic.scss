@@ -43,7 +43,11 @@
 .justify-between {
     justify-content: space-between;
 }
-/** ?? **/
+.flex-50pc {
+    flex: 0 0 50%;
+}
+
+/** Width / Height **/
 .w-100 {
     width: 100%;
 }
@@ -80,4 +84,9 @@
 /* Boder bottom */
 .border-bottom {
     border-bottom: 1px solid #8080803b;
+}
+
+/* Background */
+.bck-transparent {
+    background: transparent;
 }

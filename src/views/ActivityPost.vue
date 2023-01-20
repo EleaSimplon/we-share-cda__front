@@ -68,6 +68,7 @@
                     <div class="sec-activity-post__content__heading">
                         <div class="sec-activity-post__content__heading__name">
                             <div class="h2 bold">{{ activity.name }}</div>
+                            <img style="width:40px; height:40px;" v-bind:src="activity.picture">
                         </div>
                     </div>
                     <div class="mt-20">

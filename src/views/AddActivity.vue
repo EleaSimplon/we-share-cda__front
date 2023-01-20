@@ -11,7 +11,8 @@
             <section class="sec-add-activity__form p-sec">
                 <div class="container">
                     <ion-card>
-                        <div class="form-signIn p-20">
+                        <form enctype="multipart/form-data">
+                            <div class="form-signIn p-20">
                             <!-- Name -->
                             <ion-item>
                                 <ion-label position="floating">Name</ion-label>
@@ -63,9 +64,12 @@
                                 </select>
                             </ion-item>
                             <!-- Picture -->
-                            <!-- <div>
-                                <input type="file" id="avatar" v-model="picture" name="avatar">
-                            </div> -->
+                            
+
+                                <div>
+                                    <input type="file" id="avatar" @change="onChangeFile">
+                                </div>
+
                             <div>
                                 <!-- <ion-input type="file" v-model="picture"></ion-input> -->
                                 <!-- <input type="file" @change="onFileChange" ref="pictureInput"/> -->
@@ -87,7 +91,9 @@
                                     Submit
                                 </button>
                             </div>
-                        </div>
+                            </div>
+                        </form>
+                        
                     </ion-card>
                 </div>
             </section>
@@ -120,11 +126,12 @@
                 shortDescription: '',
                 description: '',
                 company: '',
-                //phoneNumber: '',
                 duration: '',
-                picture: '',
+                picture: {},
                 price: '',
                 //schedule: '',
+                //phoneNumber: '',
+                activityId: ''
             }
         },
         computed: {
@@ -145,10 +152,15 @@
                this.unitId = e.target.value
 
             },
+            onChangeFile(event:any) {
+                console.log(event.target.files[0].name);
+
+                this.picture = 'http://127.0.0.1:8000/upload/images/activities/' + event.target.files[0].name
+            },
             // Add an activity
             async addActivity(){
                 
-                const dataActivity = {
+                const dataActivity :any = {
                     name: this.name,
                     country: this.country,
                     city: this.city,
@@ -157,22 +169,37 @@
                     description: this.description,
                     company: this.company,
                     //phoneNumber: this.phoneNumber,
-                    //picture: this.picture,
                     price: parseInt(this.price),
                     //schedule: this.schedule,
                     duration: parseInt(this.duration),
                     unit: {"id": parseInt(this.unitId)},
                     user: {"id": this.userId},
-                };
-             
+                }
+
+                const dataPicture:any = [
+                    this.picture
+                ]
+                
+                let formData = new FormData();
+                formData.append('picture', dataPicture[0]);
+
                 try {
-                    await axios.post("http://127.0.0.1:8000/api/activities", dataActivity);
                     
-                    router.push({ name: 'explore', }).then(
-                        () => {
-                            window.location.reload()
-                        }
-                    )
+                    await axios.post("http://127.0.0.1:8000/api/activities", dataActivity)
+                    .then((response) => {
+                        this.activityId = response.data.id
+                        console.log(response.data);
+
+                    }).catch(e => {
+                        console.log('Error', e);
+                    });
+                    await axios.post("http://127.0.0.1:8000/api/activities/"+ this.activityId +"/image", formData, {headers: { 'Content-Type': 'multipart/form-data','Access-Control-Allow-Origin':'http://127.0.0.1:8000/api/activities/'+this.activityId+'/image','Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Accept, Authorization','Access-Control-Allow-Methods':'PUT, POST, GET, DELETE, OPTIONS'}});
+
+                    // router.push({ name: 'explore', }).then(
+                    //     () => {
+                    //         window.location.reload()
+                    //     }
+                    // )
                 }
                 // REGLER LE PB AVEC JEANDU
                 catch (err) {
