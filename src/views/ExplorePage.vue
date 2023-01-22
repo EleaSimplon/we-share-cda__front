@@ -8,7 +8,7 @@
                         <h1 class="center bold ">Explore</h1>
                         <div class="d-flex align-center justify-center mt-50">
                             <div class="searchbar">
-                                <ion-searchbar animated show-cancel-button="always" v-model="search"></ion-searchbar>
+                                <ion-searchbar animated show-cancel-button="always"></ion-searchbar>
                             </div>
                             <div class="sec-search-header__content__modal">
                                 <button @click="setOpenModal(true)">
@@ -20,12 +20,14 @@
                             <ion-modal :is-open="isModalOpen">
                                 <ion-content>
                                     <ion-toolbar>
+                                        <div class="container d-flex">
                                         <ion-title>Filters</ion-title>
                                         <ion-buttons slot="end">
                                             <ion-button color="light" @click="setOpenModal(false)">
                                                 <ion-icon name="close-outline">X</ion-icon>
                                             </ion-button>
                                         </ion-buttons>
+                                        </div>
                                     </ion-toolbar>
                                     <ion-list>
                                         <ion-item>
@@ -43,8 +45,20 @@
                                                 <ion-item slot="header">
                                                     <ion-label>Budget</ion-label>
                                                 </ion-item>
-                                                <div class="ion-padding" slot="content">
-                                                    First Content
+                                                <div class="ion-padding d-flex justify-between" slot="content">
+                                                    <ion-label>$</ion-label>
+                                                    <ion-toggle>
+                                                    </ion-toggle>
+                                                </div>
+                                                <div class="ion-padding d-flex justify-between" slot="content">
+                                                    <ion-label>$$</ion-label>
+                                                    <ion-toggle>
+                                                    </ion-toggle>
+                                                </div>
+                                                <div class="ion-padding d-flex justify-between" slot="content">
+                                                    <ion-label>$$$</ion-label>
+                                                    <ion-toggle>
+                                                    </ion-toggle>
                                                 </div>
                                             </ion-accordion>
                                         </ion-accordion-group>
@@ -54,6 +68,7 @@
                         </div>
                     </div>
                 </div>
+                
             </section>
             <!-- *** SEC - Cards Activity List ***-->
             <section class="sec-cards-listing">
@@ -64,7 +79,7 @@
                         :key="activity.id"
                         @click.prevent="onClickActivityPost(activity)"
                         class="cp-card-activity d-flex align-end"
-                        style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"
+                        v-bind:style="{ backgroundImage: 'url(' + activity.picture + ')' }"
                     >
                         <!-- Content -->
                         <div class="cp-card-activity__content">
@@ -91,7 +106,7 @@
             </section>
         </ion-content>
         <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button color="dark" class="sec-card-activity__btn-add" @click.prevent="onClickAddActivity()">
+            <ion-fab-button class="sec-card-activity__btn-add" @click.prevent="onClickAddActivity()">
                 <ion-icon name="add-outline"></ion-icon>
             </ion-fab-button>
         </ion-fab>
@@ -124,7 +139,7 @@
     } from '@ionic/vue';
     import router from '../router';
     import { mapActions } from 'vuex';
-    //CardPost
+   
     export default defineComponent({
     name: 'ExplorePage',
     mixins: [BackendMixin],
@@ -150,10 +165,9 @@
             return {
                 filter: false,
                 isModalOpen: false,
-                activities: [],
+                activities: [{id: Number, country: String, name: String, picture: String }],
                 activity: [],
                 activityId: '',
-                search: '',
             }
         },
         created() {

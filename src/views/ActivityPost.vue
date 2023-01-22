@@ -2,7 +2,7 @@
     <ion-page>
         <ion-content :fullscreen="true">
             <!-- *** SEC - Header *** -->
-            <section class="sec-activity-post__header relative d-flex justify-between flex-no-wrap p-20">
+            <section class="sec-activity-post__header relative d-flex justify-between flex-no-wrap p-20 fixed" v-bind:style="{ backgroundImage: 'url(' + activity.picture + ')' }">
                 <!-- Back To List Button -->
                 <div class="sec-activity-post__header__btn-back">
                     <a @click="onClickGoBackToList()">
@@ -13,48 +13,47 @@
                 <div class="sec-activity-post__header__btn-like">
                     <div id="main-content">
                         <div>
-                            <input type="checkbox" id="checkbox" />
                             <label for="checkbox">
-                                <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
-                                <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
-                                    <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>
-                                    <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>
+                                <svg @click.prevent="toggleFavorite" v-bind:class="{ 'heart-red': isFavorite  == true }" id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                        <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>
+                                        <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>
 
-                                    <g id="grp7" opacity="0" transform="translate(7 6)">
-                                    <circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>
-                                    <circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>
-                                    </g>
+                                        <g id="grp7" opacity="0" transform="translate(7 6)">
+                                        <circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>
+                                        <circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>
+                                        </g>
 
-                                    <g id="grp6" opacity="0" transform="translate(0 28)">
-                                    <circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>
-                                    <circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>
-                                    </g>
+                                        <g id="grp6" opacity="0" transform="translate(0 28)">
+                                        <circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>
+                                        <circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>
+                                        </g>
 
-                                    <g id="grp3" opacity="0" transform="translate(52 28)">
-                                    <circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>
-                                    <circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>
-                                    </g>
+                                        <g id="grp3" opacity="0" transform="translate(52 28)">
+                                        <circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>
+                                        <circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>
+                                        </g>
 
-                                    <g id="grp2" opacity="0" transform="translate(44 6)">
-                                    <circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>
-                                    <circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>
-                                    </g>
+                                        <g id="grp2" opacity="0" transform="translate(44 6)">
+                                        <circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>
+                                        <circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>
+                                        </g>
 
-                                    <g id="grp5" opacity="0" transform="translate(14 50)">
-                                    <circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>
-                                    <circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>
-                                    </g>
+                                        <g id="grp5" opacity="0" transform="translate(14 50)">
+                                        <circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>
+                                        <circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>
+                                        </g>
 
-                                    <g id="grp4" opacity="0" transform="translate(35 50)">
-                                    <circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>
-                                    <circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>
-                                    </g>
+                                        <g id="grp4" opacity="0" transform="translate(35 50)">
+                                        <circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>
+                                        <circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>
+                                        </g>
 
-                                    <g id="grp1" opacity="0" transform="translate(24)">
-                                    <circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>
-                                    <circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>
+                                        <g id="grp1" opacity="0" transform="translate(24)">
+                                        <circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>
+                                        <circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>
+                                        </g>
                                     </g>
-                                </g>
                                 </svg>
                             </label>
                         </div>
@@ -62,13 +61,12 @@
                 </div>
             </section>
             <!-- *** SEC - Content *** -->
-            <section class="sec-activity-post__content p-sec">
+            <section class="sec-activity-post__content p-sec relative bck-white z-10">
                 <div class="container">
                     <!-- Heading -->
                     <div class="sec-activity-post__content__heading">
                         <div class="sec-activity-post__content__heading__name">
                             <div class="h2 bold">{{ activity.name }}</div>
-                            <img style="width:40px; height:40px;" v-bind:src="activity.picture">
                         </div>
                     </div>
                     <div class="mt-20">
@@ -96,7 +94,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 339.004 339.004" style="enable-background:new 0 0 339.004 339.004;" xml:space="preserve"><path d="M262.122,232.344c0.197-26.82-10.405-48.031-31.552-63.01c-16.333-11.533-36.154-17.549-55.325-23.33  c-39.936-12.107-51.521-18.484-51.521-37.582c0-21.273,27.646-28.842,51.313-28.842c17.236,0,37.066,5.359,49.381,13.301  l24.415-37.812c-16.095-10.434-38.123-17.551-59.875-19.76V0H143.92v37.785c-40.035,8.807-65.255,34.973-65.255,70.637  c0,24.977,10.379,44.785,30.79,58.756c15.524,10.666,34.457,16.393,52.746,21.938c39.172,11.84,55.079,19.055,54.898,42.949  l-0.001,0.176c0,20.055-26.577,27.184-49.346,27.184c-21.508,0-44.897-9.426-58.155-23.441l-32.719,30.949  c16.79,17.758,41.184,30.313,67.041,35.234v36.838h45.039v-36.045C233.445,296.592,262.078,269.809,262.122,232.344z"/><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
                             </div>
                             <div class="cp-tag-category__text mt-10 center ml-20 mr-20">
-                                Budget
+                                {{ activity.price }}
                             </div>
                         </div>
 
@@ -122,20 +120,19 @@
                         </div>
                     </div>
                     <!-- Description -->
-                    <div class="sec-activity-post__content__description mt-50">
+                    <div class="sec-activity-post__content__description mt-50 justify">
                         {{ activity.description}}
                     </div>
                 </div>
                 
             </section>
             <!-- *** SEC - Reviews *** -->
-            <section class="sec-activity-post__reviews p-sec" v-if="activity.reviews">
+            <section class="sec-activity-post__reviews p-sec relative bck-white z-10" v-if="activity.reviews">
                 <div class="container">
                     <!-- Reviews header -->
                     <div class="sec-activity-post__reviews__header relative m-0 mb-30">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="40" height="40" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="m4.7 17.7c-1-1.1-1.6-2.3-1.6-4.3 0-3.5 2.5-6.6 6-8.2l.9 1.3c-3.3 1.8-4 4.1-4.2 5.6.5-.3 1.2-.4 1.9-.3 1.8.2 3.2 1.6 3.2 3.5 0 .9-.4 1.8-1 2.5-.7.7-1.5 1-2.5 1-1.1 0-2.1-.5-2.7-1.1zm10 0c-1-1.1-1.6-2.3-1.6-4.3 0-3.5 2.5-6.6 6-8.2l.9 1.3c-3.3 1.8-4 4.1-4.2 5.6.5-.3 1.2-.4 1.9-.3 1.8.2 3.2 1.6 3.2 3.5 0 .9-.4 1.8-1 2.5s-1.5 1-2.5 1c-1.1 0-2.1-.5-2.7-1.1z" fill="#212738" data-original="#000000"/></g></svg>
                     </div>
-
                     <!-- Reviews List -->
                     <div class="sec-activity-post__reviews__content mb-30"
                         v-for="review in activity.reviews"
@@ -231,17 +228,17 @@
                     
                 </div>
             </section>
-            <!-- <section class="mb-30" v-else>
+           <!-- <section class="mb-30" v-if="activity.reviews === null">
                 <div class="container">
                     <div class="center">
                         Be the first one to add a review !
                     </div>
                 </div>
-            </section> -->
+            </section>  -->
             <!-- *** SEC - Add Reviews *** -->
-            <section class="sec-activity-post__add-reviews">
+            <section class="sec-activity-post__add-reviews mb-50">
                 <div class="container">
-                    <div class="sec-activity-post__add-reviews__form">
+                    <div class="sec-activity-post__add-reviews__form" v-if="showForm">
                         <ion-card>
                             <!-- Title -->
                             <ion-item>
@@ -265,8 +262,24 @@
                             </div>
                         </ion-card>
                     </div>
+                    <div class="sec-activity-post__add-reviews__ty-msg center" v-if="!showForm">
+                        Your Review has been added !
+                    </div>
                 </div>
             </section>
+            <!-- *** SEC - Paginate *** -->
+            <!-- <section>
+                <div class="container">
+                    <button class="button-basic button-mustard">&lt;</button>
+                    <div
+                        v-for="review, index in activity.reviews"
+                        :key="index"
+                    >
+                    <button class="button-basic button-primary">{{ index +1 }}</button>
+                    </div>
+                    <button class="button-basic button-mustard">></button>
+                </div>
+            </section> -->
         </ion-content>
     </ion-page>
 </template>
@@ -291,6 +304,7 @@
     // To format date
     import dayjs from 'dayjs';
 
+
     export default defineComponent({
     name: 'activity-post',
     mixins: [BackendMixin],
@@ -309,11 +323,24 @@
     },
     data() {
         return {
-            activity: {},
+            activity: {
+                id: Number,
+                name: String,
+                description: String,
+                duration: Number,
+                address: String,
+                city: String,
+                country: String,
+                picture: String,
+                price: Number,
+                reviews: Array
+            },
             title: '',
             description: '',
             rate: '',
-            average: Math.round(0)
+            average: Math.round(0) as number,
+            showForm: true,
+            isFavorite: false
         }
     },
     computed: {
@@ -321,6 +348,7 @@
             return store.getters.userId
         }
     },
+    
     // au moment ou la page est chargé on récup la function
     mounted() {
         //console.log(this.$route.params.activityId);
@@ -334,14 +362,53 @@
         }
     },
     methods: {
+        async toggleFavorite() {
+            this.isFavorite = !this.isFavorite;
+            if (this.isFavorite) {
+                await this.addToFavorite();
+            } else {
+                await this.updateToFavorite();
+            }
+        },
+        // Add to favorite
+        async addToFavorite(){
+            const dataFavorite = {
+                isFavorite: true,
+                activity: [{
+                    "id": this.$route.params.activityId
+                }],
+                user:[{
+                    "id": this.userId
+                }]
+            };
+            
+            try {
+                await axios.post("http://127.0.0.1:8000/api/favorites", dataFavorite);
+            }
+            catch (err) {
+                console.log("ERREUR", err)
+                //this.addError(this.getErrorText(err))
+            }
+        },
+        // Update Favorite
+        async updateToFavorite(){
+            let url = "http://127.0.0.1:8000/api/favorites/" + this.favoriteId;
+            const dataFavorite = {
+                isFavorite: false,
+            };
+            try {
+                await axios.patch(url, dataFavorite);
+            } catch (err) {
+                console.log("ERREUR", err)
+            }
+        },
         // Load the activity by ID
         async loadActivity() {
             try {
-                //console.log('ID :', this.$route.params.activityId);
                 let resp = await axios.get("http://127.0.0.1:8000/api/activities/"+ this.$route.params.activityId)
                 
                 this.activity = resp.data
-                //console.log("ICI ACTIVITY INFOS", resp.data);
+                console.log("ICI ACTIVITY INFOS", resp.data);
             }
             catch (err) {
                 this.addError(this.getErrorText(err))
@@ -376,9 +443,10 @@
                 user: {"id": this.userId}
             };
             try {
-                let resp = await axios.post("http://127.0.0.1:8000/api/reviews", dataReview);
+                await axios.post("http://127.0.0.1:8000/api/reviews", dataReview);
                 await this.loadActivity()
                 await this.averageRate()
+                this.showForm = false
             }
             // REGLER LE PB AVEC JEANDU
             catch (err) {

@@ -16,30 +16,23 @@
             </section>
             <!--***  SEC - IF AUTH MSG *** -->
             <section class="sec-prepare__form" v-if="isAuthenticated">
-
+                <div v-if="showForm">
                     <!-- multistep form -->
                     <form id="multiStepForm">
                         <!-- progressbar -->
                         <ul id="progressbar">
                             <li class="active"></li>
-                            <li class="active"></li>
-                            <li class="active"></li>
-                            <li class="active"></li>
-                            <li class="active"></li>
-                            <li class="active"></li>
-                            <li class="active"></li>
+                            <li class=""></li>
+                            <li class=""></li>
                         </ul>
-
-                       FeaturesValue Id : {{ featuresValuesId }}
 
                         <!-- fieldsets -->
                         <fieldset
                             class="steps"
-                            v-for="(featuresLabel, index) in currentFieldsets"
+                            v-for="(featuresLabel) in currentFieldsets"
                             :key="featuresLabel.id"
-                            
                         >
-                            <h2 class="fs-subtitle">
+                            <h2 class="mb-30">
                                 {{ featuresLabel.label }}
                             </h2>
 
@@ -51,21 +44,20 @@
                                     class="sec-prepare__form__button-value button-basic button-secondary mt-10 "
                                     :value="featuresValue.features_value.id"
                                     @click.prevent="getFeaturesValueId"
-                                    :class="{ active: featuresValue.features_value.id === activeValueId }"
                                 >
                                     {{ featuresValue.features_value.value }}
                                 </button>
                             </div>
                             
                             <!-- INDEX 0 == Button NEXT -->
-                            <div class="mt-20" v-if="currentStep == 0 || currentStep < last">
+                            <div class="mt-30" v-if="currentStep == 0 || currentStep < last">
                                 <button name="next" class="next action-button button-basic button-primary" value="Next" @click="nextStep">
                                     Next
                                 </button>
                             </div>
                             <!-- INDEX + == Button PREVIOUS -->
                             <div v-if="currentStep > 0" class="sec-prepare__form__buttons__btn-prev">
-                                <button class="previous action-button button-basic bck-transparent" value="Previous" @click="previousStep">
+                                <button class="previous mt-30 bck-transparent" value="Previous" @click="previousStep">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 76 76">
                                         <g id="Groupe_2461" data-name="Groupe 2461" transform="translate(-507 -4557)">
                                             <g id="Ellipse_16" data-name="Ellipse 16" transform="translate(507 4557)" fill="none" stroke="#d8ad5c" stroke-width="1">
@@ -77,9 +69,9 @@
                                     </svg>
                                 </button>
                             </div>
-
+                        
                             <div v-if="currentStep === last" class="sec-prepare__form__buttons__btn-submit">
-                                <button class="submit action-button button-basic button-primary" value="Submit"  @click.prevent="submitFeaturesValueId()">
+                                <button class="submit button-basic button-primary" value="Submit"  @click.prevent="submitFeaturesValueId()">
                                     Submit
                                 </button> 
                             </div>
@@ -87,34 +79,42 @@
                         </fieldset>
 
                     </form>
-                    <!-- SEC - RESULTS -->
-                    <section class="mt-20" id="thankYouMessage" style="display:none;">
-                            <div class="container">
-                                <div class="center">
-                                    Results !
+                </div>
+            </section>
+            <!-- SEC - RESULTS -->
+            <section class="sec-prepare-result mt-20" v-if="showResults">
+                <div class="container">
+                    <div class="center">
+                        Results !
+                    </div>
+                    <div class="sec-prepare-result__activities">
+                        <a v-for="activity in displayActivities"
+                            :key="activity.id"
+                            @click.prevent="onClickActivityPost(activity)"
+                            class="cp-card-activity d-flex align-end"
+                            style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"
+                        >
+                            <!-- Content -->
+                            <div class="cp-card-activity__content">
+                                <!-- Country -->
+                                <div class="cp-card-activity__content__location">
+                                    {{ activity.country }}
                                 </div>
-                            <!-- @click.prevent="onClickActivityPost(activity)" -->
-                            <a v-for="activity in displayActivities"
-                                :key="activity.id"
-                                
-                                class="cp-card-activity d-flex align-end"
-                                style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"
-                            >
-                                <!-- Content -->
-                                <div class="cp-card-activity__content">
-                                    <!-- Country -->
-                                    <div class="cp-card-activity__content__location">
-                                        {{ activity.country }}
-                                    </div>
-                                    <!-- Name -->
-                                    <div class="cp-card-activity__content__name bold mt-5">
-                                        {{ activity.name }}
-                                    </div>
+                                <!-- Name -->
+                                <div class="cp-card-activity__content__name bold mt-5">
+                                    {{ activity.name }}
                                 </div>
-                            </a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="sec-prepare-result__reload mt-30">
+                        <div>
+                            <button class="button-basic button-mustard">
+                                Do the test again !
+                            </button>
                         </div>
-                    </section>
-                    
+                    </div>
+                </div>
             </section>
         </ion-content>
     </ion-page>
@@ -126,6 +126,7 @@
 
     import store from '../store';
     import axios from 'axios';
+import router from '../router';
 
     export default defineComponent({
         name: 'PreparePage',
@@ -134,40 +135,41 @@
             return {
                 featuresLabels: [],
                 featuresValuesId: [] as number[],
-                displayActivities: [{id: Number, name: String}],
-                // isActive: false
+                displayActivities: [{
+                    id: Number,
+                    name: String
+                }],
+                showResults: false,
+                showForm: true,
                 currentStep: 0,
-                activeValueId: null,
+                activityId: '',
+                selectedId: null
             }
         },
-        // JQUERY FOR THE MULTI STEP FORM IN MOUNTED
         computed: {
             isAuthenticated() {
                 return store.getters.isAuthenticated
             },
             // To get last of loop
             last(){
-                // return Object.keys(this.featuresLabels).length-1;
                 return this.featuresLabels.length - 1
             },
             currentFieldsets() {
                 return this.featuresLabels.filter((fieldset, index) => index === this.currentStep);
-            },
-            
+            }
         },
         mounted() {
             this.loadFeaturesLabel();
         },
         methods: {   
+            // Multistep From
             nextStep() {
                 this.currentStep++;
             },
             previousStep() {
                 this.currentStep--;
             },
-            getFeaturesValueId(event) {
-                this.activeValueId = event.target.value
-            },
+            // Display Label
             async loadFeaturesLabel() {
                 
                 await axios.get("http://127.0.0.1:8000/api/features_labels/")
@@ -191,13 +193,11 @@
                 });
                 
             },
+            // Features Value ID
             getFeaturesValueId(e) {
-
                 this.featuresValuesId.push(e.target.value);
-                // this.isActive = true;
-
-                console.log('event', this.featuresValuesId);
             },
+            // Submit the form
             async submitFeaturesValueId() {
 
                 const featuresValuesId = this.featuresValuesId
@@ -207,10 +207,11 @@
                     // featuresValuesId = integer
                     await axios.post("http://127.0.0.1:8000/api/prepare", featuresValuesId)
                     .then(async(response) => {
-                        console.log('response: ', response.data);
-                        
+                        //console.log('response: ', response.data);
                         this.displayActivities = response.data
-                        console.log('activities', this.displayActivities);
+                        //console.log('activities', this.displayActivities);
+                        this.showResults = true
+                        this.showForm = false
                         
                     });
 
@@ -222,20 +223,11 @@
                 }
 
             },
-            // displaySuggestActivities() {
-
-            //     axios.get("http://127.0.0.1:8000/api/activities/prepare")
-
-            //     .then((response) => {
-
-            //         this.featuresValuesId = response.data;
-            //         console.log('data prepare', response.data);
-
-            //     }).catch(e => {
-            //         console.log('Error', e);
-            //     });
-
-            // }
+            // On click go to activity show
+            onClickActivityPost(activity) {
+                this.activityId = activity.id
+                router.push({ name: 'activityPost', params: { activityId: this.activityId }})
+            }
         },
     });
 </script>

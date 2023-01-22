@@ -1,9 +1,9 @@
-<template >
+<template v-if="isAuthenticated">
     <ion-page>
         <!-- Header -->
         <ion-content :fullscreen="true">
             <!--  *** SEC - EDIT PROFILE HEADER ***-->
-            <section class="sec-edit-profile-header border-bottom p-sec">
+            <section class="sec-profile-favorites-header border-bottom p-sec">
                 <div class="container">
                     <div class="d-flex align-center">
                         <div @click="onClickGoBack()">
@@ -14,9 +14,37 @@
                 </div>
             </section>
            <!--  *** SEC - EDIT PROFILE FORM ***-->
-            <section class="p-sec">
+            <section class="sec-profile-favorites-cards p-sec">
                 <div class="container">
-                 
+                    <div
+                        v-for="favorite in favorites"
+                        :key="favorite.id"
+                        class="mb-30"
+                    >
+                        <a
+                            v-for="fav in favorite.activity"
+                            :key="fav.id"
+                            class="cp-card-activity d-flex align-end"
+                            v-bind:style="{ backgroundImage: 'url(' + fav.picture + ')' }"
+                        >
+                            <div class="cp-card-activity__content">
+                            
+                                <div class="cp-card-activity__content__location">
+                                    {{ fav.country }}
+                                </div>
+                                
+                                <div class="cp-card-activity__content__name bold mt-5">
+                                    {{ fav.name }}
+                                </div>
+                                
+                                <div class="cp-card-activity__content__price d-flex align-center mt-10">
+                                    <div class="cp-tag-category__text">
+                                        {{ fav.price }} $
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </section>
             
@@ -30,7 +58,7 @@
     import { defineComponent } from 'vue';
     import { IonPage, IonContent, IonIcon } from '@ionic/vue';
     import store from '../store';
-    //import axios from 'axios';
+    import axios from 'axios';
     import { BackendMixin } from '../mixins/backend';
     import router from '../router';
 
@@ -39,13 +67,24 @@
     name: 'userFavorites',
     mixins: [BackendMixin],
     components: { IonPage, IonContent, IonIcon },
+    data(){
+        return {
+            favorites: [{
+                actvity: [{}]
+            }]
+        }
+    },
+    mounted() {
+        // Display user infos
+        this.loadUser()
+    },
     computed: {
         username() {
             return store.getters.userName
         },
-        // isAuthenticated() {
-        //     return store.getters.isAuthenticated
-        // },
+        isAuthenticated() {
+            return store.getters.isAuthenticated
+        },
         backendName() {
             return store.getters.backendName
         },
@@ -57,6 +96,20 @@
         }
     },
     methods: {
+        // Display user infos
+        async loadUser() {
+            try {
+                let resp = await axios.get("http://127.0.0.1:8000/api/users/" + this.userId)
+                const user = resp.data
+                this.favorites = user.favorites
+                console.log(user.favorites);
+                
+                this.$emit("done")
+            }
+            catch (err) {
+                this.addError(this.getErrorText(err))
+            }
+        },
         // Go back to profile
         onClickGoBack() {
             router.push({ name: 'profile' }

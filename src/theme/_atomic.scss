@@ -1,14 +1,26 @@
 /***** Atomic Classes *****/
+/** Position **/
 .relative {
     position: relative;
 }
 .absolute {
     position: absolute;
 }
+.fixed {
+    position: fixed;
+}
+
+/** Z-index **/
+.z-10 {
+    z-index: 10;
+}
 
 /** Postion **/
 .center {
     text-align: center;
+}
+.justify {
+    text-align: justify;
 }
 /** Typo **/
 .bold {
@@ -42,6 +54,9 @@
 }
 .justify-between {
     justify-content: space-between;
+}
+.row-reverse {
+    flex-direction: row-reverse;
 }
 .flex-50pc {
     flex: 0 0 50%;

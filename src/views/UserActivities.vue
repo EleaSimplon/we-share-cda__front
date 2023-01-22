@@ -1,9 +1,9 @@
-<template >
+<template v-if="isAuthenticated">
     <ion-page>
         <!-- Header -->
         <ion-content :fullscreen="true">
             <!--  *** SEC - EDIT PROFILE HEADER ***-->
-            <section class="sec-edit-profile-header border-bottom p-sec">
+            <section class="sec-profile-activities-header border-bottom p-sec">
                 <div class="container">
                     <div class="d-flex align-center">
                         <div @click="onClickGoBack()">
@@ -13,8 +13,8 @@
                     </div>
                 </div>
             </section>
-             <!--  *** SEC - EDIT PROFILE FORM ***-->
-             <section class="p-sec">
+             <!--  *** SEC -  ***-->
+             <section class="sec-profile-activities-content p-sec">
                 <div class="container">
                     <div class="center">
                         Here you can retrieve the list of activities you have added to the app !
@@ -22,13 +22,13 @@
                     </div>
                 </div>
             </section>
-           <!--  *** SEC - EDIT PROFILE FORM ***-->
-            <section class="p-sec">
+           <!--  *** SEC -  ***-->
+            <section class="sec-profile-activities-cards p-sec">
                 <div class="container">
                     <a v-for="activity in activities"
                         :key="activity.id"
                         class="cp-card-activity d-flex align-end"
-                        style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"
+                        v-bind:style="{ backgroundImage: 'url(' + activity.picture + ')' }"
                     >
                         <!-- Content -->
                         <div class="cp-card-activity__content">
@@ -40,13 +40,10 @@
                             <div class="cp-card-activity__content__name bold mt-5">
                                 {{ activity.name }}
                             </div>
-                            <!-- Rate -->
-                            <div class="cp-card-activity__content__rate d-flex align-center mt-10">
-                                <div class="cp-card-activity__content__rate__icon">
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
-                                <div class="cp-card-activity__content__rate__number ml-10">
-                                    4.8
+                            <!-- Price -->
+                            <div class="cp-card-activity__content__price d-flex align-center mt-10">
+                                <div class="cp-tag-category__text">
+                                    {{ activity.price }} $
                                 </div>
                             </div>
                         </div>
@@ -64,7 +61,6 @@
     import { defineComponent } from 'vue';
     import { IonPage, IonContent, IonIcon } from '@ionic/vue';
     import store from '../store';
-    //import axios from 'axios';
     import { BackendMixin } from '../mixins/backend';
     import router from '../router';
     import axios from 'axios';
@@ -77,23 +73,26 @@
 
     data() {
         return {
-            name: '',
-            description: '',
-            activities: []
+            activities: [{
+                id: Number,
+                name: String,
+                country: String,
+                picture: String,
+                price: Number
+            }]
         }
     },
     mounted() {
         // Display user infos
         this.loadUser()
-        console.log("ppl mounted user infos", this.user);
     },
     computed: {
         username() {
             return store.getters.userName
         },
-        // isAuthenticated() {
-        //     return store.getters.isAuthenticated
-        // },
+        isAuthenticated() {
+            return store.getters.isAuthenticated
+        },
         // To get the infos of the connected user
         user() {
             return store.getters.userProfile

@@ -29,7 +29,7 @@
                             :key="activity.id"
                             @click.prevent="onClickActivityPost(activity)"
                             class="cp-card-activity d-flex align-end"
-                            style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"
+                            v-bind:style="{ backgroundImage: 'url(' + activity.picture + ')' }"
                         >
                             <!-- Content -->
                             <div class="cp-card-activity__content">
@@ -41,16 +41,13 @@
                                 <div class="cp-card-activity__content__name h6 bold mt-5">
                                     {{ activity.name }}
                                 </div>
-                                <!-- Rate -->
-                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity__content__rate__icon">
-                                        <ion-icon name="star"></ion-icon>
-                                    </div>
-                                    <div class="cp-card-activity__content__rate__number ml-10">
-                                        4.8
+                                <!-- Price -->
+                                <div class="cp-card-activity__content__price d-flex align-center mt-10">
+                                    <div class="cp-tag-category__text">
+                                        {{ activity.price }} $
                                     </div>
                                 </div>
-                            </div>
+                             </div>
                         </a>
                         
                     </div>
@@ -116,83 +113,15 @@
                 </div>
             </section>
             <!-- SEC - NEAR BY -->
-            <section class="sec-home-near-by p-sec">
+            <section class="sec-home-form p-sec">
                 <div class="container">
                     <!-- Title -->
                     <div class="sec-home-near-by__title mb-25">
-                        <h4 class="bold">Activities near you !</h4>
+                        <h4 class="bold">What activity suits me best ?</h4>
                     </div>
-                    <div class="sec-home-near-by__cards d-flex">
-                        <!-- CP- Card -->
-                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/9814953/pexels-photo-9814953.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
-                            <!-- Content -->
-                            <div class="cp-card-activity__content">
-                                <!-- Name -->
-                                <div class="cp-card-activity__content__location">
-                                    Canada
-                                </div>
-                                <!-- Name -->
-                                <div class="cp-card-activity__content__name h6 bold mt-5">
-                                    Motoneige
-                                </div>
-                                <!-- Rate -->
-                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity__content__rate__icon">
-                                        <ion-icon name="star"></ion-icon>
-                                    </div>
-                                    <div class="cp-card-activity__content__rate__number ml-10">
-                                        4.8
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <!-- CP- Card -->
-                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/2916819/pexels-photo-2916819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
-                            <!-- Content -->
-                            <div class="cp-card-activity__content">
-                                <!-- Name -->
-                                <div class="cp-card-activity__content__location">
-                                    Canada
-                                </div>
-                                <!-- Name -->
-                                <div class="cp-card-activity__content__name h6 bold mt-5">
-                                    Canoé
-                                </div>
-                                <!-- Rate -->
-                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity__content__rate__icon">
-                                        <ion-icon name="star"></ion-icon>
-                                    </div>
-                                    <div class="cp-card-activity__content__rate__number ml-10">
-                                        4.5
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <!-- CP- Card -->
-                        <a class="cp-card-activity d-flex align-end" style="background-image: url('https://images.pexels.com/photos/11020216/pexels-photo-11020216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
-                            <!-- Content -->
-                            <div class="cp-card-activity__content">
-                                <!-- Name -->
-                                <div class="cp-card-activity__content__location">
-                                    Canada
-                                </div>
-                                <!-- Name -->
-                                <div class="cp-card-activity__content__name h6 bold mt-5">
-                                    Chien de tréneau
-                                </div>
-                                <!-- Rate -->
-                                <div class="cp-card-activity__content__rate d-flex align-center mt-10">
-                                    <div class="cp-card-activity__content__rate__icon">
-                                        <ion-icon name="star"></ion-icon>
-                                    </div>
-                                    <div class="cp-card-activity__content__rate__number ml-10">
-                                        5
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    <button class="button-basic button-mustard">
+                        Click here to see the results !
+                    </button>
                 </div>
             </section>
         </ion-content>
@@ -220,7 +149,13 @@ import router from '../router';
         },
         data() {
             return {
-                activities: [],
+                activities: [{
+                    id: Number,
+                    name: String,
+                    price: Number,
+                    picture: String,
+                    country: String
+                }],
                 activity: [],
                 activityId: ''
             }

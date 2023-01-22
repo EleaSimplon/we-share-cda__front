@@ -121,13 +121,6 @@
     import router from '../router';
 
 
-    // import pagination
-    //import VueAwesomePaginate from "vue-awesome-paginate";
-    //import "vue-awesome-paginate/dist/style.css";
-    // Register the package
-    //createApp(App).use(VueAwesomePaginate).mount("#app");
-
-
     export default defineComponent({
         name: 'ProfilePage',
         mixins: [BackendMixin],
@@ -143,11 +136,9 @@
             }
         },
         mounted() {
-
             // Display user infos
             this.loadUser()
             console.log("ppl mounted user infos", this.user);
-
         },
         computed: {
             username() {
@@ -171,9 +162,7 @@
             }
         },
     
-        // Create a method asyn to get the data and send it to the api using axios
-        // axios va encrer une method qui va appeler l'api
-        // axios facilite les appelles api
+        
         methods: {
             onLogout() {
                 this.logout().then(() => {
@@ -185,6 +174,9 @@
                     )
                 })
             },
+            // Create a method asyn to get the data and send it to the api using axios
+            // axios va encrer une method qui va appeler l'api
+            // axios facilite les appelles api
             // Display user infos
             async loadUser() {
                 try {

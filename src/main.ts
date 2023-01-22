@@ -23,8 +23,6 @@ import '@ionic/vue/css/display.css';
 /* Theme Css Compilded */
 import './theme/main.css';
 
-
-
 const app = createApp(App)
   .use(IonicVue)
   .use(router);

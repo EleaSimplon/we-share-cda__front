@@ -1,4 +1,5 @@
 /***** Atomic Classes *****/
+/** Position **/
 .relative {
   position: relative;
 }
@@ -7,9 +8,22 @@
   position: absolute;
 }
 
+.fixed {
+  position: fixed;
+}
+
+/** Z-index **/
+.z-10 {
+  z-index: 10;
+}
+
 /** Postion **/
 .center {
   text-align: center;
+}
+
+.justify {
+  text-align: justify;
 }
 
 /** Typo **/
@@ -52,6 +66,10 @@
 
 .justify-between {
   justify-content: space-between;
+}
+
+.row-reverse {
+  flex-direction: row-reverse;
 }
 
 .flex-50pc {
@@ -313,6 +331,10 @@ p {
   margin-top: 20px;
 }
 
+.mt-30 {
+  margin-top: 30px;
+}
+
 .mt-50 {
   margin-top: 50px;
 }
@@ -464,6 +486,10 @@ p {
     width: fit-content;
   }
 }
+.bck-white {
+  background: white;
+}
+
 .cp-card-activity {
   background-position: center;
   background-repeat: no-repeat;
@@ -477,7 +503,7 @@ p {
 }
 .cp-card-activity .cp-card-activity__content .cp-card-activity__content__location,
 .cp-card-activity .cp-card-activity__content .cp-card-activity__content__name,
-.cp-card-activity .cp-card-activity__content .cp-card-activity__content__rate {
+.cp-card-activity .cp-card-activity__content .cp-card-activity__content__price {
   position: relative;
   z-index: 3;
 }
@@ -714,8 +740,53 @@ ion-modal ion-toolbar {
   --color: white;
 }
 
-.sec-card-activity__btn-add button {
+.sec-card-activity__btn-add button.button-native {
+  --background: var(--color-mustard);
+}
+
+/* Media - Mobile XS */
+@media (max-width: 576px) {
+  /* Card LISTING */
+  .sec-cards-listing .cp-card-activity {
+    margin-bottom: 20px;
+    flex: 0 0 100%;
+  }
+}
+/* Media - Desktop */
+@media (min-width: 992px) {
+  /* Card LISTING */
+  .sec-cards-listing {
+    padding-top: 300px;
+  }
+  .sec-cards-listing .cp-card-activity {
+    margin: 0 15px 20px;
+    flex: 0 0 30%;
+  }
+}
+/* SEC - Header */
+.sec-activity-post__header {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 300px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.sec-activity-post__header .sec-activity-post__header__btn-back,
+.sec-activity-post__header .sec-activity-post__header__btn-like {
+  z-index: 5;
+}
+
+.sec-activity-post__header:before {
+  position: absolute;
+  inset: 0;
+  content: "";
   background: var(--color-primary);
+  opacity: 30%;
+  z-index: 1;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 /*** SEC - BTN FAVORITE ***/
@@ -737,138 +808,135 @@ ion-modal ion-toolbar {
 .sec-activity-post__header__btn-like svg #main-circ {
   transform-origin: 29.5px 29.5px;
 }
-.sec-activity-post__header__btn-like #checkbox {
-  display: none;
-}
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #heart {
+.sec-activity-post__header__btn-like svg.heart-red #heart {
   transform: scale(0.2);
   fill: #E2264D;
   animation: animateHeart 0.3s linear forwards 0.25s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #main-circ {
+.sec-activity-post__header__btn-like svg.heart-red #main-circ {
   transition: all 2s;
   animation: animateCircle 0.3s linear forwards;
   opacity: 1;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp1 {
+.sec-activity-post__header__btn-like svg.heart-red #grp1 {
   opacity: 1;
   transition: 0.1s all 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp1 #oval1 {
+.sec-activity-post__header__btn-like svg.heart-red #grp1 #oval1 {
   transform: scale(0) translate(0, -30px);
   transform-origin: 0 0 0;
   transition: 0.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp1 #oval2 {
+.sec-activity-post__header__btn-like svg.heart-red #grp1 #oval2 {
   transform: scale(0) translate(10px, -50px);
   transform-origin: 0 0 0;
   transition: 1.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp2 {
+.sec-activity-post__header__btn-like svg.heart-red #grp2 {
   opacity: 1;
   transition: 0.1s all 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp2 #oval1 {
+.sec-activity-post__header__btn-like svg.heart-red #grp2 #oval1 {
   transform: scale(0) translate(30px, -15px);
   transform-origin: 0 0 0;
   transition: 0.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp2 #oval2 {
+.sec-activity-post__header__btn-like svg.heart-red #grp2 #oval2 {
   transform: scale(0) translate(60px, -15px);
   transform-origin: 0 0 0;
   transition: 1.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp3 {
+.sec-activity-post__header__btn-like svg.heart-red #grp3 {
   opacity: 1;
   transition: 0.1s all 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp3 #oval1 {
+.sec-activity-post__header__btn-like svg.heart-red #grp3 #oval1 {
   transform: scale(0) translate(30px, 0px);
   transform-origin: 0 0 0;
   transition: 0.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp3 #oval2 {
+.sec-activity-post__header__btn-like svg.heart-red #grp3 #oval2 {
   transform: scale(0) translate(60px, 10px);
   transform-origin: 0 0 0;
   transition: 1.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp4 {
+.sec-activity-post__header__btn-like svg.heart-red #grp4 {
   opacity: 1;
   transition: 0.1s all 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp4 #oval1 {
+.sec-activity-post__header__btn-like svg.heart-red #grp4 #oval1 {
   transform: scale(0) translate(30px, 15px);
   transform-origin: 0 0 0;
   transition: 0.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp4 #oval2 {
+.sec-activity-post__header__btn-like svg.heart-red #grp4 #oval2 {
   transform: scale(0) translate(40px, 50px);
   transform-origin: 0 0 0;
   transition: 1.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp5 {
+.sec-activity-post__header__btn-like svg.heart-red #grp5 {
   opacity: 1;
   transition: 0.1s all 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp5 #oval1 {
+.sec-activity-post__header__btn-like svg.heart-red #grp5 #oval1 {
   transform: scale(0) translate(-10px, 20px);
   transform-origin: 0 0 0;
   transition: 0.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp5 #oval2 {
+.sec-activity-post__header__btn-like svg.heart-red #grp5 #oval2 {
   transform: scale(0) translate(-60px, 30px);
   transform-origin: 0 0 0;
   transition: 1.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp6 {
+.sec-activity-post__header__btn-like svg.heart-red #grp6 {
   opacity: 1;
   transition: 0.1s all 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp6 #oval1 {
+.sec-activity-post__header__btn-like svg.heart-red #grp6 #oval1 {
   transform: scale(0) translate(-30px, 0px);
   transform-origin: 0 0 0;
   transition: 0.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp6 #oval2 {
+.sec-activity-post__header__btn-like svg.heart-red #grp6 #oval2 {
   transform: scale(0) translate(-60px, -5px);
   transform-origin: 0 0 0;
   transition: 1.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp7 {
+.sec-activity-post__header__btn-like svg.heart-red #grp7 {
   opacity: 1;
   transition: 0.1s all 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp7 #oval1 {
+.sec-activity-post__header__btn-like svg.heart-red #grp7 #oval1 {
   transform: scale(0) translate(-30px, -15px);
   transform-origin: 0 0 0;
   transition: 0.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp7 #oval2 {
+.sec-activity-post__header__btn-like svg.heart-red #grp7 #oval2 {
   transform: scale(0) translate(-55px, -30px);
   transform-origin: 0 0 0;
   transition: 1.5s transform 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp2 {
+.sec-activity-post__header__btn-like svg.heart-red #grp2 {
   opacity: 1;
   transition: 0.1s opacity 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp3 {
+.sec-activity-post__header__btn-like svg.heart-red #grp3 {
   opacity: 1;
   transition: 0.1s opacity 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp4 {
+.sec-activity-post__header__btn-like svg.heart-red #grp4 {
   opacity: 1;
   transition: 0.1s opacity 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp5 {
+.sec-activity-post__header__btn-like svg.heart-red #grp5 {
   opacity: 1;
   transition: 0.1s opacity 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp6 {
+.sec-activity-post__header__btn-like svg.heart-red #grp6 {
   opacity: 1;
   transition: 0.1s opacity 0.3s;
 }
-.sec-activity-post__header__btn-like #checkbox:checked + label svg #grp7 {
+.sec-activity-post__header__btn-like svg.heart-red #grp7 {
   opacity: 1;
   transition: 0.1s opacity 0.3s;
 }
@@ -937,53 +1005,11 @@ ion-modal ion-toolbar {
   }
 }
 
-/* Media - Mobile XS */
-@media (max-width: 576px) {
-  /* Card LISTING */
-  .sec-cards-listing .cp-card-activity {
-    margin-bottom: 20px;
-    flex: 0 0 100%;
-  }
-}
-/* Media - Desktop */
-@media (min-width: 992px) {
-  /* Card LISTING */
-  .sec-cards-listing {
-    padding-top: 300px;
-  }
-  .sec-cards-listing .cp-card-activity {
-    margin: 0 15px 20px;
-    flex: 0 0 30%;
-  }
-}
-/* SEC - Header */
-.sec-activity-post__header {
-  background-image: url("https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  height: 300px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-}
-.sec-activity-post__header .sec-activity-post__header__btn-back,
-.sec-activity-post__header .sec-activity-post__header__btn-like {
-  z-index: 5;
-}
-
-.sec-activity-post__header:before {
-  position: absolute;
-  inset: 0;
-  content: "";
-  background: var(--color-primary);
-  opacity: 30%;
-  z-index: 1;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-}
-
+/* SEC - Content */
 .sec-activity-post__content {
+  margin-top: 265px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
   /* Infos */
 }
 .sec-activity-post__content .sec-activity-post__content__infos {
@@ -1001,7 +1027,7 @@ ion-modal ion-toolbar {
   height: 26px;
 }
 
-/* Reviews */
+/* SEC - Reviews */
 .sec-activity-post__reviews .sec-activity-post__reviews__header {
   width: 40px;
   height: 40px;
@@ -1047,8 +1073,8 @@ ion-modal ion-toolbar {
 #multiStepForm {
   text-align: center;
   position: relative;
+  /*progressbar*/
 }
-
 #multiStepForm fieldset {
   background: white;
   border: 0 none;
@@ -1058,57 +1084,22 @@ ion-modal ion-toolbar {
   box-sizing: border-box;
   width: 80%;
   margin: 0 10%;
-  /*stacking fieldsets above each other*/
   position: relative;
 }
-
-/*Hide all except first fieldset*/
-/*inputs*/
-#multiStepForm input, #multiStepForm textarea {
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  margin-bottom: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: montserrat;
-  color: #2C3E50;
-  font-size: 13px;
+#multiStepForm fieldset {
+  overflow: hidden;
+  transition: height 0.5s ease-in-out;
 }
-
-/*buttons*/
-#multiStepForm .action-button {
-  width: 100%;
+#multiStepForm fieldset.show {
+  height: auto;
 }
-
-#multiStepForm .action-button:hover, #multiStepForm .action-button:focus {
-  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
-}
-
-/*headings*/
-.fs-title {
-  font-size: 15px;
-  text-transform: uppercase;
-  color: #2C3E50;
-  margin-bottom: 10px;
-}
-
-.fs-subtitle {
-  font-weight: normal;
-  font-size: 13px;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-/*progressbar*/
-#progressbar {
+#multiStepForm #progressbar {
   margin-bottom: 30px;
   overflow: hidden;
   /*CSS counters to number the steps*/
   counter-reset: step;
 }
-
-#progressbar li {
+#multiStepForm #progressbar li {
   list-style-type: none;
   color: var(--color-tertiary);
   text-transform: uppercase;
@@ -1117,8 +1108,7 @@ ion-modal ion-toolbar {
   float: left;
   position: relative;
 }
-
-#progressbar li:before {
+#multiStepForm #progressbar li:before {
   content: counter(step);
   counter-increment: step;
   width: 20px;
@@ -1126,13 +1116,11 @@ ion-modal ion-toolbar {
   display: block;
   font-size: 10px;
   color: #333;
-  background: white;
+  background: var(--color-primary);
   border-radius: 3px;
   margin: 0 auto 5px auto;
 }
-
-/*progressbar connectors*/
-#progressbar li:after {
+#multiStepForm #progressbar li:after {
   content: "";
   width: 100%;
   height: 2px;
@@ -1142,15 +1130,11 @@ ion-modal ion-toolbar {
   top: 9px;
   z-index: -1; /*put it behind the numbers*/
 }
-
-#progressbar li:first-child:after {
+#multiStepForm #progressbar li:first-child:after {
   /*connector not needed before the first step*/
   content: none;
 }
-
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-#progressbar li.active:before, #progressbar li.active:after {
+#multiStepForm #progressbar li.active:before, #multiStepForm #progressbar #progressbar li.active:after {
   background: var(--color-mustard);
   color: var(--color-tertiary);
 }
