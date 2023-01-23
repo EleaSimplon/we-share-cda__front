@@ -14,7 +14,7 @@
                     <div id="main-content">
                         <div>
                             <label for="checkbox">
-                                <svg @click.prevent="toggleFavorite" v-bind:class="{ 'heart-red': isFavorite  == true }" id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                <svg @click.prevent="toggleFavorite" v-bind:class="{ 'heart-red': isFavoritedAndIsTrue }" id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
                                     <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
                                         <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>
                                         <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>
@@ -304,7 +304,6 @@
     // To format date
     import dayjs from 'dayjs';
 
-
     export default defineComponent({
     name: 'activity-post',
     mixins: [BackendMixin],
@@ -333,25 +332,46 @@
                 country: String,
                 picture: String,
                 price: Number,
-                reviews: Array
+                reviews: Array,
+                favorites: [{
+                    id: Number,
+                    isFavorite: Boolean,
+                    user: [{
+                        id: 'Number'
+                    }]
+                }]
             },
             title: '',
             description: '',
             rate: '',
             average: Math.round(0) as number,
             showForm: true,
-            isFavorite: false
+            // isFavorite: false
         }
     },
     computed: {
         userId() {
             return store.getters.userId
+        },
+        //create a computed property that checks if the current user has favorited the current activity
+        //by comparing the user ID to the user IDs of the favorites associated with the current activity.
+        isFavorited() {
+
+            let isFavoriteValue = this.activity.favorites.map(favorite => favorite.isFavorite).find(Boolean);
+            let favoriteUserId = this.activity.favorites.map(favorite => favorite.user[0].id);
+            let userIdCo = this.userId;
+
+            return Boolean(isFavoriteValue) && favoriteUserId == userIdCo;
+            
+        },
+        isFavoritedAndIsTrue() {
+            let isFavorited = this.isFavorited;
+            let isTrue = this.activity.favorites.map(favorite => favorite.isFavorite).find(Boolean);
+            return isFavorited && isTrue;
         }
     },
-    
     // au moment ou la page est chargé on récup la function
     mounted() {
-        //console.log(this.$route.params.activityId);
         this.loadActivity()
         this.averageRate()
     },
@@ -362,26 +382,32 @@
         }
     },
     methods: {
+        // ON CLICK PATCH or POST FAVORITE
         async toggleFavorite() {
-            this.isFavorite = !this.isFavorite;
-            if (this.isFavorite) {
+           
+            if (this.isFavorited) {
+                // IF exist DELETE
+                await this.deleteFromFavorite();
+                await this.loadActivity();
+            }
+            // ELSE NO FAVORITE EXIST -> ADD IT
+            else {
+                // If they haven't, add a new favorite with isFavorite set to true
                 await this.addToFavorite();
-            } else {
-                await this.updateToFavorite();
+                await this.loadActivity();
             }
         },
-        // Add to favorite
+        // Add to favorite ***** OK *****
         async addToFavorite(){
             const dataFavorite = {
-                isFavorite: true,
+                user:[{
+                    "id": this.userId
+                }],
                 activity: [{
                     "id": this.$route.params.activityId
                 }],
-                user:[{
-                    "id": this.userId
-                }]
+                isFavorite: true
             };
-            
             try {
                 await axios.post("http://127.0.0.1:8000/api/favorites", dataFavorite);
             }
@@ -390,25 +416,31 @@
                 //this.addError(this.getErrorText(err))
             }
         },
-        // Update Favorite
-        async updateToFavorite(){
-            let url = "http://127.0.0.1:8000/api/favorites/" + this.favoriteId;
-            const dataFavorite = {
-                isFavorite: false,
-            };
+        async deleteFromFavorite() {
+            let favoriteId = this.activity.favorites.map(favorite => favorite.id);
             try {
-                await axios.patch(url, dataFavorite);
-            } catch (err) {
+                await axios.delete("http://127.0.0.1:8000/api/favorites/" + favoriteId);
+            }
+            catch (err) {
                 console.log("ERREUR", err)
+                //this.addError(this.getErrorText(err))
             }
         },
         // Load the activity by ID
         async loadActivity() {
             try {
+
                 let resp = await axios.get("http://127.0.0.1:8000/api/activities/"+ this.$route.params.activityId)
                 
                 this.activity = resp.data
-                console.log("ICI ACTIVITY INFOS", resp.data);
+                console.log('ACTIVITY INFOS', resp.data);
+                console.log('ICI IS_FAVORITE PB !!!', this.activity.favorites.map(favorite => favorite.isFavorite).find(Boolean));
+                console.log('ICI FAVORITE USERID', this.activity.favorites.map(favorite => favorite.user[0].id));
+                console.log('ICI USERID', this.userId);
+                console.log('IsFavorite to', this.isFavorited);
+                console.log('ID favorite', this.activity.favorites.map(favorite => favorite.id));
+                console.log('isFavoritedAndIsTrue', this.isFavoritedAndIsTrue);
+                
             }
             catch (err) {
                 this.addError(this.getErrorText(err))

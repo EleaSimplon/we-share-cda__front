@@ -110,7 +110,6 @@
     import { IonPage, IonContent, IonCard, IonInput, IonLabel, IonItem } from '@ionic/vue';
     import store from '../store';
     import axios from 'axios';
-    import router from '../router';
 
     export default defineComponent({
         name: 'add-activity',
@@ -153,6 +152,7 @@
 
             },
             onChangeFile(event:any) {
+
                 console.log(event.target.files[0].name);
 
                 this.picture = 'http://127.0.0.1:8000/upload/images/activities/' + event.target.files[0].name

@@ -109,7 +109,7 @@
                     </div>
                     <div class="sec-prepare-result__reload mt-30">
                         <div>
-                            <button class="button-basic button-mustard">
+                            <button class="button-basic button-mustard" @click="reloadForm()">
                                 Do the test again !
                             </button>
                         </div>
@@ -126,7 +126,7 @@
 
     import store from '../store';
     import axios from 'axios';
-import router from '../router';
+    import router from '../router';
 
     export default defineComponent({
         name: 'PreparePage',
@@ -227,6 +227,9 @@ import router from '../router';
             onClickActivityPost(activity) {
                 this.activityId = activity.id
                 router.push({ name: 'activityPost', params: { activityId: this.activityId }})
+            },
+            reloadForm() {
+                window.location.reload()
             }
         },
     });

@@ -70,12 +70,17 @@
     data(){
         return {
             favorites: [{
-                actvity: [{}]
+                actvity: [{
+                    id: Number
+                }]
             }]
         }
     },
     mounted() {
         // Display user infos
+        this.loadUser()
+    },
+    updated(){
         this.loadUser()
     },
     computed: {

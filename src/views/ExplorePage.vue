@@ -91,6 +91,12 @@
                             <div class="cp-card-activity__content__name bold mt-5">
                                 {{ activity.name }}
                             </div>
+                            <!-- Price -->
+                            <div class="cp-card-activity__content__price d-flex align-center mt-10">
+                                <div class="cp-tag-category__text">
+                                    {{ activity.price }} $
+                                </div>
+                            </div>
                         </div>
                     </a>
                 </div> 
