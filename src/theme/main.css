@@ -76,6 +76,10 @@
   flex: 0 0 50%;
 }
 
+.flex-100pc {
+  flex: 0 0 100%;
+}
+
 /** Width / Height **/
 .w-100 {
   width: 100%;
@@ -520,9 +524,12 @@ p {
 }
 
 /* Media XS Mobile */
-@media (max-width: 576px) {
-  .cp-card-activity__content:before {
-    width: 80%;
+/* Media Desktop */
+@media (min-width: 992px) {
+  .cp-card-activity .cp-card-activity__content:before {
+    top: inherit;
+    width: 93%;
+    min-height: 145px;
   }
 }
 .cp-tag-category {
@@ -585,6 +592,12 @@ p {
 }
 .sec-home-categories .sec-home-categories__list .cp-tag-category:first-child {
   margin-left: 15px;
+}
+
+/*** SEC - Prepare ***/
+.sec-home-form .sec-home-form__btn {
+  width: 300px;
+  height: auto;
 }
 
 /*** Media XS Mobile ***/
@@ -1071,9 +1084,25 @@ ion-modal ion-toolbar {
 
 /*form styles*/
 #multiStepForm {
+  /*progressbar*/
   text-align: center;
   position: relative;
-  /*progressbar*/
+}
+#multiStepForm #progressbar li {
+  list-style-type: none;
+  color: var(--color-tertiary);
+  text-transform: uppercase;
+  font-size: 9px;
+  width: 13.33%;
+  float: left;
+  position: relative;
+  background-color: var(--color-primary);
+  width: fit-content;
+  padding: 15px;
+  border-radius: 10%;
+}
+#multiStepForm #progressbar li.active {
+  background-color: var(--color-mustard);
 }
 #multiStepForm fieldset {
   background: white;
@@ -1092,51 +1121,6 @@ ion-modal ion-toolbar {
 }
 #multiStepForm fieldset.show {
   height: auto;
-}
-#multiStepForm #progressbar {
-  margin-bottom: 30px;
-  overflow: hidden;
-  /*CSS counters to number the steps*/
-  counter-reset: step;
-}
-#multiStepForm #progressbar li {
-  list-style-type: none;
-  color: var(--color-tertiary);
-  text-transform: uppercase;
-  font-size: 9px;
-  width: 13.33%;
-  float: left;
-  position: relative;
-}
-#multiStepForm #progressbar li:before {
-  content: counter(step);
-  counter-increment: step;
-  width: 20px;
-  line-height: 20px;
-  display: block;
-  font-size: 10px;
-  color: #333;
-  background: var(--color-primary);
-  border-radius: 3px;
-  margin: 0 auto 5px auto;
-}
-#multiStepForm #progressbar li:after {
-  content: "";
-  width: 100%;
-  height: 2px;
-  background: var(--color-primary);
-  position: absolute;
-  left: -50%;
-  top: 9px;
-  z-index: -1; /*put it behind the numbers*/
-}
-#multiStepForm #progressbar li:first-child:after {
-  /*connector not needed before the first step*/
-  content: none;
-}
-#multiStepForm #progressbar li.active:before, #multiStepForm #progressbar #progressbar li.active:after {
-  background: var(--color-mustard);
-  color: var(--color-tertiary);
 }
 
 /*# sourceMappingURL=main.css.map */

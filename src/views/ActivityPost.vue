@@ -2,7 +2,7 @@
     <ion-page>
         <ion-content :fullscreen="true">
             <!-- *** SEC - Header *** -->
-            <section class="sec-activity-post__header relative d-flex justify-between flex-no-wrap p-20 fixed" v-bind:style="{ backgroundImage: 'url(' + activity.picture + ')' }">
+            <section class="sec-activity-post__header relative d-flex justify-between flex-no-wrap p-20 fixed" v-bind:style="{ backgroundImage: activity.picture ? 'url(' + activity.picture + ')' : 'url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png)' }">
                 <!-- Back To List Button -->
                 <div class="sec-activity-post__header__btn-back">
                     <a @click="onClickGoBackToList()">
@@ -71,8 +71,11 @@
                     </div>
                     <div class="mt-20">
                         <!-- JavaScript method Math.floor() to round down to the nearest whole number -->
-                        <p v-if="average !== 0"> <ion-icon name="star"></ion-icon>{{ Math.round(average.average)}}</p>
-                        <p v-else>There is no review yet</p>
+                        <div class="d-flex align-center" v-if="average !== 0">
+                            <ion-icon name="star"></ion-icon>
+                            <div class="ml-10">{{ Math.round(average.average)}}</div>
+                        </div>
+                        <div v-else>There is no review yet</div>
                     </div>
                     <!-- Address -->
                     <div class="sec-activity-post__content__address mt-50">
@@ -127,14 +130,19 @@
                 
             </section>
             <!-- *** SEC - Reviews *** -->
-            <section class="sec-activity-post__reviews p-sec relative bck-white z-10" v-if="activity.reviews">
+            <section class="sec-activity-post__reviews mb-30 relative bck-white z-10" v-if="activity.reviews">
                 <div class="container">
                     <!-- Reviews header -->
                     <div class="sec-activity-post__reviews__header relative m-0 mb-30">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="40" height="40" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="m4.7 17.7c-1-1.1-1.6-2.3-1.6-4.3 0-3.5 2.5-6.6 6-8.2l.9 1.3c-3.3 1.8-4 4.1-4.2 5.6.5-.3 1.2-.4 1.9-.3 1.8.2 3.2 1.6 3.2 3.5 0 .9-.4 1.8-1 2.5-.7.7-1.5 1-2.5 1-1.1 0-2.1-.5-2.7-1.1zm10 0c-1-1.1-1.6-2.3-1.6-4.3 0-3.5 2.5-6.6 6-8.2l.9 1.3c-3.3 1.8-4 4.1-4.2 5.6.5-.3 1.2-.4 1.9-.3 1.8.2 3.2 1.6 3.2 3.5 0 .9-.4 1.8-1 2.5s-1.5 1-2.5 1c-1.1 0-2.1-.5-2.7-1.1z" fill="#212738" data-original="#000000"/></g></svg>
                     </div>
+                    <div>
+                        <h2 class="center">
+                            Reviews
+                        </h2>
+                    </div>
                     <!-- Reviews List -->
-                    <div class="sec-activity-post__reviews__content mb-30"
+                    <div class="sec-activity-post__reviews__content mt-50 mb-30"
                         v-for="review in activity.reviews"
                         :key="review.id"
                     >
@@ -228,13 +236,6 @@
                     
                 </div>
             </section>
-           <!-- <section class="mb-30" v-if="activity.reviews === null">
-                <div class="container">
-                    <div class="center">
-                        Be the first one to add a review !
-                    </div>
-                </div>
-            </section>  -->
             <!-- *** SEC - Add Reviews *** -->
             <section class="sec-activity-post__add-reviews mb-50">
                 <div class="container">
@@ -267,19 +268,6 @@
                     </div>
                 </div>
             </section>
-            <!-- *** SEC - Paginate *** -->
-            <!-- <section>
-                <div class="container">
-                    <button class="button-basic button-mustard">&lt;</button>
-                    <div
-                        v-for="review, index in activity.reviews"
-                        :key="index"
-                    >
-                    <button class="button-basic button-primary">{{ index +1 }}</button>
-                    </div>
-                    <button class="button-basic button-mustard">></button>
-                </div>
-            </section> -->
         </ion-content>
     </ion-page>
 </template>
@@ -346,7 +334,6 @@
             rate: '',
             average: Math.round(0) as number,
             showForm: true,
-            // isFavorite: false
         }
     },
     computed: {
@@ -433,13 +420,6 @@
                 let resp = await axios.get("http://127.0.0.1:8000/api/activities/"+ this.$route.params.activityId)
                 
                 this.activity = resp.data
-                console.log('ACTIVITY INFOS', resp.data);
-                console.log('ICI IS_FAVORITE PB !!!', this.activity.favorites.map(favorite => favorite.isFavorite).find(Boolean));
-                console.log('ICI FAVORITE USERID', this.activity.favorites.map(favorite => favorite.user[0].id));
-                console.log('ICI USERID', this.userId);
-                console.log('IsFavorite to', this.isFavorited);
-                console.log('ID favorite', this.activity.favorites.map(favorite => favorite.id));
-                console.log('isFavoritedAndIsTrue', this.isFavoritedAndIsTrue);
                 
             }
             catch (err) {
@@ -462,10 +442,7 @@
             // Then specify how you want your dates to be formatted
             return date.format('MMMM D, YYYY');
         },
-        onClickGoBackToList() {
-            router.push({ name: 'explore' }
-            )
-        },
+        // Add review
         async addReview(){
             const dataReview = {
                 title: this.title,
@@ -486,6 +463,11 @@
                 //this.addError(this.getErrorText(err))
             }
         },
+        // Go back
+        onClickGoBackToList() {
+            router.push({ name: 'explore' }
+            )
+        }
     }
 
 });

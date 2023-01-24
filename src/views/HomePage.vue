@@ -11,11 +11,11 @@
             <section class="sec-home-search p-sec">
                 <div class="container">
                     <div class="sec-home-search__bar">
-                        <ion-searchbar class="custom" animated="true" placeholder="Animated"></ion-searchbar>
+                        <ion-searchbar class="custom" placeholder="Search"></ion-searchbar>
                     </div>
                 </div>
             </section>
-            <!-- SEC - TOP RATED -->
+            <!-- SEC - LATEST -->
             <section class="sec-home-top-rated p-sec">
                 <div class="container">
                     <!-- Title -->
@@ -29,7 +29,7 @@
                             :key="activity.id"
                             @click.prevent="onClickActivityPost(activity)"
                             class="cp-card-activity d-flex align-end"
-                            v-bind:style="{ backgroundImage: 'url(' + activity.picture + ')' }"
+                            v-bind:style="{ backgroundImage: activity.picture ? 'url(' + activity.picture + ')' : 'url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png)' }"
                         >
                             <!-- Content -->
                             <div class="cp-card-activity__content">
@@ -109,19 +109,48 @@
                                 Cultural
                             </div>
                         </div>
+                        <!-- Luxe -->
+                        <div class="cp-tag-category mr-10 d-flex align-center">
+                            <div class="cp-tag-category__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd" fill-rule="evenodd" height="512" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 1.70666 1.70666" width="512"><g id="Layer_x0020_1" fill-rule="nonzero"><path d="m.773476 1.52608-.7310902-.96571h.4457952z"/><path d="m1.66383.56037-.739342.96577.293802-.96577z"/><path d="m1.69456.475067.0080315.0106811.00006299-.00004724c.0104055.0138425-.00083071.0250512-.00819291.0346693h-1.68235l-.00802362-.0105984-.00002362.00001968c-.0104291-.0137756.00070472-.0249528.00805512-.0347244h1.68244z"/><path d="m1.11723.0943307h.281134c.00716929 0 .0134606.00377559.0169921.00944882l.249118.331287h-.445945l-.0990512-.334488c-.00063386-.00214173-.00138583-.00422835-.00224803-.00624803z"/><path d="m.308299.0943307h.280949c-.0006378.00157874-.00120866.00320472-.00170079.00486614l-.00452756.0153031.0000315.00004724-.0949213.32052h-.445941l.250173-.332689-.00004724-.00006693c.0039252-.00522047.00992126-.00797638.0159843-.00798031z"/><path d="m.522933.560366.30626 1.03667c.0064252.0239016.0372717.0156929.0385827.00100394l.315681-1.03768h-.660524zm.660835-.125295-.096248-.325028c-.00196063-.00898819-.0099685-.0157165-.0195394-.0157165h-.428917c-.00877953-.00016929-.0169449.00549606-.0195551.0143228l.00003543.00005118-.0966496.32637h.660874z"/></g></svg>
+                            </div>
+                            <div class="cp-tag-category__text small ml-20 mr-20">
+                                Luxe
+                            </div>
+                        </div>
+                        <!-- Bus -->
+                        <div class="cp-tag-category mr-10 d-flex align-center">
+                            <div class="cp-tag-category__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 100 100" height="512" viewBox="0 0 100 100" width="512"><path d="m20.298 30.735h59.404v21.72h-59.404z"/><path d="m20.2978516 73.0216064c0 2.9815063 2.2508545 5.4348145 5.1455078 5.7600098v6.1153564c0 2.8139649 2.2890625 5.1030274 5.1035156 5.1030274 2.8134766 0 5.1025391-2.2890625 5.1025391-5.1030273v-6.0761108h28.7011719v6.0761108c-.0000001 2.8139648 2.2890624 5.1030273 5.1035156 5.1030273 2.8134766 0 5.1025391-2.2890625 5.1025391-5.1030273v-6.1153564c2.8946533-.3251953 5.1455078-2.7785034 5.1455078-5.7600098v-17.5665284h-59.4042969zm46.0963745-11.7510376c3.0380249 0 5.5007935 2.4627686 5.5007935 5.5007935 0 3.0380859-2.4627686 5.5008545-5.5007935 5.5008545-3.0379028 0-5.5007324-2.4627686-5.5007324-5.5008545 0-3.0380249 2.4628295-5.5007935 5.5007324-5.5007935zm-32.7885742 0c3.0380859 0 5.5008545 2.4627686 5.5008545 5.5007935 0 3.0380859-2.4627686 5.5008545-5.5008545 5.5008545-3.0379028 0-5.5006714-2.4627686-5.5006714-5.5008545 0-3.0380249 2.4627685-5.5007935 5.5006714-5.5007935z"/><path d="m61.2182007 10h-22.4364014c-9.9555054 0-18.0500488 7.8765869-18.446106 17.7348633h59.3286133c-.3960571-9.8582764-8.4906005-17.7348633-18.4461059-17.7348633zm-5.9505005 12.3921509h-10.5354614c-1.6678467 0-3.0198975-1.3521729-3.0198975-3.0198975 0-1.6677856 1.3520508-3.0199585 3.0198975-3.0199585h10.5354614c1.6679077 0 3.0199585 1.3521729 3.0199585 3.0199585 0 1.6677246-1.3520508 3.0198975-3.0199585 3.0198975z"/></svg>
+                            </div>
+                            <div class="cp-tag-category__text small ml-20 mr-20">
+                                Bus Tour
+                            </div>
+                        </div>
+                        <!-- Sport -->
+                        <div class="cp-tag-category mr-10 d-flex align-center">
+                            <div class="cp-tag-category__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 511.959 511.959" height="512" viewBox="0 0 511.959 511.959" width="512"><path d="m55.597 261.604c-5.429 3.419-3.959 2.493-43.556 42.089-16.055 16.055-16.055 42.178 0 58.232l38.322 38.322-18.59 18.589c-12.118 12.12-12.118 31.84.001 43.961l25.852 25.851c12.146 12.148 31.812 12.151 43.961 0l18.589-18.588 29.858 29.857c16.054 16.054 42.177 16.055 58.232 0 40.083-40.084 38.758-38.265 42.089-43.557z"/><path d="m499.918 150.033-38.322-38.322 18.59-18.589c12.118-12.12 12.118-31.84-.001-43.961l-25.852-25.851c-12.146-12.148-31.812-12.151-43.961 0l-18.589 18.588-29.858-29.857c-16.055-16.055-42.178-16.055-58.232 0-40.083 40.084-38.758 38.265-42.089 43.557l194.757 194.757c5.429-3.419 3.959-2.493 43.556-42.089 16.056-16.055 16.056-42.178.001-58.233z"/><path d="m142.724 211.442h227.339v89.903h-227.339z" transform="matrix(.707 -.707 .707 .707 -106.202 256.393)"/></svg>
+                            </div>
+                            <div class="cp-tag-category__text small ml-20 mr-20">
+                                Sporty
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-            <!-- SEC - NEAR BY -->
+            <!-- SEC - PREPARE -->
             <section class="sec-home-form p-sec">
                 <div class="container">
                     <!-- Title -->
-                    <div class="sec-home-near-by__title mb-25">
-                        <h4 class="bold">What activity suits me best ?</h4>
+                    <div class="sec-home-form__title mb-25">
+                        <h4 class="bold">Click to the Quizz & discover 3 activities !</h4>
                     </div>
-                    <button class="button-basic button-mustard">
-                        Click here to see the results !
-                    </button>
+                    <div class="sec-home-form__btn">
+                        <button class="bck-transparent" @click="onClickPrepare()">
+                            <img src="../../public/assets/icon/influencer.png">
+                        </button>
+                    </div>
                 </div>
             </section>
         </ion-content>
@@ -176,8 +205,11 @@
             // On click go to activity show
             onClickActivityPost(activity) {
                 this.activityId = activity.id
-                //console.log('ROUTER', this.activityId);
                 router.push({ name: 'activityPost', params: { activityId: this.activityId }})
+            },
+            // On click go to prepare
+            onClickPrepare() {
+                router.push({ name: 'PreparePage' })
             }
         }
     });

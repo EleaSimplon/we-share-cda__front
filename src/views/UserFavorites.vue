@@ -13,6 +13,14 @@
                     </div>
                 </div>
             </section>
+             <!--  *** SEC -  ***-->
+             <section class="sec-profile-favorites-content p-sec">
+                <div class="container">
+                    <div class="center">
+                        Here you can retrieve the list of activities you have added to your Favorite !
+                    </div>
+                </div>
+            </section>
            <!--  *** SEC - EDIT PROFILE FORM ***-->
             <section class="sec-profile-favorites-cards p-sec">
                 <div class="container">
@@ -25,7 +33,7 @@
                             v-for="fav in favorite.activity"
                             :key="fav.id"
                             class="cp-card-activity d-flex align-end"
-                            v-bind:style="{ backgroundImage: 'url(' + fav.picture + ')' }"
+                            v-bind:style="{ backgroundImage: fav.picture ? 'url(' + fav.picture + ')' : 'url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png)' }"
                         >
                             <div class="cp-card-activity__content">
                             

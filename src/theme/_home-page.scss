@@ -38,6 +38,13 @@
         }
     }
 }
+/*** SEC - Prepare ***/
+.sec-home-form {
+    .sec-home-form__btn {
+        width: 300px;
+        height: auto;
+    }
+}
 /*** Media XS Mobile ***/
 @media (max-width: 576px) {
     // SEC - Cards Activities

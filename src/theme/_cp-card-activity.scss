@@ -31,8 +31,17 @@
 }
 
 /* Media XS Mobile */
-@media (max-width: 576px) {
-    .cp-card-activity__content:before {
-        width: 80%;
+// @media (max-width: 576px) {
+
+    
+// }
+/* Media Desktop */
+@media (min-width: 992px) {
+    .cp-card-activity {
+        .cp-card-activity__content:before {
+            top: inherit;
+            width: 93%;
+            min-height: 145px;
+        }
     }
 }

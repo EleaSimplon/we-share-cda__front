@@ -1,7 +1,6 @@
 <template>
     <ion-page>
         <ion-content :fullscreen="true">
-            
             <!-- *** SEC - HEADER *** -->
             <section class="sec-prepare-header p-sec">
                 <h1 class="center bold">Prepare</h1>
@@ -20,10 +19,15 @@
                     <!-- multistep form -->
                     <form id="multiStepForm">
                         <!-- progressbar -->
-                        <ul id="progressbar">
-                            <li class="active"></li>
-                            <li class=""></li>
-                            <li class=""></li>
+                        <ul class="d-flex justify-space-around flex-no-wrap align-center mb-50 mt-20"
+                            id="progressbar"
+                        >
+                            <li v-bind:class="{ active: isActive(index) }"
+                                v-for="(featuresLabel, index) in featuresLabels"
+                                :key="featuresLabel.id"
+                            >
+                                {{ index + 1 }}
+                            </li>
                         </ul>
 
                         <!-- fieldsets -->
@@ -40,48 +44,55 @@
                                 v-for="featuresValue in featuresLabel.features"
                                 :key="featuresValue.id"
                             >
+                                <!-- :disabled="!featuresValue.isClickable" -->
                                 <button
-                                    class="sec-prepare__form__button-value button-basic button-secondary mt-10 "
+                                    class="sec-prepare__form__button-value button-basic button-secondary mt-10"
                                     :value="featuresValue.features_value.id"
                                     @click.prevent="getFeaturesValueId"
+                                   
                                 >
                                     {{ featuresValue.features_value.value }}
                                 </button>
                             </div>
                             
                             <!-- INDEX 0 == Button NEXT -->
-                            <div class="mt-30" v-if="currentStep == 0 || currentStep < last">
-                                <button name="next" class="next action-button button-basic button-primary" value="Next" @click="nextStep">
-                                    Next
-                                </button>
-                            </div>
-                            <!-- INDEX + == Button PREVIOUS -->
-                            <div v-if="currentStep > 0" class="sec-prepare__form__buttons__btn-prev">
-                                <button class="previous mt-30 bck-transparent" value="Previous" @click="previousStep">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 76 76">
-                                        <g id="Groupe_2461" data-name="Groupe 2461" transform="translate(-507 -4557)">
-                                            <g id="Ellipse_16" data-name="Ellipse 16" transform="translate(507 4557)" fill="none" stroke="#d8ad5c" stroke-width="1">
-                                            <circle cx="38" cy="38" r="38" stroke="none"/>
-                                            <circle cx="38" cy="38" r="37.5" fill="none"/>
+                            <div class="d-flex align-center">
+                                <!-- INDEX + == Button PREVIOUS -->
+                                <div v-if="currentStep > 0" class="sec-prepare__form__buttons__btn-prev flex-50pc">
+                                    <button class="previous mt-30 bck-transparent" value="Previous" @click="previousStep">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 76 76">
+                                            <g id="Groupe_2461" data-name="Groupe 2461" transform="translate(-507 -4557)">
+                                                <g id="Ellipse_16" data-name="Ellipse 16" transform="translate(507 4557)" fill="none" stroke="#d8ad5c" stroke-width="1">
+                                                <circle cx="38" cy="38" r="38" stroke="none"/>
+                                                <circle cx="38" cy="38" r="37.5" fill="none"/>
+                                                </g>
+                                                <path id="next" d="M1.439,14.938l10.5-10.5A1.5,1.5,0,1,1,14.059,6.56L6.12,14.5H32.5a1.5,1.5,0,1,1,0,3H6.12l7.939,7.939a1.5,1.5,0,1,1-2.121,2.121l-10.5-10.5a1.5,1.5,0,0,1,0-2.121Z" transform="translate(528 4579.001)" fill="#08080a"/>
                                             </g>
-                                            <path id="next" d="M1.439,14.938l10.5-10.5A1.5,1.5,0,1,1,14.059,6.56L6.12,14.5H32.5a1.5,1.5,0,1,1,0,3H6.12l7.939,7.939a1.5,1.5,0,1,1-2.121,2.121l-10.5-10.5a1.5,1.5,0,0,1,0-2.121Z" transform="translate(528 4579.001)" fill="#08080a"/>
-                                        </g>
-                                    </svg>
-                                </button>
-                            </div>
-                        
-                            <div v-if="currentStep === last" class="sec-prepare__form__buttons__btn-submit">
-                                <button class="submit button-basic button-primary" value="Submit"  @click.prevent="submitFeaturesValueId()">
-                                    Submit
-                                </button> 
-                            </div>
+                                        </svg>
+                                    </button>
+                                </div>
 
+                                <div class="mt-30"
+                                    v-if="currentStep < last"
+                                    :class="currentStep == 0 ? 'flex-100pc' : 'flex-50pc'"
+                                >
+                                    <button name="next" class="next action-button button-basic button-primary" value="Next" @click="nextStep">
+                                        Next
+                                    </button>
+                                </div>
+                            
+                                <div v-if="currentStep === last" class="sec-prepare__form__buttons__btn-submit mt-30 flex-50pc">
+                                    <button class="submit button-basic button-primary" value="Submit"  @click.prevent="submitFeaturesValueId()">
+                                        Submit
+                                    </button> 
+                                </div>
+                            </div>
                         </fieldset>
 
                     </form>
                 </div>
             </section>
-            <!-- SEC - RESULTS -->
+            <!-- *** SEC - RESULTS *** -->
             <section class="sec-prepare-result mt-20" v-if="showResults">
                 <div class="container">
                     <div class="center">
@@ -92,7 +103,7 @@
                             :key="activity.id"
                             @click.prevent="onClickActivityPost(activity)"
                             class="cp-card-activity d-flex align-end"
-                            style="background-image: url('https://images.pexels.com/photos/5098033/pexels-photo-5098033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"
+                            v-bind:style="{ backgroundImage: activity.picture ? 'url(' + activity.picture + ')' : 'url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png)' }"
                         >
                             <!-- Content -->
                             <div class="cp-card-activity__content">
@@ -137,13 +148,14 @@
                 featuresValuesId: [] as number[],
                 displayActivities: [{
                     id: Number,
-                    name: String
+                    name: String,
+                    picture: String
                 }],
                 showResults: false,
                 showForm: true,
                 currentStep: 0,
                 activityId: '',
-                selectedId: null
+                selectedId: null,
             }
         },
         computed: {
@@ -156,6 +168,9 @@
             },
             currentFieldsets() {
                 return this.featuresLabels.filter((fieldset, index) => index === this.currentStep);
+            },
+            isActive() {
+                return index => this.currentFieldsets[index] === this.featuresLabels[index];
             }
         },
         mounted() {

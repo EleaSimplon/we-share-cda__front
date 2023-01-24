@@ -79,7 +79,7 @@
                         :key="activity.id"
                         @click.prevent="onClickActivityPost(activity)"
                         class="cp-card-activity d-flex align-end"
-                        v-bind:style="{ backgroundImage: 'url(' + activity.picture + ')' }"
+                        v-bind:style="{ backgroundImage: activity.picture ? 'url(' + activity.picture + ')' : 'url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png)' }"
                     >
                         <!-- Content -->
                         <div class="cp-card-activity__content">
@@ -100,15 +100,6 @@
                         </div>
                     </a>
                 </div> 
-                <!-- <div v-for="card in cards" :key="card.id">
-                            <card-post
-                                :image="card.image"
-                                :shortDescription="card.short_description"
-                                :country="card.country"
-                                :name="card.name"
-                                >
-                            </card-post>
-                        </div> -->
             </section>
         </ion-content>
         <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -123,7 +114,7 @@
     import { defineComponent } from 'vue';
     import axios from 'axios';
     import {BackendMixin} from '../mixins/backend';
-    // import CardPost from '../components/CardPost.vue';
+
     import {
         IonPage,
         IonContent,

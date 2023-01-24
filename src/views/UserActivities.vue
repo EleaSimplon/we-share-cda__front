@@ -28,7 +28,7 @@
                     <a v-for="activity in activities"
                         :key="activity.id"
                         class="cp-card-activity d-flex align-end"
-                        v-bind:style="{ backgroundImage: 'url(' + activity.picture + ')' }"
+                        v-bind:style="{ backgroundImage: activity.picture ? 'url(' + activity.picture + ')' : 'url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png)' }"
                     >
                         <!-- Content -->
                         <div class="cp-card-activity__content">

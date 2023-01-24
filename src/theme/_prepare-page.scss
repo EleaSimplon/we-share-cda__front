@@ -11,6 +11,28 @@
 
 /*form styles*/
 #multiStepForm {
+
+	/*progressbar*/
+	#progressbar {
+
+		li {
+			list-style-type: none;
+			color: var(--color-tertiary);
+			text-transform: uppercase;
+			font-size: 9px;
+			width: 13.33%;
+			float: left;
+			position: relative;
+			background-color: var(--color-primary);
+			width: fit-content;
+			padding: 15px;
+			border-radius: 10%;
+		}
+		li.active {
+			background-color: var(--color-mustard);
+		}
+	}
+
 	text-align: center;
 	position: relative;
 
@@ -33,51 +55,5 @@
 	fieldset.show {
 	height: auto;
 	}
-	/*progressbar*/
-	#progressbar {
-		margin-bottom: 30px;
-		overflow: hidden;
-		/*CSS counters to number the steps*/
-		counter-reset: step;
-		li {
-			list-style-type: none;
-			color: var(--color-tertiary);
-			text-transform: uppercase;
-			font-size: 9px;
-			width: 13.33%;
-			float: left;
-			position: relative;
-		}
-		li:before {
-			content: counter(step);
-			counter-increment: step;
-			width: 20px;
-			line-height: 20px;
-			display: block;
-			font-size: 10px;
-			color: #333;
-			background: var(--color-primary);
-			border-radius: 3px;
-			margin: 0 auto 5px auto;
-		}
-		li:after {
-			content: '';
-			width: 100%;
-			height: 2px;
-			background: var(--color-primary);
-			position: absolute;
-			left: -50%;
-			top: 9px;
-			z-index: -1; /*put it behind the numbers*/
-		}
-		li:first-child:after {
-			/*connector not needed before the first step*/
-			content: none; 
-		}
-		li.active:before,  #progressbar li.active:after{
-			background: var(--color-mustard);
-			color: var(--color-tertiary);
-		}
-
-	}
+	
 }
