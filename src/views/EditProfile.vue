@@ -14,7 +14,7 @@
                 </div>
             </section>
            <!--  *** SEC - EDIT PROFILE FORM ***-->
-            <section class="p-sec">
+            <section class="sec-edit-profile-form p-sec">
                 <div class="container">
                     <ion-card>
                         <div class="edit-profile__form p-20">
@@ -51,10 +51,8 @@
                     </ion-card>  
                 </div>
             </section>
-            
         </ion-content>  
     </ion-page>
-
 </template>
 
 

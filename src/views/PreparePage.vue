@@ -144,7 +144,10 @@
         components: { IonContent, IonPage },
         data() {
             return {
-                featuresLabels: [],
+                featuresLabels: [{
+                    id: Number,
+                    label: String
+                }],
                 featuresValuesId: [] as number[],
                 displayActivities: [{
                     id: Number,

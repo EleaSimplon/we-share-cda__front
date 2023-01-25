@@ -18,37 +18,36 @@
                                 <ion-label position="floating">Name</ion-label>
                                 <ion-input type="text" v-model="name"></ion-input>
                             </ion-item>
-                            <!-- Company -->
+                            <!-- Description -->
                             <ion-item>
-                                <ion-label position="floating">Company</ion-label>
-                                <ion-input type="text" v-model="company"></ion-input>
-                            </ion-item>
-                            <!-- Country -->
-                            <ion-item>
-                                <ion-label position="floating">Country</ion-label>
-                                <ion-input type="text" v-model="country"></ion-input>
-                            </ion-item>
-                            <!-- City -->
-                            <ion-item>
-                                <ion-label position="floating">City</ion-label>
-                                <ion-input type="text" v-model="city"></ion-input>
+                                <ion-label position="floating">Description</ion-label>
+                                <ion-input type="text" v-model="description"></ion-input>
                             </ion-item>
                             <!-- Address -->
                             <ion-item>
                                 <ion-label position="floating">Address</ion-label>
                                 <ion-input type="text" v-model="address"></ion-input>
                             </ion-item>
-                            <!-- Short Description -->
-                            <ion-item counter="true">
-                                <ion-label position="floating">Short Description</ion-label>
-                                <ion-input type="text" maxlength="20" v-model="shortDescription"></ion-input>
-                            </ion-item>
-                            <!-- Description -->
+                            <!-- City -->
                             <ion-item>
-                                <ion-label position="floating">Description</ion-label>
-                                <ion-input type="text" v-model="description"></ion-input>
+                                <ion-label position="floating">City</ion-label>
+                                <ion-input type="text" v-model="city"></ion-input>
+                            </ion-item>
+                            <!-- Country -->
+                            <ion-item>
+                                <ion-label position="floating">Country</ion-label>
+                                <ion-input type="text" v-model="country"></ion-input>
+                            </ion-item>
+                            <!-- Company -->
+                            <ion-item>
+                                <ion-label position="floating">Company</ion-label>
+                                <ion-input type="text" v-model="company"></ion-input>
                             </ion-item>
                             <!-- Phone Number -->
+                            <ion-item>
+                                <ion-label position="floating">Phone Number</ion-label>
+                                <ion-input type="text" v-model="phoneNumber"></ion-input>
+                            </ion-item>
                             <!-- Duration -->
                             <ion-item>
                                 <ion-label position="floating">Duration</ion-label>
@@ -56,7 +55,7 @@
                             </ion-item>
                             <!-- Unit -->
                             <ion-item>
-                                <select interface="popover" placeholder="Unit" @change="onUnitChange($event)">
+                                <select @change="onUnitChange($event)">
                                     <option value="" selected disabled>Select a Unit...</option>
                                     <option v-for="unit in units" :key="unit.id" :value="unit.id">
                                         {{ unit.type }}
@@ -64,27 +63,21 @@
                                 </select>
                             </ion-item>
                             <!-- Picture -->
-                            
-
+                            <!-- <ion-item>
                                 <div>
-                                    <input type="file" id="avatar" @change="onChangeFile">
+                                    <input type="file" @change="onChangeFile">
+                                    <label>Upload your image</label>
                                 </div>
-
-                            <div>
-                                <!-- <ion-input type="file" v-model="picture"></ion-input> -->
-                                <!-- <input type="file" @change="onFileChange" ref="pictureInput"/> -->
-                            </div> 
+                            </ion-item> -->
+                            <!-- <div>
+                                <ion-input type="file" v-model="picture"></ion-input>
+                                <input type="file" @change="onFileChange" ref="pictureInput"/>
+                            </div> -->
                             <!-- Price -->
                                 <ion-item>
                                     <ion-label position="floating">Price</ion-label>
                                     <ion-input type="number" v-model="price"></ion-input>
-                                    <!-- <ion-select interface="popover" placeholder="Price">
-                                        <IonSelectOption value="minutes">$</IonSelectOption>
-                                        <IonSelectOption value="hours">$$</IonSelectOption>
-                                        <IonSelectOption value="days">$$$</IonSelectOption>
-                                    </ion-select> -->
                                 </ion-item>
-                            <!-- Schedule  -->
                             <!-- Button Submit-->
                             <div class="button-signIn mt-20">
                                 <button class="button-basic button-primary w-100" @click.prevent = "addActivity()">
@@ -106,30 +99,31 @@
 
 <script lang="ts">
     import { defineComponent } from 'vue';
-    // import CardPost from '../components/CardPost.vue';
     import { IonPage, IonContent, IonCard, IonInput, IonLabel, IonItem } from '@ionic/vue';
     import store from '../store';
     import axios from 'axios';
+import router from '../router';
 
     export default defineComponent({
         name: 'add-activity',
         components: { IonContent, IonPage, IonCard, IonInput, IonLabel, IonItem },
         data(){
             return {
-                units: [],
+                units: [{
+                    id: Number,
+                    type: String
+                }],
                 unitId: '',
                 name: '',
                 country: '',
                 city: '',
                 address: '',
-                shortDescription: '',
                 description: '',
                 company: '',
                 duration: '',
-                picture: {},
+                //picture: {},
                 price: '',
-                //schedule: '',
-                //phoneNumber: '',
+                phoneNumber: '',
                 activityId: ''
             }
         },
@@ -151,12 +145,12 @@
                this.unitId = e.target.value
 
             },
-            onChangeFile(event:any) {
+            // onChangeFile(event:any) {
 
-                console.log(event.target.files[0].name);
+            //     console.log(event.target.files[0].name);
 
-                this.picture = 'http://127.0.0.1:8000/upload/images/activities/' + event.target.files[0].name
-            },
+            //     this.picture = 'http://127.0.0.1:8000/upload/images/activities/' + event.target.files[0].name
+            // },
             // Add an activity
             async addActivity(){
                 
@@ -165,23 +159,21 @@
                     country: this.country,
                     city: this.city,
                     address: this.address,
-                    short_description: this.shortDescription,
                     description: this.description,
                     company: this.company,
-                    //phoneNumber: this.phoneNumber,
+                    phoneNumber: this.phoneNumber,
                     price: parseInt(this.price),
-                    //schedule: this.schedule,
                     duration: parseInt(this.duration),
                     unit: {"id": parseInt(this.unitId)},
                     user: {"id": this.userId},
                 }
 
-                const dataPicture:any = [
-                    this.picture
-                ]
+                // const dataPicture:any = [
+                //     this.picture
+                // ]
                 
-                let formData = new FormData();
-                formData.append('picture', dataPicture[0]);
+                // let formData = new FormData();
+                // formData.append('picture', dataPicture[0]);
 
                 try {
                     
@@ -193,13 +185,13 @@
                     }).catch(e => {
                         console.log('Error', e);
                     });
-                    await axios.post("http://127.0.0.1:8000/api/activities/"+ this.activityId +"/image", formData, {headers: { 'Content-Type': 'multipart/form-data','Access-Control-Allow-Origin':'http://127.0.0.1:8000/api/activities/'+this.activityId+'/image','Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Accept, Authorization','Access-Control-Allow-Methods':'PUT, POST, GET, DELETE, OPTIONS'}});
+                    // await axios.post("http://127.0.0.1:8000/api/activities/"+ this.activityId +"/image", formData, {headers: { 'Content-Type': 'multipart/form-data','Access-Control-Allow-Origin':'http://127.0.0.1:8000/api/activities/'+this.activityId+'/image','Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Accept, Authorization','Access-Control-Allow-Methods':'PUT, POST, GET, DELETE, OPTIONS'}});
 
-                    // router.push({ name: 'explore', }).then(
-                    //     () => {
-                    //         window.location.reload()
-                    //     }
-                    // )
+                    router.push({ name: 'explore', }).then(
+                        () => {
+                            window.location.reload()
+                        }
+                    )
                 }
                 // REGLER LE PB AVEC JEANDU
                 catch (err) {

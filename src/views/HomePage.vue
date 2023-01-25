@@ -4,7 +4,7 @@
             <!-- SEC - HEADER -->
             <section class="sec-home-header p-sec">
                 <div class="container">
-                    <h1 class="center bold">Discover</h1>
+                    <h1 class="center bold">We Share</h1>
                 </div>
             </section>
             <!-- SEC - SEARCH BAR -->
@@ -144,11 +144,11 @@
                 <div class="container">
                     <!-- Title -->
                     <div class="sec-home-form__title mb-25">
-                        <h4 class="bold">Click to the Quizz & discover 3 activities !</h4>
+                        <h4 class="bold">Click to discover 3 activities !</h4>
                     </div>
                     <div class="sec-home-form__btn">
-                        <button class="bck-transparent" @click="onClickPrepare()">
-                            <img src="../../public/assets/icon/influencer.png">
+                        <button class="button-basic button-mustard" @click="onClickPrepare()">
+                            Quizz
                         </button>
                     </div>
                 </div>
@@ -196,7 +196,7 @@
                 await axios.get("http://127.0.0.1:8000/api/activities/latest")
                 .then((response) => {
                     this.activities = response.data;
-                    console.log(response.data);
+                    //console.log(response.data);
                     
                 }).catch(e => {
                     console.log('Error', e);
@@ -209,7 +209,7 @@
             },
             // On click go to prepare
             onClickPrepare() {
-                router.push({ name: 'PreparePage' })
+                router.push({name: 'PreparePage'})
             }
         }
     });

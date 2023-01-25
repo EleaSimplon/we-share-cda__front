@@ -3,7 +3,7 @@
         <!-- Header -->
         <ion-content :fullscreen="true">
             <!--  *** SEC - EDIT PROFILE HEADER ***-->
-            <section class="sec-edit-profile-header border-bottom p-sec">
+            <section class="sec-profile-reviews-header border-bottom p-sec">
                 <div class="container">
                     <div class="d-flex align-center">
                         <div @click="onClickGoBack()">

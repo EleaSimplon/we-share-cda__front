@@ -13,6 +13,14 @@
     .sec-activity-post__header__btn-like {
         z-index: 5;
     }
+    .sec-activity-post__header__btn-back {
+      margin-top: 25px;
+      a {
+        background: var(--color-primary);
+        padding: 13px;
+        border-radius: 50%;
+      }
+    }
 }
 .sec-activity-post__header:before {
     position: absolute;
@@ -157,10 +165,11 @@
     border-top-left-radius: 20px;
     /* Infos */
     .sec-activity-post__content__infos {
+        overflow: scroll;
         /*** CP - Category ***/
         .cp-tag-category {
-            min-width: 163px;
-            padding: 6px;
+            min-width: 193px;
+            padding: 15px;
             .cp-tag-category__icon {
                 padding: 8px;
                 svg {
