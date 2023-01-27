@@ -69,10 +69,10 @@
                                     <label>Upload your image</label>
                                 </div>
                             </ion-item> -->
-                            <!-- <div>
-                                <ion-input type="file" v-model="picture"></ion-input>
-                                <input type="file" @change="onFileChange" ref="pictureInput"/>
-                            </div> -->
+                            <div>
+                                <!-- <ion-input type="file" v-model="picture"></ion-input> -->
+                                <input type="file" @change="onChangeFile" ref="pictureInput"/>
+                            </div> 
                             <!-- Price -->
                                 <ion-item>
                                     <ion-label position="floating">Price</ion-label>
@@ -103,6 +103,7 @@
     import store from '../store';
     import axios from 'axios';
 import router from '../router';
+import { BackendApi } from '@/utils/http';
 
     export default defineComponent({
         name: 'add-activity',
@@ -121,10 +122,11 @@ import router from '../router';
                 description: '',
                 company: '',
                 duration: '',
-                //picture: {},
+                picture: {} as any,
                 price: '',
                 phoneNumber: '',
                 activityId: ''
+
             }
         },
         computed: {
@@ -141,16 +143,16 @@ import router from '../router';
         methods: {
             // On click option in select Unit->getUnit value
             onUnitChange(e) {
-                
                this.unitId = e.target.value
-
             },
-            // onChangeFile(event:any) {
 
-            //     console.log(event.target.files[0].name);
 
-            //     this.picture = 'http://127.0.0.1:8000/upload/images/activities/' + event.target.files[0].name
-            // },
+            onChangeFile(event:any) {
+
+                console.log(event.target.files[0]);
+
+                this.picture = event.target.files[0]
+            },
             // Add an activity
             async addActivity(){
                 
@@ -164,34 +166,41 @@ import router from '../router';
                     phoneNumber: this.phoneNumber,
                     price: parseInt(this.price),
                     duration: parseInt(this.duration),
-                    unit: {"id": parseInt(this.unitId)},
-                    user: {"id": this.userId},
+                    unit: parseInt(this.unitId),
+                    user: this.userId,
+                    picture: this.picture,
                 }
+                console.log(dataActivity)
 
                 // const dataPicture:any = [
-                //     this.picture
+                //     this.pictureformData
                 // ]
                 
-                // let formData = new FormData();
-                // formData.append('picture', dataPicture[0]);
-
+                
                 try {
+
+                    let formData = new FormData();
+                    Object.keys(dataActivity).map((key)=>{
+                       
+                        formData.append(key, dataActivity[key])
+                    })
+                    // formData.append('picture', dataPicture[0]);
                     
-                    await axios.post("http://127.0.0.1:8000/api/activities", dataActivity)
+
+                    await axios.post("http://127.0.0.1:8000/api/activities", formData)
                     .then((response) => {
                         this.activityId = response.data.id
                         console.log(response.data);
 
+                        router.push({ name: 'explore', }).then(
+                            () => {
+                                window.location.reload()
+                            }
+                        )
                     }).catch(e => {
                         console.log('Error', e);
                     });
-                    // await axios.post("http://127.0.0.1:8000/api/activities/"+ this.activityId +"/image", formData, {headers: { 'Content-Type': 'multipart/form-data','Access-Control-Allow-Origin':'http://127.0.0.1:8000/api/activities/'+this.activityId+'/image','Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Accept, Authorization','Access-Control-Allow-Methods':'PUT, POST, GET, DELETE, OPTIONS'}});
 
-                    router.push({ name: 'explore', }).then(
-                        () => {
-                            window.location.reload()
-                        }
-                    )
                 }
                 // REGLER LE PB AVEC JEANDU
                 catch (err) {
