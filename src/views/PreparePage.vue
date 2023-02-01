@@ -13,8 +13,8 @@
                     <div>Please login to use this awesome features.</div>
                 </div>
             </section>
-            <!--***  SEC - IF AUTH MSG *** -->
-            <section class="sec-prepare__form" v-if="isAuthenticated">
+            <!--***  SEC - IF AUTH FORM *** -->
+            <section class="sec-prepare__form p-sec" v-if="isAuthenticated">
                 <div v-if="showForm">
                     <!-- multistep form -->
                     <form id="multiStepForm">
@@ -29,16 +29,15 @@
                                 {{ index + 1 }}
                             </li>
                         </ul>
-
                         <!-- fieldsets -->
                         <fieldset
                             class="steps"
                             v-for="(featuresLabel) in currentFieldsets"
                             :key="featuresLabel.id"
                         >
-                            <h2 class="mb-30">
+                            <h3 class="mb-30 bold">
                                 {{ featuresLabel.label }}
-                            </h2>
+                            </h3>
 
                             <div class="d-flex align-items-center radios-list"
                                 v-for="featuresValue in featuresLabel.features"
@@ -46,7 +45,7 @@
                             >
                                 <!-- :disabled="!featuresValue.isClickable" -->
                                 <button
-                                    class="sec-prepare__form__button-value button-basic button-secondary mt-10"
+                                    class="sec-prepare__form__button-value button-basic button-secondary mt-10 w-100"
                                     :value="featuresValue.features_value.id"
                                     @click.prevent="getFeaturesValueId"
                                    
@@ -54,8 +53,7 @@
                                     {{ featuresValue.features_value.value }}
                                 </button>
                             </div>
-                            
-                            <!-- INDEX 0 == Button NEXT -->
+                            <!-- Buttons -->
                             <div class="d-flex align-center">
                                 <!-- INDEX + == Button PREVIOUS -->
                                 <div v-if="currentStep > 0" class="sec-prepare__form__buttons__btn-prev flex-50pc">
@@ -71,38 +69,37 @@
                                         </svg>
                                     </button>
                                 </div>
-
+                                <!-- Button NEXT -->
                                 <div class="mt-30"
                                     v-if="currentStep < last"
                                     :class="currentStep == 0 ? 'flex-100pc' : 'flex-50pc'"
                                 >
-                                    <button name="next" class="next action-button button-basic button-primary" value="Next" @click="nextStep">
+                                    <button name="next" class="next action-button button-basic button-primary w-100 " value="Next" @click="nextStep">
                                         Next
                                     </button>
                                 </div>
-                            
-                                <div v-if="currentStep === last" class="sec-prepare__form__buttons__btn-submit mt-30 flex-50pc">
+                                 <!-- Button SUBMIT -->
+                                <div v-if="currentStep === last" class="sec-prepare__form__buttons__btn-submit mt-30 flex-50pc w-100">
                                     <button class="submit button-basic button-primary" value="Submit"  @click.prevent="submitFeaturesValueId()">
                                         Submit
                                     </button> 
                                 </div>
                             </div>
                         </fieldset>
-
                     </form>
                 </div>
             </section>
             <!-- *** SEC - RESULTS *** -->
             <section class="sec-prepare-result mt-20" v-if="showResults">
                 <div class="container">
-                    <div class="center">
-                        Results !
+                    <div class="h2 center mb-30">
+                        Here's the activities that matches you best !
                     </div>
                     <div class="sec-prepare-result__activities">
                         <a v-for="activity in displayActivities"
                             :key="activity.id"
                             @click.prevent="onClickActivityPost(activity)"
-                            class="cp-card-activity d-flex align-end"
+                            class="cp-card-activity d-flex align-end mb-20"
                             v-bind:style="{ backgroundImage: activity.picture ? 'url(' + activity.picture + ')' : 'url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png)' }"
                         >
                             <!-- Content -->
@@ -225,9 +222,7 @@
                     // featuresValuesId = integer
                     await axios.post("http://127.0.0.1:8000/api/prepare", featuresValuesId)
                     .then(async(response) => {
-                        //console.log('response: ', response.data);
                         this.displayActivities = response.data
-                        //console.log('activities', this.displayActivities);
                         this.showResults = true
                         this.showForm = false
                         

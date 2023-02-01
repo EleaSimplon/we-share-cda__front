@@ -122,11 +122,11 @@
         IonFab,
         IonFabButton,
         IonIcon,
-        IonToolbar,
         IonTitle,
         IonItem,
         IonList,
         IonButtons,
+        IonToolbar,
         IonButton,
         IonModal,
         IonLabel,
@@ -204,8 +204,7 @@
             onClickAddActivity() {
                 router.push({ name: 'addActivity' })
             },
-
-            // On click go to activity show
+            // On click go to activity post
             onClickActivityPost(activity) {
                 this.activityId = activity.id
                 //console.log('ROUTER', this.activityId);

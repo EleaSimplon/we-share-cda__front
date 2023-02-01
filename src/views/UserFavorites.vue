@@ -36,15 +36,12 @@
                             v-bind:style="{ backgroundImage: fav.picture ? 'url(' + fav.picture + ')' : 'url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png)' }"
                         >
                             <div class="cp-card-activity__content">
-                            
                                 <div class="cp-card-activity__content__location">
                                     {{ fav.country }}
                                 </div>
-                                
                                 <div class="cp-card-activity__content__name bold mt-5">
                                     {{ fav.name }}
                                 </div>
-                                
                                 <div class="cp-card-activity__content__price d-flex align-center mt-10">
                                     <div class="cp-tag-category__text">
                                         {{ fav.price }} $
@@ -55,7 +52,6 @@
                     </div>
                 </div>
             </section>
-            
         </ion-content>  
     </ion-page>
 
@@ -81,7 +77,7 @@
                 actvity: [{
                     id: Number
                 }]
-            }]
+            }],
         }
     },
     mounted() {
@@ -115,14 +111,16 @@
                 let resp = await axios.get("http://127.0.0.1:8000/api/users/" + this.userId)
                 const user = resp.data
                 this.favorites = user.favorites
-                console.log(user.favorites);
-                
+                console.log(user.favorites[0].activity[0].id);
+
                 this.$emit("done")
             }
             catch (err) {
                 this.addError(this.getErrorText(err))
             }
         },
+        // On click go to activity post
+
         // Go back to profile
         onClickGoBack() {
             router.push({ name: 'profile' }

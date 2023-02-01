@@ -23,7 +23,6 @@
                             <ion-label position="floating">Email</ion-label>
                             <ion-input type="email" v-model="email" required></ion-input>
                         </ion-item>
-                        <span v-if="errorMessage" class="error-message">{{ errorMessage }}</span>
                         <!-- Password -->
                         <ion-item>
                             <ion-label position="floating">Password</ion-label>

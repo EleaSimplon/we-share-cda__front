@@ -231,33 +231,55 @@
             <!-- *** SEC - Add Reviews *** -->
             <section class="sec-activity-post__add-reviews mb-50">
                 <div class="container">
-                    <div class="sec-activity-post__add-reviews__form" v-if="showForm">
-                        <ion-card>
-                            <!-- Title -->
-                            <ion-item>
-                                <ion-label position="floating">Title</ion-label>
-                                <ion-input type="text" v-model="title"></ion-input>
-                            </ion-item>
-                            <!-- Description -->
-                            <ion-item>
-                                <ion-label position="floating">Description</ion-label>
-                                <ion-input type="text" v-model="description"></ion-input>
-                            </ion-item>
-                            <!-- Rate -->
-                            <ion-item>
-                                <ion-label position="floating">rate</ion-label>
-                                <ion-input type="number" min="0" max="5" v-model="rate"></ion-input>
-                            </ion-item>
-                            <div class="button-signIn mt-20">
-                                <button class="button-basic button-primary w-100" @click.prevent = "addReview()">
-                                    add
-                                </button>
-                            </div>
-                        </ion-card>
+                    <div class="sec-search-header__content__modal">
+                        <button class="button-basic button-mustard" @click="setOpenModal(true)">
+                            Add a review !
+                        </button>
                     </div>
-                    <div class="sec-activity-post__add-reviews__ty-msg center" v-if="!showForm">
+                    <div class="sec-search-header__modal__filters">
+                            <ion-modal :is-open="isModalOpen">
+                                <ion-content>
+                                    <ion-toolbar>
+                                        <div class="container d-flex">
+                                        <ion-title>Add a review</ion-title>
+                                        <ion-buttons slot="end">
+                                            <ion-button color="light" @click="setOpenModal(false)">
+                                                <ion-icon name="close-outline">X</ion-icon>
+                                            </ion-button>
+                                        </ion-buttons>
+                                        </div>
+                                    </ion-toolbar>
+                                    <div class="container mt-20">
+                                        <div>
+                                            <!-- Title -->
+                                            <ion-item>
+                                                <ion-label position="floating">Title</ion-label>
+                                                <ion-input type="text" v-model="title"></ion-input>
+                                            </ion-item>
+                                            <!-- Description -->
+                                            <ion-item>
+                                                <ion-label position="floating">Description</ion-label>
+                                                <ion-input type="text" v-model="description"></ion-input>
+                                            </ion-item>
+                                            <!-- Rate -->
+                                            <ion-item>
+                                                <ion-label position="floating">rate</ion-label>
+                                                <ion-input type="number" min="0" max="5" v-model="rate"></ion-input>
+                                            </ion-item>
+                                            <div class="button-signIn mt-20">
+                                                <button class="button-basic button-primary w-100" @click.prevent = "addReview()">
+                                                    add
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </ion-content>
+                            </ion-modal>
+                        </div>
+                    <!-- <div class="sec-activity-post__add-reviews__ty-msg center" v-if="!showForm">
                         Your Review has been added !
-                    </div>
+                    </div> -->
                 </div>
             </section>
         </ion-content>
@@ -270,10 +292,14 @@
         IonContent,
         IonPage,
         IonIcon,
-        IonCard,
         IonInput,
         IonLabel,
         IonItem,
+        IonModal,
+        IonButtons,
+        IonToolbar,
+        IonButton,
+        IonTitle
     } from '@ionic/vue';
 
     import axios from 'axios';
@@ -283,6 +309,7 @@
 
     // To format date
     import dayjs from 'dayjs';
+    import { mapActions } from 'vuex';
 
     export default defineComponent({
     name: 'activity-post',
@@ -295,10 +322,14 @@
         IonContent,
         IonPage,
         IonIcon,
-        IonCard,
         IonInput,
         IonLabel,
-        IonItem
+        IonItem,
+        IonModal,
+        IonButtons,
+        IonToolbar,
+        IonButton,
+        IonTitle
     },
     data() {
         return {
@@ -326,7 +357,7 @@
             description: '',
             rate: '',
             average: Math.round(0) as number,
-            showForm: true,
+            isModalOpen: false,
         }
     },
     computed: {
@@ -362,7 +393,13 @@
         }
     },
     methods: {
-        // ON CLICK PATCH or POST FAVORITE
+        // Modal
+        ...mapActions(["addError", "addSuccess"]),
+        // Open filters modal
+        setOpenModal(isModalOpen: boolean) {
+            this.isModalOpen = isModalOpen;
+        },
+        // ON CLICK DELETE or POST FAVORITE
         async toggleFavorite() {
            
             if (this.isFavorited) {
@@ -448,7 +485,7 @@
                 await axios.post("http://127.0.0.1:8000/api/reviews", dataReview);
                 await this.loadActivity()
                 await this.averageRate()
-                this.showForm = false
+                this.isModalOpen = false;
             }
             // REGLER LE PB AVEC JEANDU
             catch (err) {

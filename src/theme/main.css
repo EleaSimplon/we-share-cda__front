@@ -1,4 +1,65 @@
-/***** Atomic Classes *****/
+/** CSS Variables **/
+:root {
+  /** Font **/
+  --typo-hn: "Against";
+  --typo-body: "Miloner";
+  /** primary **/
+  --color-primary: #c8d1ce;
+  --color-primary-rgb: 200, 209, 206;
+  --ion-color-primary: #d8ad5c;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #c8d1ce;
+  --ion-color-primary-tint: #c8d1ce;
+  /** secondary **/
+  --color-secondary: #e4ede8;
+  --color-secondary-rgb: 228, 237, 232;
+  --ion-color-secondary: #e4ede8;
+  /** tertiary **/
+  --color-tertiary: #212738;
+  --color-tertiary-rgb: 33, 39, 56;
+  --color-tertiary-light: #212738cb;
+  --ion-color-tertiary: #212738;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-shade: #212738;
+  --ion-color-tertiary-tint: #212738;
+  /** mustard **/
+  --color-mustard: #d8ad5c;
+  --color-mustard-rgb: 216, 173, 92;
+  --background-checked: #212738;
+  /** Border Radius **/
+  --border-radius: 20px;
+}
+
+/* Text */
+.text-no-decoration {
+  text-decoration: none;
+}
+
+/** Text Postion **/
+.center {
+  text-align: center;
+}
+
+.justify {
+  text-align: justify;
+}
+
+/** Font Weight **/
+.bold {
+  font-weight: bold;
+}
+
+/* Container */
+.container {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding-right: 30px;
+  padding-left: 30px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 /** Position **/
 .relative {
   position: relative;
@@ -15,20 +76,6 @@
 /** Z-index **/
 .z-10 {
   z-index: 10;
-}
-
-/** Postion **/
-.center {
-  text-align: center;
-}
-
-.justify {
-  text-align: justify;
-}
-
-/** Typo **/
-.bold {
-  font-weight: bold;
 }
 
 /** Flexbox **/
@@ -80,19 +127,6 @@
   flex: 0 0 100%;
 }
 
-/** Width / Height **/
-.w-100 {
-  width: 100%;
-}
-
-.width-content {
-  width: fit-content;
-}
-
-.h-100 {
-  height: 100%;
-}
-
 /* overflow */
 .overflow-auto {
   overflow: auto;
@@ -110,9 +144,111 @@
   overflow: -webkit-box;
 }
 
-/* Border radius */
-.border-round {
-  border-radius: 50% !important;
+/** Width / Height **/
+.w-100 {
+  width: 100%;
+}
+
+.width-content {
+  width: fit-content;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+/*** Margin ***/
+.m-0 {
+  margin: 0 auto;
+}
+
+/* Top */
+.mt-5 {
+  margin-top: 5px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+.mt-74 {
+  margin-top: 74px;
+}
+
+/* Right */
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mr-20 {
+  margin-right: 20px;
+}
+
+/* Bottom */
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-25 {
+  margin-bottom: 25px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mb-35 {
+  margin-bottom: 35px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.mb-120 {
+  margin-bottom: 120px;
+}
+
+/* Left */
+.ml-10 {
+  margin-left: 10px;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}
+
+/*** Padding ***/
+/* all */
+.p-20 {
+  padding: 20px;
+}
+
+.pt-pb-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Bottom */
+.pb-20 {
+  padding-bottom: 20px;
+}
+
+/*** Spacing Section ***/
+.p-sec {
+  padding: 30px 0;
 }
 
 /* Opacity */
@@ -120,28 +256,23 @@
   opacity: 0.5;
 }
 
-/* Boder bottom */
-.border-bottom {
-  border-bottom: 1px solid rgba(128, 128, 128, 0.231372549);
-}
-
 /* Background */
 .bck-transparent {
   background: transparent;
 }
 
-/* Text */
-.text-no-decoration {
-  text-decoration: none;
+.bck-white {
+  background: white;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 1000px;
-  padding-right: 30px;
-  padding-left: 30px;
-  margin-right: auto;
-  margin-left: auto;
+/* Border radius */
+.border-round {
+  border-radius: 50% !important;
+}
+
+/* Boder bottom */
+.border-bottom {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.231372549);
 }
 
 /** CSS Variables **/
@@ -161,10 +292,6 @@
   --color-secondary: #e4ede8;
   --color-secondary-rgb: 228, 237, 232;
   --ion-color-secondary: #e4ede8;
-  /** secondary dark 
-  --color-secondary-dark: #a7c2bd;
-  --color-secondary-dark-rgb: 228, 237, 232;
-  **/
   /** tertiary **/
   --color-tertiary: #212738;
   --color-tertiary-rgb: 33, 39, 56;
@@ -318,183 +445,6 @@ p {
     color: var(--color-tertiary) !important;
   }
 }
-/*** Margin ***/
-.m-0 {
-  margin: 0 auto;
-}
-
-/* Top */
-.mt-5 {
-  margin-top: 5px;
-}
-
-.mt-10 {
-  margin-top: 10px;
-}
-
-.mt-20 {
-  margin-top: 20px;
-}
-
-.mt-30 {
-  margin-top: 30px;
-}
-
-.mt-50 {
-  margin-top: 50px;
-}
-
-.mt-74 {
-  margin-top: 74px;
-}
-
-/* Right */
-.mr-10 {
-  margin-right: 10px;
-}
-
-.mr-20 {
-  margin-right: 20px;
-}
-
-/* Bottom */
-.mb-20 {
-  margin-bottom: 20px;
-}
-
-.mb-25 {
-  margin-bottom: 25px;
-}
-
-.mb-30 {
-  margin-bottom: 30px;
-}
-
-.mb-35 {
-  margin-bottom: 35px;
-}
-
-.mb-50 {
-  margin-bottom: 50px;
-}
-
-.mb-120 {
-  margin-bottom: 120px;
-}
-
-/* Left */
-.ml-10 {
-  margin-left: 10px;
-}
-
-.ml-20 {
-  margin-left: 20px;
-}
-
-/*** Padding ***/
-/* all */
-.p-20 {
-  padding: 20px;
-}
-
-.pt-pb-20 {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-/* Bottom */
-.pb-20 {
-  padding-bottom: 20px;
-}
-
-/*** Spacing Section ***/
-.p-sec {
-  padding: 30px 0;
-}
-
-/** CSS Variables **/
-:root {
-  /** Font **/
-  --typo-hn: "Against";
-  --typo-body: "Miloner";
-  /** primary **/
-  --color-primary: #c8d1ce;
-  --color-primary-rgb: 200, 209, 206;
-  --ion-color-primary: #d8ad5c;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #c8d1ce;
-  --ion-color-primary-tint: #c8d1ce;
-  /** secondary **/
-  --color-secondary: #e4ede8;
-  --color-secondary-rgb: 228, 237, 232;
-  --ion-color-secondary: #e4ede8;
-  /** secondary dark 
-  --color-secondary-dark: #a7c2bd;
-  --color-secondary-dark-rgb: 228, 237, 232;
-  **/
-  /** tertiary **/
-  --color-tertiary: #212738;
-  --color-tertiary-rgb: 33, 39, 56;
-  --color-tertiary-light: #212738cb;
-  --ion-color-tertiary: #212738;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-shade: #212738;
-  --ion-color-tertiary-tint: #212738;
-  /** mustard **/
-  --color-mustard: #d8ad5c;
-  --color-mustard-rgb: 216, 173, 92;
-  --background-checked: #212738;
-  /** Border Radius **/
-  --border-radius: 20px;
-}
-
-/* Tab Nav */
-.tab-selected {
-  border-top: 2px solid var(--color-mustard);
-  color: var(--color-tertiary);
-}
-
-.tab-has-label a:hover {
-  color: var(--color-primary);
-}
-
-.search-header {
-  background-color: var(--color-primary);
-  border-bottom-right-radius: var(--border-radius);
-  border-bottom-left-radius: var(--border-radius);
-}
-
-/*** Butons ***/
-.button-basic {
-  border-radius: var(--border-radius);
-  color: var(--color-tertiary);
-  width: 100%;
-  padding: 18px;
-  font-weight: bold;
-}
-
-.button-basic.button-primary {
-  background-color: var(--color-primary);
-}
-
-.button-basic.button-secondary {
-  border: 1px solid var(--color-primary);
-}
-
-.button-basic.button-mustard {
-  background-color: var(--color-mustard);
-}
-
-@media (min-width: 992px) {
-  .button-basic {
-    width: fit-content;
-  }
-}
-.bck-white {
-  background: white;
-}
-
 .cp-card-activity {
   background-position: center;
   background-repeat: no-repeat;
@@ -552,6 +502,48 @@ p {
 }
 .cp-tag-category .cp-tag-category__text {
   white-space: nowrap;
+}
+
+/*** Butons ***/
+.button-basic {
+  border-radius: var(--border-radius);
+  color: var(--color-tertiary);
+  width: 100%;
+  padding: 18px;
+  font-weight: bold;
+}
+
+.button-basic.button-primary {
+  background-color: var(--color-primary);
+}
+
+.button-basic.button-secondary {
+  border: 1px solid var(--color-primary);
+}
+
+.button-basic.button-mustard {
+  background-color: var(--color-mustard);
+}
+
+@media (min-width: 992px) {
+  .button-basic {
+    width: fit-content;
+  }
+}
+/* Tab Nav */
+.tab-selected {
+  border-top: 2px solid var(--color-mustard);
+  color: var(--color-tertiary);
+}
+
+.tab-has-label a:hover {
+  color: var(--color-primary);
+}
+
+.search-header {
+  background-color: var(--color-primary);
+  border-bottom-right-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
 }
 
 /*** SEC - SEARCH ***/
@@ -691,10 +683,6 @@ p {
   --color-secondary: #e4ede8;
   --color-secondary-rgb: 228, 237, 232;
   --ion-color-secondary: #e4ede8;
-  /** secondary dark 
-  --color-secondary-dark: #a7c2bd;
-  --color-secondary-dark-rgb: 228, 237, 232;
-  **/
   /** tertiary **/
   --color-tertiary: #212738;
   --color-tertiary-rgb: 33, 39, 56;

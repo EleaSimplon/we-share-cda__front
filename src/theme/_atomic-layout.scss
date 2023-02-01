@@ -1,4 +1,12 @@
-/***** Atomic Classes *****/
+/* Container */
+.container {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
 /** Position **/
 .relative {
     position: relative;
@@ -9,24 +17,10 @@
 .fixed {
     position: fixed;
 }
-
 /** Z-index **/
 .z-10 {
     z-index: 10;
 }
-
-/** Postion **/
-.center {
-    text-align: center;
-}
-.justify {
-    text-align: justify;
-}
-/** Typo **/
-.bold {
-    font-weight: bold;
-}
-
 /** Flexbox **/
 .d-none {
     display: none;
@@ -65,17 +59,6 @@
     flex: 0 0 100%;
 }
 
-/** Width / Height **/
-.w-100 {
-    width: 100%;
-}
-.width-content {
-    width: fit-content;
-}
-.h-100 {
-    height: 100%;
-}
-
 /* overflow */
 .overflow-auto {
     overflow: auto;
@@ -89,27 +72,13 @@
 .overflow-box {
     overflow: -webkit-box;
 }
-
-/* Border radius */
-.border-round {
-    border-radius: 50% !important;
+/** Width / Height **/
+.w-100 {
+    width: 100%;
 }
-/* Opacity */
-.opacity-50 {
-    opacity: 0.5;
+.width-content {
+    width: fit-content;
 }
-
-/* Boder bottom */
-.border-bottom {
-    border-bottom: 1px solid #8080803b;
-}
-
-/* Background */
-.bck-transparent {
-    background: transparent;
-}
-
-/* Text */
-.text-no-decoration {
-    text-decoration: none;
+.h-100 {
+    height: 100%;
 }

@@ -13,7 +13,7 @@
                     </div>
                 </div>
             </section>
-             <!--  *** SEC -  ***-->
+            <!--  *** SEC -  ***-->
              <section class="sec-profile-activities-content p-sec">
                 <div class="container">
                     <div class="center">
@@ -27,7 +27,7 @@
                 <div class="container">
                     <a v-for="activity in activities"
                         :key="activity.id"
-                        class="cp-card-activity d-flex align-end"
+                        class="cp-card-activity d-flex align-end mb-30"
                         v-bind:style="{ backgroundImage: activity.picture ? 'url(' + activity.picture + ')' : 'url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png)' }"
                     >
                         <!-- Content -->
@@ -114,7 +114,6 @@
                 let resp = await axios.get("http://127.0.0.1:8000/api/users/" + this.userId)
                 const user = resp.data
                 this.activities = user.activities
-                console.log('activities', user);
                 
                 this.$emit("done")
             }

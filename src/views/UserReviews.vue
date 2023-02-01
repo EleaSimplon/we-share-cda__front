@@ -13,15 +13,23 @@
                     </div>
                 </div>
             </section>
+            <!--  *** SEC -  ***-->
+            <section class="sec-profile-activities-content p-sec">
+                <div class="container">
+                    <div class="center">
+                        Here you can retrieve the list of reviews that you have added to the app !
+                    </div>
+                </div>
+            </section>
            <!--  *** SEC - EDIT PROFILE FORM ***-->
             <section class="p-sec">
                 <div class="container">
-                    <div
-                        v-for="review in reviews"
+                    <!-- <div
+                        v-for="review in activities"
                         :key="review.id"
                     >
                         {{ review }}
-                    </div>
+                    </div> -->
                 </div>
             </section>
             
@@ -38,7 +46,7 @@
     //import axios from 'axios';
     import { BackendMixin } from '../mixins/backend';
     import router from '../router';
-    import axios from 'axios';
+    // import axios from 'axios';
 
     //recup le token
     export default defineComponent({
@@ -47,12 +55,11 @@
     components: { IonPage, IonContent, IonIcon },
     data() {
         return {
-            reviews: []
+            
         }
     },
     mounted() {
         // Display user infos
-        this.loadUser()
     },
     computed: {
         username() {
@@ -76,19 +83,8 @@
         }
     },
     methods: {
-         // Display user infos
-         async loadUser() {
-            try {
-                let resp = await axios.get("http://127.0.0.1:8000/api/users/" + this.userId)
-                const user = resp.data
-                this.reviews = user.reviews
-                
-                this.$emit("done")
-            }
-            catch (err) {
-                this.addError(this.getErrorText(err))
-            }
-        },
+        // Display user infos
+        
         // Go back to profile
         onClickGoBack() {
             router.push({ name: 'profile' }
